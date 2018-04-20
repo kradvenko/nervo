@@ -75,9 +75,50 @@
                         <button class="btn btn-primary">Agregar nuevo</button>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        Lista de Estados/Regiones
+                    </div>
+                </div>
             </div>
             <div class="col-4">
-                
+                <div class="row">
+                    <div class="col-6">
+                        Elija un páis
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control">
+                            <option>México</option>
+                            <option>Chile</option>
+                            <option>Francia</option>
+                        </select>                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Elija un estado o región
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control">
+                            <option>México</option>
+                            <option>Chile</option>
+                            <option>Francia</option>
+                        </select>                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-primary">Agregar nuevo</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Lista de Estados/Regiones
+                    </div>
+                </div>
             </div>
         </div>
     </div>    
