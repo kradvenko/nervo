@@ -27,6 +27,28 @@
                 
             </div>
         </div>
+        <div class="row">
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+                <div class="col-6">
+                    Usuario
+                </div>
+                <div class="col-6">
+                    <input type="text" name="tbUsuario"/>
+                </div>
+                <div class="col-6">
+                    Contraseña
+                </div>
+                <div class="col-6">
+                    <input type="password" name="tbPassword"/>
+                </div>
+            </div>
+            <div class="col-4">
+                
+            </div>
+        </div>
     </div>    
 </body>
 </html>
