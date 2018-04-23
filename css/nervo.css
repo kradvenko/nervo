@@ -91,11 +91,12 @@
     margin-bottom: 5px;
 }
 
-.divBackgroundBlue {
-    background-color: #066983;
-    color: #ffffff;
+.divBackgroundBlue {    
+    color: #000000;
     font-weight: bold;
     font-size: 20px;
+    border-bottom: 3px solid #066983;
+    margin-bottom: 20px;
 }
 
 .divBackgroundBlue2 {
@@ -126,4 +127,21 @@
 
 .labelType01 {
     font-size: 14px;
+}
+
+.mainMenu {
+    padding: 5px;    
+}
+
+.mainMenuElement {
+    transition: all 0.5s;
+    padding: 5px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.mainMenuElement:hover {
+    text-decoration: none;
+    background-color: #000000;
+    color: #ffffff;
 }

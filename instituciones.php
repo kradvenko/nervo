@@ -19,6 +19,13 @@
 
             </div>
         </div>
+        <div class="row mainMenu">
+            <ul class="nav">
+                <li><a href="menu.php" class="mainMenuElement">Menú principal</a></li>
+                <li><a href="localidades.php" class="mainMenuElement">Control de localidades</a></li>
+                <li><a href="instituciones.php" class="mainMenuElement">Control de instituciones</a></li>
+            </ul>
+        </div>
         <div class="row divMargin divBackgroundBlue">
             <div class="col-12">
                 Control de instituciones
@@ -204,6 +211,14 @@
                                 </div>
                                 <div class="col-8">
                                     <input type="text" class="form-control" id=""></input>
+                                </div>
+                            </div>
+                            <div class="row divMargin">
+                                <div class="col-4">
+                                    <label class="labelType01">Notas</label>
+                                </div>
+                                <div class="col-8">
+                                    <textarea class="form-control" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>

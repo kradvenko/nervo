@@ -121,6 +121,7 @@ function agregarRegion() {
         if (res == 'OK') {
             $("#tbNuevaRegion").val('');
             obtenerRegiones();
+            obtenerRegionesSelect();
         } else {
             alert(res);
         }

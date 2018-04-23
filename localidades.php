@@ -19,6 +19,13 @@
 
             </div>
         </div>
+        <div class="row mainMenu">
+            <ul class="nav">
+                <li><a href="menu.php" class="mainMenuElement">Menú principal</a></li>
+                <li><a href="localidades.php" class="mainMenuElement">Control de localidades</a></li>
+                <li><a href="instituciones.php" class="mainMenuElement">Control de instituciones</a></li>
+            </ul>
+        </div>
         <div class="row divMargin divBackgroundBlue">
             <div class="col-12">
                 Control de localidades
