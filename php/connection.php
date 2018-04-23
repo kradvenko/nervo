@@ -2,5 +2,5 @@
     $hn = "localhost";
     $un = "root";
     $pw = "masterkey";
-    $db = "resultadoselectorales";
+    $db = "acervonervo";
 ?>
