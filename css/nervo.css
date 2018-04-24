@@ -93,7 +93,7 @@
 
 .divBackgroundBlue {    
     color: #000000;
-    font-weight: bold;
+    
     font-size: 20px;
     border-bottom: 3px solid #066983;
     margin-bottom: 20px;
@@ -102,14 +102,14 @@
 .divBackgroundBlue2 {
     background-color: #066983;
     color: #ffffff;
-    font-weight: bold;
+    
     font-size: 16px;
 }
 
 .divBackgroundBlue3 {
     background-color: #5891a0;
     color: #ffffff;
-    font-weight: bold;
+    
     font-size: 16px;
 }
 
@@ -134,14 +134,11 @@
 }
 
 .mainMenuElement {
-    transition: all 0.5s;
-    padding: 5px;
-    font-weight: bold;
-    color: #000000;
+    transition: all 0.5s;    
 }
 
 .mainMenuElement:hover {
     text-decoration: none;
     background-color: #000000;
-    color: #ffffff;
+    color: #ffffff !important;
 }
