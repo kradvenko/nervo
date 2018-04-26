@@ -81,7 +81,8 @@
                         <label class="labelType01">Categorías de la institución</label>
                     </div>
                     <div class="col-8" id="divCategoriasInstitucion">
-
+                        <span class="tag"><span>Casa-Museo</span><a href="#" class="closeTag">x</a></span>
+                        <span class="tag"><span>Biblioteca</span><a href="#" class="closeTag">x</a></span>
                     </div>
                 </div>                
                 <div class="row divMargin">
