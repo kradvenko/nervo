@@ -58,7 +58,7 @@
                 Paises
             </div>
             <div class="col-4">
-                Regiones
+                Divisiones políticas
             </div>
             <div class="col-4">
                 Ciudades
@@ -99,7 +99,7 @@
                         Tipo de región
                     </div>
                     <div class="col-4" id="divSelectTiposRegiones">
-                        No ha ingresado tipos de regiones.
+                        No ha ingresado tipos de división política.
                     </div>
                     <div class="col-2">
                         <button class="btn btn-primary" data-toggle='modal' data-target='#modalNuevaRegion'>+</button>
