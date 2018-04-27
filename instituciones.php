@@ -103,6 +103,28 @@
                 </div>
                 <div class="row divMargin">
                     <div class="col-2">
+                        <label class="labelType01">Sector de la institución</label>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control">
+                            <option value="Publica">Pública</option>
+                            <option value="Privada">Privada</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <label class="labelType01">Tipo de institución</label>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control">
+                            <option value="Nacional">Nacional</option>
+                            <option value="Estatal">Estatal</option>
+                            <option value="Municipal">Municipal</option>
+                            <option value="No gubernamental">No gubernamental</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row divMargin">
+                    <div class="col-2">
                         <label class="labelType01">Sitio Web</label>
                     </div>
                     <div class="col-4">
