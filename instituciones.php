@@ -81,24 +81,21 @@
                         <label class="labelType01">Categorías de la institución</label>
                     </div>
                     <div class="col-8" id="divCategoriasInstitucion">
-                        <span class="tag"><span>Casa-Museo</span><a href="#" class="closeTag">x</a></span>
-                        <span class="tag"><span>Biblioteca</span><a href="#" class="closeTag">x</a></span>
+                        
                     </div>
                 </div>                
                 <div class="row divMargin">
                     <div class="col-4">
                         <label class="labelType01">Agregar categoría</label>
                     </div>
-                    <div class="col-6" id="divListaCategoriasInstitucion">
-                        <select class="form-control">
-                            <option>Casas-Museos</option>
-                            <option>Bibliotecas</option>
-                            <option>Archivos</option>
-                            <option>Colección privada</option>
-                        </select>
+                    <div class="col-5" id="divListaCategoriasInstitucion">
+                        
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-primary" data-toggle='modal' data-target='#modalAgregarCategoria'>+</button>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-primary">Agregar</button>
+                        <button class="btn btn-primary" onclick="agregarCategoria()">Agregar</button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -106,7 +103,7 @@
                         <label class="labelType01">Sector de la institución</label>
                     </div>
                     <div class="col-4">
-                        <select class="form-control">
+                        <select class="form-control" id="selectSectorInstitucion">
                             <option value="Publica">Pública</option>
                             <option value="Privada">Privada</option>
                         </select>
@@ -115,7 +112,7 @@
                         <label class="labelType01">Tipo de institución</label>
                     </div>
                     <div class="col-4">
-                        <select class="form-control">
+                        <select class="form-control" id="selectTipoInstitucion">
                             <option value="Nacional">Nacional</option>
                             <option value="Estatal">Estatal</option>
                             <option value="Municipal">Municipal</option>
@@ -128,13 +125,13 @@
                         <label class="labelType01">Sitio Web</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbSitioWeb"></input>
                     </div>
                     <div class="col-2">
                         <label class="labelType01">Correo electrónico</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbCorreoElectronico"></input>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -142,13 +139,13 @@
                         <label class="labelType01">Teléfonos</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbTelefonosInstitucion"></input>
                     </div>
                     <div class="col-2">
                         <label class="labelType01">Extensión</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbExtensionInstitucion"></input>
                     </div>
                 </div>
                 <div class="row">
@@ -161,7 +158,7 @@
                         <label class="labelType01">Domicilio</label>    
                     </div>
                     <div class="col-8">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbDomicilioInstitucion"></input>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -169,51 +166,63 @@
                         <label class="labelType01">Colonia</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbColoniaInstitucion"></input>
                     </div>
                     <div class="col-2">
                         <label class="labelType01">Código Postal</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="tbCodigoPostalInstitucion"></input>
                     </div>
                 </div>
                 <div class="row divMargin">
                     <div class="col-2">
                         <label class="labelType01">País</label> 
                     </div>
-                    <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                    <div class="col-4" id="divPaisSelect">
+                        
                     </div>
                     <div class="col-2">
                         <label class="labelType01">Región</label>
                     </div>
-                    <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                    <div class="col-4" id="divRegionSelect">
+                        
                     </div>
                 </div>
                 <div class="row divMargin">
                     <div class="col-2">
                         <label class="labelType01">Ciudad</label>
                     </div>
-                    <div class="col-4">
-                        <input type="text" class="form-control" id=""></input>
+                    <div class="col-4" id="divCiudadSelect">
+                        
                     </div>                    
                 </div>
                 <div class="row divMargin">
-                    <div class="col-12 divBackgroundBlue2">
-                        Información de contacto
+                    <div class="col-4">
+                        
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary" onclick="">Limpiar Campos</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary" onclick="guardarInstitucion()">Guardar Institución</button>
                     </div>
                 </div>
-                <div class="row divMargin">
-                    <div class="col-4 divBackgroundBlue3">
-                        Lista de contactos
+                <div id="divContactos">
+                    <div class="row divMargin">
+                        <div class="col-12 divBackgroundBlue2">
+                            Información de contacto
+                        </div>
                     </div>
-                    <div class="col-8 divBackgroundBlue3">
-                        Información del contacto
+                    <div class="row divMargin">
+                        <div class="col-4 divBackgroundBlue3">
+                            Lista de contactos
+                        </div>
+                        <div class="col-8 divBackgroundBlue3">
+                            Información del contacto
+                        </div>
                     </div>
-                </div>
-                <div class="row divMargin">
+                    <div class="row divMargin">
                         <div class="col-4">
                             
                         </div>
@@ -266,34 +275,40 @@
                                     <textarea class="form-control" rows="5"></textarea>
                                 </div>
                             </div>
+                            <div class="row divMargin">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-primary" onclick="">Limpiar Campos</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-primary" onclick="">Guardar Contacto</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--Ventana modal para cambio en el nombre del páis-->
-    <div class="modal fade" id="modalModificarPais" tabindex="-1" role="dialog" aria-labelledby="modalModificarPais" aria-hidden="true">
+    <!--Ventana modal para agregar una nueva categoría de institución-->
+    <div class="modal fade" id="modalAgregarCategoria" tabindex="-1" role="dialog" aria-labelledby="modalAgregarCategoria" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modificar nombre del país</h5>
+                    <h5 class="modal-title">Agregar nueva categoría</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12" id="divModalModificarPaisNombrePais">
-                            
-                        </div>
+                    <div class="row">                        
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoNombrePais"></input>
+                            <input type="text" class="form-control" id="tbNuevaCategoria"></input>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="actualizarPais()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarCategoriaInstitucion()">Guardar cambios</button>
                 </div>
             </div>
         </div>
@@ -301,7 +316,9 @@
 </body>
 <script>
     $( document ).ready(function() {
-        
+        obtenerCategoriasInstitucionSelect();
+        obtenerPaisesSelectInstitucion();
+        $("#divContactos").css("visibility", "hidden");
     });
     
 </script>

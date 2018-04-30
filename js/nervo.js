@@ -6,6 +6,12 @@ var idPaisRegionSeleccionado;
 var idCiudadSeleccionada;
 var idRegionCiudadSeleccionada;
 var idPaisCiudadSeleccionada;
+//Variables globales para módulo de instituciones
+var categorias = []; 
+var categoria;
+var contactos = [];
+var contacto;
+var idInstitucion;
 //Funciones para el módulo de localidades
 function obtenerPaises() {
     $.ajax({url: "php/obtenerPaises.php", async: false, type: "POST", success: function(res) {
@@ -154,7 +160,7 @@ function actualizarRegion() {
         alert("No ha escrito el nombre de la región que desea modificar.");
         return;
     }
-    idTipoRegion = $("#selectTiposRegionesModificar").val();
+    idTipoRegion = $("#selectTiposRegionesModificarRegion").val();
     if (idTipoRegion == null) {
         alert("No ha elegido el tipo de región.");
         return;
@@ -274,5 +280,111 @@ function actualizarCiudad() {
         } else {
             alert(res);
         }
+    }});
+}
+//Funciones para el módulo de instituciones
+function obtenerCategoriasInstitucionSelect() {
+    $.ajax({url: "php/obtenerCategoriasInstitucionSelect.php", async: false, type: "POST", data: { idSelect: "selectCategoriasInstitucion" }, success: function(res) {
+        $('#divListaCategoriasInstitucion').html(res);
+    }});
+}
+
+function agregarCategoriaInstitucion() {
+    var categoria;
+    categoria = $("#tbNuevaCategoria").val();
+    $.ajax({url: "php/agregarCategoriaInstitucion.php", async: false, type: "POST", data: { categoria: categoria }, success: function(res) {
+        if (res == 'OK') {
+            $("#tbNuevaCategoria").val('');
+            obtenerCategoriasInstitucionSelect();
+            alert("Se ha agregado la categoría.");
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function agregarCategoria() {
+    categoria =  { id: $("#selectCategoriasInstitucion").val(), categoria: $("#selectCategoriasInstitucion").children(":selected").text() };
+    categorias[categorias.length] = categoria;
+    mostrarCategorias();
+}
+
+function mostrarCategorias() {
+    $("#divCategoriasInstitucion").html("");
+    for (i = 0; i <= categorias.length - 1; i++) {
+        categoria = categorias[i];
+        $("#divCategoriasInstitucion").html($("#divCategoriasInstitucion").html() + '<span class="tag"><span>' + categoria.categoria + '</span><span href="" onclick="quitarCategoria(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarCategoria(index) {
+    categorias.splice(index, 1);
+    mostrarCategorias();
+}
+
+function obtenerPaisesSelectInstitucion() {
+    $.ajax({url: "php/obtenerPaisesSelect.php", async: false, type: "POST", data: { idSelect: "selectPaisInstitucion" }, success: function(res) {
+        $('#divPaisSelect').html(res);
+        $('#selectPaisInstitucion').on("change", obtenerRegionesInstitucionSelect);
+    }});
+    obtenerRegionesInstitucionSelect();    
+}
+
+function obtenerRegionesInstitucionSelect() {
+    var idPais;
+    idPais = $("#selectPaisInstitucion").val();
+    $.ajax({url: "php/obtenerRegionesSelect.php", async: false, type: "POST", data: { idSelect: "selectRegionInstitucion", idPais: idPais }, success: function(res) {
+        $('#divRegionSelect').html(res);
+        $('#selectRegionInstitucion').on("change", obtenerCiudadesInstitucionSelect);
+    }});
+    obtenerCiudadesInstitucionSelect();
+}
+
+function obtenerCiudadesInstitucionSelect() {
+    var idRegion;
+    idRegion = $("#selectRegionInstitucion").val();
+    $.ajax({url: "php/obtenerCiudadesSelect.php", async: false, type: "POST", data: { idSelect: "selectCiudadInstitucion", idRegion: idRegion }, success: function(res) {
+        $('#divCiudadSelect').html(res);
+    }});
+}
+
+function guardarInstitucion() {
+    var nombreInstitucion;
+    var sectorInstitucion;
+    var tipoInstitucion;
+    var sitioWeb;
+    var correoElectronico;
+    var telefonos;
+    var extension;
+    var domicilio;
+    var colonia;
+    var codigoPostal;
+    var pais;
+    var region;
+    var ciudad;
+
+    nombreInstitucion = $("#tbNombreInstitucion").val();
+    if (nombreInstitucion.length == 0) {
+        alert("No ha intorducido el nombre de la institución.")
+        return;
+    }
+    sectorInstitucion = $("#selectSectorInstitucion").val();
+    tipoInstitucion = $("#selectTipoInstitucion").val();
+    sitioWeb = $("#tbSitioWeb").val();
+    correoElectronico = $("#tbCorreoElectronico").val();
+    telefonos = $("#tbTelefonosInstitucion").val();
+    extension = $("#tbExtensionInstitucion").val();
+    domicilio = $("#tbDomicilioInstitucion").val();
+    colonia = $("#tbColoniaInstitucion").val();
+    codigoPostal = $("#tbCodigoPostalInstitucion").val();
+    pais = $("#selectPaisInstitucion").val();
+    region = $("#selectRegionInstitucion").val();
+    ciudad = $("#selectCiudadInstitucion").val();
+
+    $.ajax({url: "php/agregarInstitucion.php", async: false, type: "POST", data: { nombreInstitucion: nombreInstitucion,
+        sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, sitioWeb: sitioWeb,correoElectronico: correoElectronico,
+        telefonos: telefonos, extension: extension, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
+        idPais: pais, idRegion: region, idCiudad: ciudad, categorias: categorias }, success: function(res) {
+            alert(res);
     }});
 }
