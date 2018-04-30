@@ -48,7 +48,7 @@ CREATE TABLE `instituciones` (
   `idregion` int(11) DEFAULT NULL,
   `idciudad` int(11) DEFAULT NULL,
   PRIMARY KEY (`idinstitucion`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `institucioncategorias` (
   `idinstitucioncategoria` int(11) NOT NULL AUTO_INCREMENT,
@@ -56,4 +56,4 @@ CREATE TABLE `institucioncategorias` (
   `idcategoria` int(11) DEFAULT NULL,
   `categoria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idinstitucioncategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
