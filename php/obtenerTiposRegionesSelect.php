@@ -5,6 +5,11 @@
 
         $idSelect = $_POST["idSelect"];
 
+        if (!$idSelect) {
+            echo "Error. Faltan variables.";
+            exit(1);
+        }
+
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Select * From tiposregiones";

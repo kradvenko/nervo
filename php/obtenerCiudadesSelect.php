@@ -6,6 +6,11 @@
         $idSelect = $_POST["idSelect"];
         $idRegion = $_POST["idRegion"];
 
+        if (!$idSelect || !$idRegion) {
+            echo "Error. Faltan variables.";
+            exit(1);
+        }
+
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Select * From ciudades Where idregion = " . $idRegion;

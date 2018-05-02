@@ -18,6 +18,12 @@
         $idciudad = $_POST["idCiudad"];
         $categorias = $_POST["categorias"];
 
+        if (!$nombreInstitucion || !$sectorInstitucion || !$tipoInstitucion || !$sitioWeb || !$correoElectronico || !$telefonos 
+            || !$extension || !$domicilio || !$colonia || !$codigoPostal || !$idpais || !$idregion || !$idciudad || !$categorias) {
+            echo "Error. Faltan variables.";
+            exit(1);
+        }
+
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Insert Into instituciones (nombreInstitucion, sectorInstitucion, tipoInstitucion, sitioWeb, correoElectronico, telefonos, extension, domicilio, colonia, codigoPostal, idpais, idregion, idciudad) " . 

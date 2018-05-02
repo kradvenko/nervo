@@ -4,7 +4,12 @@
         require_once('connection.php');
 
         $idSelect = $_POST["idSelect"];
-        $idPais = $_POST["idPais"];        
+        $idPais = $_POST["idPais"];
+
+        if (!$idSelect || !$idPais) {
+            echo "Error. Faltan variables.";
+            exit(1);
+        }
 
         $con = new mysqli($hn, $un, $pw, $db);
 

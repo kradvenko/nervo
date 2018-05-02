@@ -6,6 +6,11 @@
         $idpais = $_POST["idpais"];
         $pais = $_POST["pais"];
 
+        if (!$idpais || !$pais) {
+            echo "Error. Faltan variables.";
+            exit(1);
+        }
+
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Update paises Set pais = '" . $pais . "' Where idpais = " . $idpais;

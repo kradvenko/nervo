@@ -388,3 +388,18 @@ function guardarInstitucion() {
             alert(res);
     }});
 }
+
+function obtenerInstituciones() {
+    $.ajax({url: "php/obtenerInstituciones.php", async: false, type: "POST", success: function(res) {
+        $('#divListaInstituciones').html(res);
+    }});
+}
+
+function elegirInstitucion(id) {
+    idInstitucion = id;
+    $.ajax({url: "php/obtenerInstitucionXML.php", async: false, type: "POST", data: { idInstitucion: idInstitucion }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#tbNombreInstitucion").val($(this).find("nombreInstitucion").text());
+        });
+    }});
+}

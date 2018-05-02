@@ -7,6 +7,11 @@
         $idRegion = $_POST["idRegion"];
         $ciudad = $_POST["ciudad"];
 
+        if (!$idPais || !$idRegion || $ciudad) {
+            echo "Error. Faltan variables.";
+            exit(1);
+        }
+
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Insert Into ciudades (idPais, idRegion, ciudad) Values (" . $idPais . ", " . $idRegion . ", '" . $ciudad . "')";
