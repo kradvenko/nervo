@@ -177,7 +177,7 @@
                         
                     </div>
                     <div class="col-4">
-                        <button type="button" class="btn btn-primary" onclick="">Limpiar Campos</button>
+                        <button type="button" class="btn btn-primary" onclick="limpiarCamposInstitucion()">Limpiar Campos</button>
                     </div>
                     <div class="col-4">
                         <button type="button" class="btn btn-primary" onclick="guardarInstitucion()">Guardar Institución</button>

@@ -349,19 +349,19 @@ function obtenerCiudadesInstitucionSelect() {
 }
 
 function guardarInstitucion() {
-    var nombreInstitucion;
-    var sectorInstitucion;
-    var tipoInstitucion;
-    var sitioWeb;
-    var correoElectronico;
-    var telefonos;
-    var extension;
-    var domicilio;
-    var colonia;
-    var codigoPostal;
-    var pais;
-    var region;
-    var ciudad;
+    var nombreInstitucion = '';
+    var sectorInstitucion = '';
+    var tipoInstitucion = '';
+    var sitioWeb = '';
+    var correoElectronico = '';
+    var telefonos = '';
+    var extension = '';
+    var domicilio = '';
+    var colonia = '';
+    var codigoPostal = '';
+    var pais = '';
+    var region = '';
+    var ciudad = '';
 
     nombreInstitucion = $("#tbNombreInstitucion").val();
     if (nombreInstitucion.length == 0) {
@@ -371,12 +371,33 @@ function guardarInstitucion() {
     sectorInstitucion = $("#selectSectorInstitucion").val();
     tipoInstitucion = $("#selectTipoInstitucion").val();
     sitioWeb = $("#tbSitioWeb").val();
+    if (sitioWeb.length == 0) {
+        sitioWeb = '';
+    }
     correoElectronico = $("#tbCorreoElectronico").val();
+    if (correoElectronico.length == 0) {
+        correoElectronico = '';
+    }
     telefonos = $("#tbTelefonosInstitucion").val();
+    if (telefonos.length == 0) {
+        telefonos = '';
+    }
     extension = $("#tbExtensionInstitucion").val();
+    if (extension.length == 0) {
+        extension = '';
+    }
     domicilio = $("#tbDomicilioInstitucion").val();
+    if (domicilio.length == 0) {
+        domicilio = '';
+    }
     colonia = $("#tbColoniaInstitucion").val();
+    if (colonia.length == 0) {
+        colonia = '';
+    }
     codigoPostal = $("#tbCodigoPostalInstitucion").val();
+    if (codigoPostal.length == 0) {
+        codigoPostal = '';
+    }
     pais = $("#selectPaisInstitucion").val();
     region = $("#selectRegionInstitucion").val();
     ciudad = $("#selectCiudadInstitucion").val();
@@ -402,4 +423,16 @@ function elegirInstitucion(id) {
             $("#tbNombreInstitucion").val($(this).find("nombreInstitucion").text());
         });
     }});
+}
+
+function limpiarCamposInstitucion() {
+    $("#tbNombreInstitucion").val('');
+    $("#tbSitioWeb").val('');
+    $("#tbCorreoElectronico").val('');
+    $("#tbTelefonosInstitucion").val('');
+    $("#tbExtensionInstitucion").val('');
+    $("#tbExtensionInstitucion").val('');
+    $("#tbDomicilioInstitucion").val('');
+    $("#tbColoniaInstitucion").val('');
+    $("#tbCodigoPostalInstitucion").val('');
 }
