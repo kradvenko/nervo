@@ -12,6 +12,7 @@ var categoria;
 var contactos = [];
 var contacto;
 var idInstitucion = 0;
+var idContacto = 0;
 //Funciones para el módulo de localidades
 function obtenerPaises() {
     $.ajax({url: "php/obtenerPaises.php", async: false, type: "POST", success: function(res) {
@@ -458,6 +459,8 @@ function elegirInstitucion(id) {
         });
     }});
     mostrarCategorias();
+    mostrarContactos();
+    limpiarCamposContacto();
 }
 
 function limpiarCamposInstitucion() {
@@ -473,4 +476,83 @@ function limpiarCamposInstitucion() {
     idInstitucion = 0;
     categorias = [];
     mostrarCategorias();
+    ocultarContactos();
+}
+
+function mostrarContactos() {
+    $("#divContactos").css("visibility", "visible");
+    obtenerContactos();
+}
+
+function ocultarContactos() {
+    $("#divContactos").css("visibility", "hidden");
+}
+
+function guardarContacto() {
+    var nombreContacto;
+    var area;
+    var telefonos;
+    var extension;
+    var correoElectronico;
+    var notas;
+
+    if (idInstitucion == 0) {
+        alert("No ha elegido una institución.");
+        return;
+    }
+
+    nombreContacto = $("#tbNombreContacto").val();
+    if (nombreContacto.length <= 0) {
+        alert("No ha ingresado el nombre del contacto.");
+        return;
+    }
+    area = $("#tbAreaContacto").val();
+    telefonos = $("#tbTelefonosContacto").val();
+    extension = $("#tbExtensionContacto").val();
+    correoElectronico = $("#tbCorreoElectronicoContacto").val();
+    notas = $("#tbNotasContacto").val();
+
+    if (idContacto == 0) {
+        $.ajax({url: "php/agregarContacto.php", async: false, type: "POST", data: { idInstitucion: idInstitucion, nombreContacto: nombreContacto, area: area, telefonos: telefonos, extension: extension, correoElectronico: correoElectronico, notas: notas }, success: function(res) {
+            alert(res);
+            obtenerContactos();
+            limpiarCamposContacto();
+        }});
+    } else {
+        $.ajax({url: "php/actualizarContacto.php", async: false, type: "POST", data: { idContacto: idContacto, nombreContacto: nombreContacto, area: area, telefonos: telefonos, extension: extension, correoElectronico: correoElectronico, notas: notas }, success: function(res) {
+            alert(res);
+            obtenerContactos();
+            limpiarCamposContacto();
+        }});
+    }
+}
+
+function obtenerContactos() {
+    $.ajax({url: "php/obtenerContactos.php", async: false, type: "POST", data: { idInstitucion: idInstitucion }, success: function(res) {
+        $('#divListaContactos').html(res);
+    }});
+}
+
+function limpiarCamposContacto() {
+    $("#tbNombreContacto").val('');
+    $("#tbAreaContacto").val('');
+    $("#tbTelefonosContacto").val('');
+    $("#tbExtensionContacto").val('');
+    $("#tbCorreoElectronicoContacto").val('');
+    $("#tbNotasContacto").val('');
+    idContacto = 0;
+}
+
+function elegirContacto(id) {
+    idContacto = id;
+    $.ajax({url: "php/obtenerContactoXML.php", async: false, type: "POST", data: { idContacto: idContacto }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#tbNombreContacto").val($(this).find("nombreContacto").text());
+            $("#tbAreaContacto").val($(this).find("area").text());
+            $("#tbTelefonosContacto").val($(this).find("telefonos").text());
+            $("#tbExtensionContacto").val($(this).find("extension").text());
+            $("#tbCorreoElectronicoContacto").val($(this).find("correoElectronico").text());
+            $("#tbNotasContacto").val($(this).find("notas").text());
+        });
+    }});
 }

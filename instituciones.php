@@ -199,7 +199,9 @@
                     </div>
                     <div class="row divMargin">
                         <div class="col-4">
-                            
+                            <div class="row" id="divListaContactos">
+                    
+                            </div>
                         </div>
                         <div class="col-8">
                             <div class="row divMargin">
@@ -207,7 +209,7 @@
                                     <label class="labelType01">Nombre del contacto</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id=""></input>
+                                    <input type="text" class="form-control" id="tbNombreContacto"></input>
                                 </div>
                             </div>
                             <div class="row divMargin">
@@ -215,7 +217,7 @@
                                     <label class="labelType01">Área del contacto</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id=""></input>
+                                    <input type="text" class="form-control" id="tbAreaContacto"></input>
                                 </div>
                             </div>
                             <div class="row divMargin">
@@ -223,7 +225,7 @@
                                     <label class="labelType01">Teléfonos</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id=""></input>
+                                    <input type="text" class="form-control" id="tbTelefonosContacto"></input>
                                 </div>
                             </div>
                             <div class="row divMargin">
@@ -231,7 +233,7 @@
                                     <label class="labelType01">Extensión</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id=""></input>
+                                    <input type="text" class="form-control" id="tbExtensionContacto"></input>
                                 </div>
                             </div>
                             <div class="row divMargin">
@@ -239,7 +241,7 @@
                                     <label class="labelType01">Correo electrónico</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id=""></input>
+                                    <input type="text" class="form-control" id="tbCorreoElectronicoContacto"></input>
                                 </div>
                             </div>
                             <div class="row divMargin">
@@ -247,15 +249,15 @@
                                     <label class="labelType01">Notas</label>
                                 </div>
                                 <div class="col-8">
-                                    <textarea class="form-control" rows="5"></textarea>
+                                    <textarea class="form-control" rows="5" id="tbNotasContacto"></textarea>
                                 </div>
                             </div>
                             <div class="row divMargin">
                                 <div class="col-4">
-                                    <button type="button" class="btn btn-primary" onclick="">Limpiar Campos</button>
+                                    <button type="button" class="btn btn-primary" onclick="limpiarCamposContacto()">Limpiar Campos</button>
                                 </div>
                                 <div class="col-4">
-                                    <button type="button" class="btn btn-primary" onclick="">Guardar Contacto</button>
+                                    <button type="button" class="btn btn-primary" onclick="guardarContacto()">Guardar Contacto</button>
                                 </div>
                             </div>
                         </div>

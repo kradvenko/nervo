@@ -10,7 +10,6 @@
             exit(1);
         }
 
-
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Insert Into paises (pais) Values ('" . $pais . "')";
