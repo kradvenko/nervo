@@ -57,3 +57,15 @@ CREATE TABLE `institucioncategorias` (
   `categoria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idinstitucioncategoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+<!--07/05/2018-->
+CREATE TABLE `contactos` (
+  `idcontacto` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` varchar(45) DEFAULT NULL,
+  `nombreContacto` varchar(250) DEFAULT NULL,
+  `area` varchar(100) DEFAULT NULL,
+  `telefonos` varchar(100) DEFAULT NULL,
+  `extension` varchar(100) DEFAULT NULL,
+  `correoElectronico` varchar(100) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idcontacto`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
