@@ -11,7 +11,7 @@ var categorias = [];
 var categoria;
 var contactos = [];
 var contacto;
-var idInstitucion;
+var idInstitucion = 0;
 //Funciones para el módulo de localidades
 function obtenerPaises() {
     $.ajax({url: "php/obtenerPaises.php", async: false, type: "POST", success: function(res) {
@@ -401,13 +401,26 @@ function guardarInstitucion() {
     pais = $("#selectPaisInstitucion").val();
     region = $("#selectRegionInstitucion").val();
     ciudad = $("#selectCiudadInstitucion").val();
-
-    $.ajax({url: "php/agregarInstitucion.php", async: false, type: "POST", data: { nombreInstitucion: nombreInstitucion,
-        sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, sitioWeb: sitioWeb,correoElectronico: correoElectronico,
-        telefonos: telefonos, extension: extension, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
-        idPais: pais, idRegion: region, idCiudad: ciudad, categorias: categorias }, success: function(res) {
-            alert(res);
-    }});
+    
+    if (idInstitucion == 0) {
+        $.ajax({url: "php/agregarInstitucion.php", async: false, type: "POST", data: { nombreInstitucion: nombreInstitucion,
+            sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, sitioWeb: sitioWeb,correoElectronico: correoElectronico,
+            telefonos: telefonos, extension: extension, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
+            idPais: pais, idRegion: region, idCiudad: ciudad, categorias: categorias }, success: function(res) {
+                alert(res);
+                limpiarCamposInstitucion();
+                obtenerInstituciones();
+        }});
+    } else {
+        $.ajax({url: "php/actualizarInstitucion.php", async: false, type: "POST", data: { idInstitucion: idInstitucion, nombreInstitucion: nombreInstitucion,
+            sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, sitioWeb: sitioWeb,correoElectronico: correoElectronico,
+            telefonos: telefonos, extension: extension, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
+            idPais: pais, idRegion: region, idCiudad: ciudad, categorias: categorias }, success: function(res) {
+                alert(res);
+                limpiarCamposInstitucion();
+                obtenerInstituciones();
+        }});
+    }
 }
 
 function obtenerInstituciones() {
@@ -421,8 +434,30 @@ function elegirInstitucion(id) {
     $.ajax({url: "php/obtenerInstitucionXML.php", async: false, type: "POST", data: { idInstitucion: idInstitucion }, success: function(res) {
         $('resultado', res).each(function(index, element) {
             $("#tbNombreInstitucion").val($(this).find("nombreInstitucion").text());
+            $("#selectSectorInstitucion").val($(this).find("sectorInstitucion").text());
+            $("#selectTipoInstitucion").val($(this).find("tipoInstitucion").text());
+            $("#tbSitioWeb").val($(this).find("sitioWeb").text());
+            $("#tbCorreoElectronico").val($(this).find("correoElectronico").text());
+            $("#tbTelefonosInstitucion").val($(this).find("telefonos").text());
+            $("#tbExtensionInstitucion").val($(this).find("extension").text());
+            $("#tbDomicilioInstitucion").val($(this).find("domicilio").text());
+            $("#tbColoniaInstitucion").val($(this).find("colonia").text());
+            $("#tbCodigoPostalInstitucion").val($(this).find("codigoPostal").text());
+            $("#selectPaisInstitucion").val($(this).find("idpais").text());
+            obtenerRegionesInstitucionSelect();
+            $("#selectRegionInstitucion").val($(this).find("idregion").text());
+            obtenerCiudadesInstitucionSelect();
+            $("#selectCiudadInstitucion").val($(this).find("idciudad").text());
         });
     }});
+    $.ajax({url: "php/obtenerCategoriasInstitucionXML.php", async: false, type: "POST", data: { idInstitucion: idInstitucion }, success: function(res) {
+        categorias = [];
+        $('cat', res).each(function(index, element) {
+            categoria =  { id: $(this).find("idcategoria").text(), categoria: $(this).find("categoria").text() };
+            categorias[categorias.length] = categoria;            
+        });
+    }});
+    mostrarCategorias();
 }
 
 function limpiarCamposInstitucion() {
@@ -435,4 +470,7 @@ function limpiarCamposInstitucion() {
     $("#tbDomicilioInstitucion").val('');
     $("#tbColoniaInstitucion").val('');
     $("#tbCodigoPostalInstitucion").val('');
+    idInstitucion = 0;
+    categorias = [];
+    mostrarCategorias();
 }

@@ -3,6 +3,7 @@
     {
         require_once('connection.php');
         
+        $idInstitucion = $_POST["idInstitucion"];
         $nombreInstitucion = $_POST["nombreInstitucion"];
         $sectorInstitucion = $_POST["sectorInstitucion"];
         $tipoInstitucion = $_POST["tipoInstitucion"];
@@ -17,21 +18,25 @@
         $idregion = $_POST["idRegion"];
         $idciudad = $_POST["idCiudad"];
         $categorias = $_POST["categorias"];
-        /*
-        if (!$nombreInstitucion || !$sectorInstitucion || !$tipoInstitucion || !$sitioWeb || !$correoElectronico || !$telefonos 
-            || !$extension || !$domicilio || !$colonia || !$codigoPostal || !$idpais || !$idregion || !$idciudad || !$categorias) {
+        
+        if (!$idInstitucion) {
             echo "Error. Faltan variables.";
             exit(1);
         }
-        */
+        
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Insert Into instituciones (nombreInstitucion, sectorInstitucion, tipoInstitucion, sitioWeb, correoElectronico, telefonos, extension, domicilio, colonia, codigoPostal, idpais, idregion, idciudad) " . 
-        " Values ('$nombreInstitucion', '$sectorInstitucion', '$tipoInstitucion', '$sitioWeb', '$correoElectronico', '$telefonos', '$extension', '$domicilio', '$colonia', '$codigoPostal', '$idpais', '$idregion', '$idciudad')";
+        $sql = "Update instituciones SET " . 
+        "nombreInstitucion = '$nombreInstitucion', sectorInstitucion = '$sectorInstitucion', tipoInstitucion = '$tipoInstitucion', " .
+        "sitioWeb = '$sitioWeb', correoElectronico = '$correoElectronico', telefonos = '$telefonos', extension = '$extension', " .
+        "domicilio = '$domicilio', colonia = '$colonia', codigoPostal = '$codigoPostal', idpais = $idpais, idregion = $idregion, idciudad = $idciudad " .
+        "Where idInstitucion = $idInstitucion ";
 
         $con->query($sql);
 
-        $idInstitucion = $con->insert_id;
+        $sql = "Delete From institucioncategorias Where idInstitucion = $idInstitucion";
+
+        $con->query($sql);
 
         for ($i = 0; $i < sizeof($categorias); $i++) {
             $sql = "Insert Into institucioncategorias (idinstitucion, idcategoria, categoria) " .
@@ -41,7 +46,7 @@
         }
 
         //echo $idInstitucion;
-        echo "Se ha agregado la institución.";
+        echo "Se ha actualizado la institución.";
 
         mysqli_close($con);
     }

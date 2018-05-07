@@ -7,7 +7,7 @@
         $idRegion = $_POST["idRegion"];
         $ciudad = $_POST["ciudad"];
 
-        if (!$idPais || !$idRegion || $ciudad) {
+        if (!$idPais || !$idRegion || !$ciudad) {
             echo "Error. Faltan variables.";
             exit(1);
         }

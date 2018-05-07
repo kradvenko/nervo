@@ -291,10 +291,11 @@
 </body>
 <script>
     $( document ).ready(function() {
+        $("#divContactos").css("visibility", "hidden");
         obtenerCategoriasInstitucionSelect();
         obtenerPaisesSelectInstitucion();
         obtenerInstituciones();
-        $("#divContactos").css("visibility", "hidden");
+        limpiarCamposInstitucion();        
     });
     
 </script>
