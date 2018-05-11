@@ -69,3 +69,13 @@ CREATE TABLE `contactos` (
   `notas` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idcontacto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `usuarios` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(45) DEFAULT NULL,
+  `pass` varchar(45) DEFAULT NULL,
+  `tipo` varchar(45) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

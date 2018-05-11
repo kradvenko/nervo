@@ -275,6 +275,7 @@
 </body>
 <script>
     $( document ).ready(function() {
+        checkSession();
         obtenerPaises();
         obtenerPaisesSelect();
         obtenerTiposRegionesSelect();

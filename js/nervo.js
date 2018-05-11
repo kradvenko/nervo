@@ -13,6 +13,58 @@ var contactos = [];
 var contacto;
 var idInstitucion = 0;
 var idContacto = 0;
+//Funciones misceláneas
+function getCookie(cookie) {
+	//Separar el arreglo de cookies
+	var cookies = document.cookie.split(/;\s*/);
+	//Expresión regular para buscar el nombre de la cookie en el arreglo
+	var pattern = new RegExp("\\b" + cookie + "=(.*)");
+	//Ciclo para buscar en el arreglo
+	for (var i = 0; i < cookies.length; i++) {
+		var match = cookies[i].match(pattern);
+		if (match) {
+			return decodeURIComponent(match[1]);
+		}
+	}
+	return null;
+}
+
+function userLogin() {
+    var u;
+    var p;
+
+    u = $("#tbUsuario").val();
+    p = $("#tbPassword").val();
+
+    if (u.length == 0) {
+        alert("No ha introducido el nombre de usuario.");
+        return;
+    }
+    if (p.length == 0) {
+        alert("No ha introducido la contraseña.")
+        return;
+    }
+
+    $.ajax({url: "php/userLoginXML.php", async: false, type: "POST", data: { u: u, p: p }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            if ($(this).find("respuesta").text() == "OK") {
+                document.cookie = "idusuario=" + $(this).find("idusuario").text();
+                document.cookie = "usuario=" + $(this).find("usuario").text();
+                document.cookie = "tipo=" + $(this).find("tipo").text();
+                document.cookie = "nombre=" + $(this).find("nombre").text();
+                document.location = "menu.php";
+            } else {
+                alert("Usuario o contraseña incorrectos.");
+            }
+        });
+    }});
+}
+
+function checkSession() {
+    if (!getCookie("idusuario")) {
+        document.location = "index.php";
+    }
+}
 //Funciones para el módulo de localidades
 function obtenerPaises() {
     $.ajax({url: "php/obtenerPaises.php", async: false, type: "POST", success: function(res) {

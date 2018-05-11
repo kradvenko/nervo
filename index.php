@@ -36,13 +36,13 @@
                     Usuario
                 </div>
                 <div class="col-6">
-                    <input type="text" name="tbUsuario"/>
+                    <input type="text" id="tbUsuario"/>
                 </div>
                 <div class="col-6">
                     Contraseña
                 </div>
                 <div class="col-6">
-                    <input type="password" name="tbPassword"/>
+                    <input type="password" id="tbPassword"/>
                 </div>
             </div>
             <div class="col-4">
@@ -51,4 +51,18 @@
         </div>
     </div>    
 </body>
+<script>
+    $(document).ready(function() {
+        $("#tbUsuario").keyup(function(event) {
+            if (event.keyCode === 13) {
+                userLogin();
+            }
+        });
+        $("#tbPassword").keyup(function(event) {
+            if (event.keyCode === 13) {
+                userLogin();
+            }
+        });
+    });
+</script>
 </html>

@@ -293,12 +293,12 @@
 </body>
 <script>
     $( document ).ready(function() {
+        checkSession();
         $("#divContactos").css("visibility", "hidden");
         obtenerCategoriasInstitucionSelect();
         obtenerPaisesSelectInstitucion();
         obtenerInstituciones();
         limpiarCamposInstitucion();        
-    });
-    
+    });    
 </script>
 </html>

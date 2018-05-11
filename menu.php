@@ -27,7 +27,7 @@
 </body>
 <script>
     $( document ).ready(function() {
-        
+        checkSession();
     });    
 </script>
 </html>
