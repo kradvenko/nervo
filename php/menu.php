@@ -1,7 +1,18 @@
 <?php
     
     function menu() {
-        $menu = '<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        $menu = '<div class="row divMargin">
+                    <div class="col-6">
+                        
+                    </div>
+                    <div class="col-4">
+                        Usuario actual :  ' . $_COOKIE["nombre"] . ' 
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary btn-danger" onclick="cerrarSesion()">Cerrar sesión</button> 
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">Navegación</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
