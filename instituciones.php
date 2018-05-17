@@ -101,6 +101,7 @@
                     </div>
                     <div class="col-4">
                         <input type="text" class="form-control" id="tbSitioWeb"></input>
+                        <input type="button" class="button-green" onclick="irSitioWeb('tbSitioWeb')"></input>
                     </div>
                     <div class="col-2">
                         <label class="labelType01">Correo electrónico</label>

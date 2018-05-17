@@ -73,6 +73,10 @@ function cerrarSesion() {
     document.cookie = "nombre=; Path=/; Expires= Thu, 01 Jan 1970 00:00:01 GMT;"
     document.location = "index.php";
 }
+
+function irSitioWeb(it) {
+    window.open($("#" + it).val(), '_blank');
+}
 //Funciones para el módulo de localidades
 function obtenerPaises() {
     $.ajax({url: "php/obtenerPaises.php", async: false, type: "POST", success: function(res) {
