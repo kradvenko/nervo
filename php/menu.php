@@ -30,12 +30,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mainMenuElement" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Fichas
+                        Fichas de bienes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item mainMenuElement" href="ficha_foto.php">Fotografías</a>
-                        <a class="dropdown-item mainMenuElement" href="#">Libros</a>
-                        <a class="dropdown-item mainMenuElement" href="#">Lugares</a>
+                        <a class="dropdown-item mainMenuElement" href="ficha_foto.php">Fotografías</a>                        
                         </div>
                     </li>
                     </ul>

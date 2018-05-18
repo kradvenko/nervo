@@ -126,7 +126,11 @@
 }
 
 .labelType01 {
-    font-size: 14px;
+    font-size: 14px;    
+}
+
+.textbox-center {
+    text-align: center;
 }
 
 .mainMenu {

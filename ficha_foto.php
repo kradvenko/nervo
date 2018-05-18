@@ -40,16 +40,24 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
+                <label class="labelType01">Institución</label>
+            </div>
+            <div class="col-10">
+                <input type="text" class="form-control textbox-center" id="tbInstitucion"></input>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
                 <label class="labelType01">Número de registro interno</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbNumeroInterno"></input>
+                <input type="text" class="form-control textbox-center" id="tbNumeroInterno"></input>
             </div>
             <div class="col-2">
                 <label class="labelType01">Número de inventario</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbNumeroInventario"></input>
+                <input type="text" class="form-control textbox-center" id="tbNumeroInventario"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -57,13 +65,13 @@
                 <label class="labelType01">Título</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbTitulo"></input>
+                <input type="text" class="form-control textbox-center" id="tbTitulo"></input>
             </div>
             <div class="col-2">
                 <label class="labelType01">Título serie</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbTituloSerie"></input>
+                <input type="text" class="form-control textbox-center" id="tbTituloSerie"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -71,13 +79,13 @@
                 <label class="labelType01">Lugar asunto</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbLugarAsunto"></input>
+                <input type="text" class="form-control textbox-center" id="tbLugarAsunto"></input>
             </div>
             <div class="col-2">
                 <label class="labelType01">Lugar toma</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbLugarToma"></input>
+                <input type="text" class="form-control textbox-center" id="tbLugarToma"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -85,13 +93,13 @@
                 <label class="labelType01">Fecha asunto</label>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" id="tbFechaAsunto" placeholder="dd/mm/aaaa"></input>
+                <input type="text" class="form-control textbox-center" id="tbFechaAsunto" placeholder="dd/mm/aaaa"></input>
             </div>
             <div class="col-3">
                 <label class="labelType01">Fecha toma</label>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" id="tbFechaToma" placeholder="dd/mm/aaaa"></input>
+                <input type="text" class="form-control textbox-center" id="tbFechaToma" placeholder="dd/mm/aaaa"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -99,7 +107,7 @@
                 <label class="labelType01">Autor</label>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" id="tbAutor"></input>
+                <input type="text" class="form-control textbox-center" id="tbAutor"></input>
             </div>
             <div class="col-1">
                 <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>+</button>
@@ -108,7 +116,7 @@
                 <label class="labelType01">Estudio fotográfico</label>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" id="tbEstudio"></input>
+                <input type="text" class="form-control textbox-center" id="tbEstudio"></input>
             </div>
             <div class="col-1">
                 <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarEstudio'>+</button>
@@ -119,7 +127,7 @@
                 <label class="labelType01">Albúm</label>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" id="tbAlbum"></input>
+                <input type="text" class="form-control textbox-center" id="tbAlbum"></input>
             </div>
             <div class="col-1">
                 <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAlbum'>+</button>
@@ -128,7 +136,7 @@
                 <label class="labelType01">Número de fotografía</label>
             </div>
             <div class="col-1">
-                <input type="text" class="form-control" id="tbNumeroFotografia"></input>
+                <input type="text" class="form-control textbox-center" id="tbNumeroFotografia"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -136,13 +144,13 @@
                 <label class="labelType01">Colección</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbColeccion"></input>
+                <input type="text" class="form-control textbox-center" id="tbColeccion"></input>
             </div>
             <div class="col-2">
                 <label class="labelType01">Clave técnica</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="tbClaveTecnica"></input>
+                <input type="text" class="form-control textbox-center" id="tbClaveTecnica"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -152,7 +160,7 @@
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control" id="tbTema"></input>
+                        <input type="text" class="form-control textbox-center" id="tbTema"></input>
                     </div>
                     <div class="col-2">
                         <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTema'>+</button>
@@ -173,20 +181,12 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
-                <label class="labelType01">Institución</label>
-            </div>
-            <div class="col-10">
-                <input type="text" class="form-control"></input>
-            </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-2">
                 <label class="labelType01">Técnica o proceso fotográfico</label>
             </div>
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control" id="tbTecnica"></input>
+                        <input type="text" class="form-control textbox-center" id="tbTecnica"></input>
                     </div>
                     <div class="col-2">
                         <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTecnica'>+</button>
@@ -204,7 +204,7 @@
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control" id="tbSoporteFlexible"></input>
+                        <input type="text" class="form-control textbox-center" id="tbSoporteFlexible"></input>
                     </div>
                     <div class="col-2">
                         <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteFlexible'>+</button>
@@ -224,10 +224,10 @@
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control" id="tbSoporteRigido"></input>
+                        <input type="text" class="form-control textbox-center" id="tbSoporteRigido"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalSoporteRigido'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteRigido'>+</button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -242,10 +242,10 @@
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control" id="tbGenero"></input>
+                        <input type="text" class="form-control textbox-center" id="tbGenero"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalGenero'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGenero'>+</button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -253,6 +253,124 @@
                         
                     </div>
                 </div>
+            </div>            
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Estado de Conservación</label>
+            </div>
+            <div class="col-4">
+                <select class="form-control">
+                    <option value="Bueno">Bueno</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Malo">Malo</option>                        
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="labelType01">Estado de Integridad</label>
+            </div>
+            <div class="col-4">
+                <select class="form-control">
+                    <option value="Completo">Completo</option>
+                    <option value="Imcompleto">Imcompleto</option>
+                </select>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <input type="checkbox" value="Agrietamiento" id="cbAgrietamiento"> <label for="cbAgrietamiento" class="labelType01">Agrietamiento</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Ataque biológico" id="cbAtaque"> <label for="cbAtaque" class="labelType01">Ataque biológico</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Burbujas" id="cbBurbujas"> <label for="cbBurbujas" class="labelType01">Burbujas</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Cambios de Color" id="cbCambios"> <label for="cbCambios" class="labelType01">Cambios de Color</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Craqueladuras" id="cbCraqueladuras"> <label for="cbCraqueladuras" class="labelType01">Craqueladuras</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Cintas adhesivas" id="cbCintas"> <label for="cbCintas" class="labelType01">Cintas adhesivas</label>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <input type="checkbox" value="Deformaciones" id="cbDeformaciones"> <label for="cbDeformaciones" class="labelType01">Deformaciones</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Desprendimientos" id="cbDesprendimientos"> <label for="cbDesprendimientos" class="labelType01">Desprendimientos</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Desvanecimento por luz" id="cbDesvanecimiento"> <label for="cbDesvanecimiento" class="labelType01">Desvan. por luz</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Huellas digitales" id="cbHuellas"> <label for="cbHuellas" class="labelType01">Huellas digitales</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Hongos" id="cbHongos"> <label for="cbHongos" class="labelType01">Hongos</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Manchas" id="cbManchas"> <label for="cbManchas" class="labelType01">Manchas</label>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <input type="checkbox" value="Raspaduras" id="cbRaspaduras"> <label for="cbRaspaduras" class="labelType01">Raspaduras</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Ralladuras" id="cbRalladuras"> <label for="cbRalladuras" class="labelType01">Ralladuras</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Retocado" id="cbRetocado"> <label for="cbRetocado" class="labelType01">Retocado</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Roturas" id="cbRoturas"> <label for="cbRoturas" class="labelType01">Roturas</label>
+            </div>
+            <div class="col-2">
+                <input type="checkbox" value="Sellos o inscripciones por tinta" id="cbSellos"> <label for="cbSellos" class="labelType01">Sellos o tinta</label>
+            </div>            
+            <div class="col-2">
+                <input type="checkbox" value="Sulfuración" id="cbSulfuracion"> <label for="cbSulfuracion" class="labelType01">Sulfuración</label>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Medidas</label>
+            </div>
+            <div class="col-1">
+                <label class="labelType01">Alto:</label>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control textbox-center" id="tbAlto"></input>
+            </div>
+            <div class="col-1">
+                <label class="labelType01">Ancho:</label>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control textbox-center" id="tbAncho"></input>
+            </div>            
+            <div class="col-1">
+                <label class="labelType01">Diámetro:</label>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control textbox-center" id="tbDiametro"></input>
+            </div> 
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Inspecciones o marcas</label>
+            </div>
+            <div class="col-4">
+                <textarea rows="3" class="form-control"></textarea>
+            </div>
+            <div class="col-2">
+                <label class="labelType01">Características o señas particulares</label>
+            </div>
+            <div class="col-4">
+                <textarea rows="3" class="form-control"></textarea>
             </div>
         </div>
     </div>
@@ -397,9 +515,90 @@
             </div>
         </div>
     </div>
+    <!--Ventana modal para agregar un nuevo soporte flexible-->
+    <div class="modal fade" id="modalAgregarSoporteFlexible" tabindex="-1" role="dialog" aria-labelledby="modalAgregarSoporteFlexible" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nuevo soporte flexible</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevoSoporteFlexible"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoSoporteFlexible()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar un nuevo soporte rigido-->
+    <div class="modal fade" id="modalAgregarSoporteRigido" tabindex="-1" role="dialog" aria-labelledby="modalAgregarSoporteRigido" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nuevo soporte flexible</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevoSoporteRigido"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoSoporteRigido()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar un nuevo genero-->
+    <div class="modal fade" id="modalAgregarGenero" tabindex="-1" role="dialog" aria-labelledby="modalAgregarGenero" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nuevo genero</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevoGenero"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoGenero()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     $( document ).ready(function() {
+        $(function() {     
+            $("#tbInstitucion").autocomplete({
+                source: "php/obtenerInstitucionesJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    //alert(ui.item.id);
+                }
+            });
+        });
         $(function() {     
             $("#tbLugarAsunto").autocomplete({
                 source: "php/obtenerLugaresJSON.php",
@@ -478,6 +677,39 @@
                 }
             });
         });
+        $(function() {     
+            $("#tbSoporteFlexible").autocomplete({
+                source: "php/obtenerSoportesFlexiblesJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    agregarSoporteFlexible(ui.item.id, ui.item.value);
+                    this.value = '';
+                    return false;
+                }
+            });
+        });
+        $(function() {     
+            $("#tbSoporteRigido").autocomplete({
+                source: "php/obtenerSoportesRigidosJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    agregarSoporteRigido(ui.item.id, ui.item.value);
+                    this.value = '';
+                    return false;
+                }
+            });
+        });
+        $(function() {     
+            $("#tbGenero").autocomplete({
+                source: "php/obtenerGenerosJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    agregarGenero(ui.item.id, ui.item.value);
+                    this.value = '';
+                    return false;
+                }
+            });
+        });
     });
 
     $('#modalAgregarAutor').on('shown.bs.modal', function() {
@@ -494,6 +726,15 @@
     });
     $('#modalAgregarTecnica').on('shown.bs.modal', function() {
         $('#tbNuevaTecnica').focus();
+    });
+    $('#modalAgregarSoporteFlexible').on('shown.bs.modal', function() {
+        $('#tbNuevoSoporteFlexible').focus();
+    });
+    $('#modalAgregarSoporteRigido').on('shown.bs.modal', function() {
+        $('#tbNuevoSoporteRigido').focus();
+    });
+    $('#modalAgregarGenero').on('shown.bs.modal', function() {
+        $('#tbNuevoGenero').focus();
     });
     
 </script>

@@ -166,3 +166,115 @@ function quitarTecnica(index) {
     ff_tecnicas.splice(index, 1);
     mostrarTecnicas();
 }
+//Soportes flexibles
+function agregarNuevoSoporteFlexible() {
+    var soporteFlexible;
+    if ($("#tbNuevoSoporteFlexible").val().length > 0) {
+        soporteFlexible = $("#tbNuevoSoporteFlexible").val();
+    } else {
+        alert("No ha escrito el tipo de soporte flexible.");
+        return;
+    }
+    $.ajax({url: "php/agregarSoporteFlexible.php", async: false, type: "POST", data: { soporteFlexible : soporteFlexible }, success: function(res) {
+        if (res == 'OK') {
+            $("#tbNuevoSoporteFlexible").val('');
+            $('#modalAgregarSoporteFlexible').modal('hide');
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function agregarSoporteFlexible(id, soporteFlexible) {
+    alert(id);
+    ff_soporteFlexible = { id : id, soporteFlexible : soporteFlexible };
+    ff_soportesFlexibles[ff_soportesFlexibles.length] = ff_soporteFlexible;
+    mostrarSoportesFlexibles();
+}
+
+function mostrarSoportesFlexibles() {
+    $("#divSoportesFlexibles").html("");
+    for (i = 0; i <= ff_soportesFlexibles.length - 1; i++) {
+        ff_soporteFlexible = ff_soportesFlexibles[i];
+        $("#divSoportesFlexibles").html($("#divSoportesFlexibles").html() + '<span class="tag"><span>' + ff_soporteFlexible.soporteFlexible + '</span><span href="" onclick="quitarSoporteFlexible(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarSoporteFlexible(index) {
+    ff_soportesFlexibles.splice(index, 1);
+    mostrarSoportesFlexibles();
+}
+//Soportes Rigidos
+function agregarNuevoSoporteRigido() {
+    var soporteRigido;
+    if ($("#tbNuevoSoporteRigido").val().length > 0) {
+        soporteRigido = $("#tbNuevoSoporteRigido").val();
+    } else {
+        alert("No ha escrito el tipo de soporte Rigido.");
+        return;
+    }
+    $.ajax({url: "php/agregarSoporteRigido.php", async: false, type: "POST", data: { soporteRigido : soporteRigido }, success: function(res) {
+        if (res == 'OK') {
+            $("#tbNuevoSoporteRigido").val('');
+            $('#modalAgregarSoporteRigido').modal('hide');
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function agregarSoporteRigido(id, soporteRigido) {
+    ff_soporteRigido = { id : id, soporteRigido : soporteRigido };
+    ff_soportesRigidos[ff_soportesRigidos.length] = ff_soporteRigido;
+    mostrarSoportesRigidos();
+}
+
+function mostrarSoportesRigidos() {
+    $("#divSoportesRigidos").html("");
+    for (i = 0; i <= ff_soportesRigidos.length - 1; i++) {
+        ff_soporteRigido = ff_soportesRigidos[i];
+        $("#divSoportesRigidos").html($("#divSoportesRigidos").html() + '<span class="tag"><span>' + ff_soporteRigido.soporteRigido + '</span><span href="" onclick="quitarSoporteRigido(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarSoporteRigido(index) {
+    ff_soportesRigidos.splice(index, 1);
+    mostrarSoportesRigidos();
+}
+//Generos
+function agregarNuevoGenero() {
+    var genero;
+    if ($("#tbNuevoGenero").val().length > 0) {
+        genero = $("#tbNuevoGenero").val();
+    } else {
+        alert("No ha escrito el tipo de Genero.");
+        return;
+    }
+    $.ajax({url: "php/agregarGenero.php", async: false, type: "POST", data: { genero : genero }, success: function(res) {
+        if (res == 'OK') {
+            $("#tbNuevoGenero").val('');
+            $('#modalAgregarGenero').modal('hide');
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function agregarGenero(id, genero) {
+    ff_genero = { id : id, genero : genero };
+    ff_generos[ff_generos.length] = ff_genero;
+    mostrarGeneros();
+}
+
+function mostrarGeneros() {
+    $("#divgeneros").html("");
+    for (i = 0; i <= ff_generos.length - 1; i++) {
+        ff_genero = ff_generos[i];
+        $("#divgeneros").html($("#divgeneros").html() + '<span class="tag"><span>' + ff_genero.genero + '</span><span href="" onclick="quitarGenero(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarGenero(index) {
+    ff_generos.splice(index, 1);
+    mostrarGeneros();
+}
