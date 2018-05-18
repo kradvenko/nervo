@@ -79,3 +79,64 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+<!--17/05/2018-->
+CREATE TABLE `albumes` (
+  `idalbum` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `album` varchar(150) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `numerofotografias` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idalbum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `autores` (
+  `idautor` int(11) NOT NULL AUTO_INCREMENT,
+  `autor` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`idautor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `estudiosfotograficos` (
+  `idestudiofotografico` int(11) NOT NULL AUTO_INCREMENT,
+  `estudio` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`idestudiofotografico`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiatemas` (
+  `idfotografiatema` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `tema` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiatema`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `temas` (
+  `idtema` int(11) NOT NULL AUTO_INCREMENT,
+  `tema` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idtema`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tecnicasfotograficas` (
+  `idtecnicafotografica` int(11) NOT NULL AUTO_INCREMENT,
+  `tecnica` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idtecnicafotografica`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `soportesflexibles` (
+  `idsoporteflexible` int(11) NOT NULL AUTO_INCREMENT,
+  `soporte` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idsoporteflexible`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `soportesrigidos` (
+  `idsoporterigido` int(11) NOT NULL AUTO_INCREMENT,
+  `soporterigido` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idsoporterigido`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `generosfotografia` (
+  `idgenerofotografia` int(11) NOT NULL AUTO_INCREMENT,
+  `genero` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idgenerofotografia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
