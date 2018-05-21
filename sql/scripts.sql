@@ -156,7 +156,7 @@ CREATE TABLE `institucioncorreos` (
   `correo` varchar(100) DEFAULT NULL,
   `notas` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idinstitucioncorreo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE `instituciontelefonos` (
   `idinstituciontelefono` int(11) NOT NULL AUTO_INCREMENT,
@@ -165,7 +165,7 @@ CREATE TABLE `instituciontelefonos` (
   `extension` varchar(45) DEFAULT NULL,
   `notas` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idinstituciontelefono`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `institucionareas` (
   `idinstitucionarea` int(11) NOT NULL AUTO_INCREMENT,
