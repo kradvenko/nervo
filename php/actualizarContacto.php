@@ -6,6 +6,7 @@
         $idContacto = $_POST["idContacto"];
         $nombreContacto = $_POST["nombreContacto"];
         $areaContacto = $_POST["area"];
+        $cargoContacto = $_POST["cargoContacto"];
         $telefonos = $_POST["telefonos"];
         $extension = $_POST["extension"];
         $correoElectronico = $_POST["correoElectronico"];
@@ -19,7 +20,7 @@
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Update contactos SET " . 
-        "nombreContacto = '$nombreContacto', area = '$areaContacto', telefonos = '$telefonos', " .
+        "nombreContacto = '$nombreContacto', area = '$areaContacto', telefonos = '$telefonos', cargo = '$cargoContacto', " .
         "extension = '$extension', correoElectronico = '$correoElectronico', notas = '$notas' ".
         "Where idContacto = $idContacto ";
 

@@ -6,6 +6,7 @@
         $idInstitucion = $_POST["idInstitucion"];
         $nombreContacto = $_POST["nombreContacto"];
         $areaContacto = $_POST["area"];
+        $cargoContacto = $_POST["cargoContacto"];
         $telefonos = $_POST["telefonos"];
         $extension = $_POST["extension"];
         $correoElectronico = $_POST["correoElectronico"];
@@ -18,8 +19,8 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Insert Into contactos (idinstitucion, nombreContacto, area, telefonos, extension, correoElectronico, notas) " . 
-        " Values ('$idInstitucion', '$nombreContacto', '$areaContacto', '$telefonos', '$extension', '$correoElectronico', '$notas')";
+        $sql = "Insert Into contactos (idinstitucion, nombreContacto, area, cargo, telefonos, extension, correoElectronico, notas) " . 
+        " Values ('$idInstitucion', '$nombreContacto', '$areaContacto', '$cargoContacto', '$telefonos', '$extension', '$correoElectronico', '$notas')";
 
         $con->query($sql);
 

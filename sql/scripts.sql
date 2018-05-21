@@ -136,7 +136,66 @@ CREATE TABLE `generosfotografia` (
   `idgenerofotografia` int(11) NOT NULL AUTO_INCREMENT,
   `genero` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idgenerofotografia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+--//19/05/2018
+--Notas de cambios en la base de datos
+--Se ha cambiado la forma en la que funciona el guardado de
+--el sitio web. Ahora se pueden tener varios sitios web y agregar
+--una nota para cada sitio web
+CREATE TABLE `institucionsitiosweb` (
+  `idinstitucionsitioweb` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `sitio` varchar(150) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idinstitucionsitioweb`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `institucioncorreos` (
+  `idinstitucioncorreo` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `correo` varchar(100) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idinstitucioncorreo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `instituciontelefonos` (
+  `idinstituciontelefono` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `telefono` varchar(100) DEFAULT NULL,
+  `extension` varchar(45) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idinstituciontelefono`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `institucionareas` (
+  `idinstitucionarea` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `area` varchar(100) DEFAULT NULL,
+  `notas` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`idinstitucionarea`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `contactos` (
+  `idcontacto` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` varchar(45) DEFAULT NULL,
+  `nombreContacto` varchar(250) DEFAULT NULL,
+  `area` varchar(100) DEFAULT NULL,
+  `telefonos` varchar(100) DEFAULT NULL,
+  `extension` varchar(100) DEFAULT NULL,
+  `correoElectronico` varchar(100) DEFAULT NULL,
+  `notas` varchar(400) DEFAULT NULL,
+  `cargo` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idcontacto`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `institucionpendientes` (
+  `idinstitucionpendiente` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `pendiente` varchar(300) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `fechaInicio` varchar(45) DEFAULT NULL,
+  `fechaFin` varchar(45) DEFAULT NULL,
+  `resolucion` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`idinstitucionpendiente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

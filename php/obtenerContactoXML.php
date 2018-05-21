@@ -25,6 +25,7 @@
             echo "<idinstitucion>" . $row['idinstitucion'] . "</idinstitucion>\n";
             echo "<nombreContacto>" . $row['nombreContacto'] . "</nombreContacto>\n";
             echo "<area>" . $row['area'] . "</area>\n";
+            echo "<cargo>" . $row['cargo'] . "</cargo>\n";
             echo "<telefonos>" . $row['telefonos'] . "</telefonos>\n";
             echo "<extension>" . $row['extension'] . "</extension>\n";
             echo "<correoElectronico>" . $row['correoElectronico'] . "</correoElectronico>\n";
