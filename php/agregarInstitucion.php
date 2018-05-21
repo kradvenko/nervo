@@ -6,10 +6,6 @@
         $nombreInstitucion = $_POST["nombreInstitucion"];
         $sectorInstitucion = $_POST["sectorInstitucion"];
         $tipoInstitucion = $_POST["tipoInstitucion"];
-        $sitioWeb = $_POST["sitioWeb"];
-        $correoElectronico = $_POST["correoElectronico"];
-        $telefonos = $_POST["telefonos"];
-        $extension = $_POST["extension"];
         $domicilio = $_POST["domicilio"];
         $colonia = $_POST["colonia"];
         $codigoPostal = $_POST["codigoPostal"];
@@ -26,8 +22,8 @@
         */
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Insert Into instituciones (nombreInstitucion, sectorInstitucion, tipoInstitucion, sitioWeb, correoElectronico, telefonos, extension, domicilio, colonia, codigoPostal, idpais, idregion, idciudad) " . 
-        " Values ('$nombreInstitucion', '$sectorInstitucion', '$tipoInstitucion', '$sitioWeb', '$correoElectronico', '$telefonos', '$extension', '$domicilio', '$colonia', '$codigoPostal', '$idpais', '$idregion', '$idciudad')";
+        $sql = "Insert Into instituciones (nombreInstitucion, sectorInstitucion, tipoInstitucion, domicilio, colonia, codigoPostal, idpais, idregion, idciudad) " . 
+        " Values ('$nombreInstitucion', '$sectorInstitucion', '$tipoInstitucion', '$domicilio', '$colonia', '$codigoPostal', '$idpais', '$idregion', '$idciudad')";
 
         $con->query($sql);
 

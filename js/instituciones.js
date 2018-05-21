@@ -80,10 +80,10 @@ function guardarInstitucion() {
     var nombreInstitucion = '';
     var sectorInstitucion = '';
     var tipoInstitucion = '';
-    var sitioWeb = '';
-    var correoElectronico = '';
-    var telefonos = '';
-    var extension = '';
+    //var sitioWeb = '';
+    //var correoElectronico = '';
+    //var telefonos = '';
+    //var extension = '';
     var domicilio = '';
     var colonia = '';
     var codigoPostal = '';
@@ -98,6 +98,7 @@ function guardarInstitucion() {
     }
     sectorInstitucion = $("#selectSectorInstitucion").val();
     tipoInstitucion = $("#selectTipoInstitucion").val();
+    /*
     sitioWeb = $("#tbSitioWeb").val();
     if (sitioWeb.length == 0) {
         sitioWeb = '';
@@ -114,6 +115,7 @@ function guardarInstitucion() {
     if (extension.length == 0) {
         extension = '';
     }
+    */
     domicilio = $("#tbDomicilioInstitucion").val();
     if (domicilio.length == 0) {
         domicilio = '';
@@ -132,8 +134,7 @@ function guardarInstitucion() {
     
     if (idInstitucion == 0) {
         $.ajax({url: "php/agregarInstitucion.php", async: false, type: "POST", data: { nombreInstitucion: nombreInstitucion,
-            sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, sitioWeb: sitioWeb,correoElectronico: correoElectronico,
-            telefonos: telefonos, extension: extension, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
+            sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
             idPais: pais, idRegion: region, idCiudad: ciudad, categorias: categorias }, success: function(res) {
                 alert(res);
                 limpiarCamposInstitucion();
@@ -141,8 +142,7 @@ function guardarInstitucion() {
         }});
     } else {
         $.ajax({url: "php/actualizarInstitucion.php", async: false, type: "POST", data: { idInstitucion: idInstitucion, nombreInstitucion: nombreInstitucion,
-            sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, sitioWeb: sitioWeb,correoElectronico: correoElectronico,
-            telefonos: telefonos, extension: extension, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
+            sectorInstitucion: sectorInstitucion, tipoInstitucion: tipoInstitucion, domicilio: domicilio, colonia: colonia, codigoPostal: codigoPostal,
             idPais: pais, idRegion: region, idCiudad: ciudad, categorias: categorias }, success: function(res) {
                 alert(res);
                 limpiarCamposInstitucion();
@@ -192,11 +192,11 @@ function elegirInstitucion(id) {
 
 function limpiarCamposInstitucion() {
     $("#tbNombreInstitucion").val('');
-    $("#tbSitioWeb").val('');
-    $("#tbCorreoElectronico").val('');
-    $("#tbTelefonosInstitucion").val('');
-    $("#tbExtensionInstitucion").val('');
-    $("#tbExtensionInstitucion").val('');
+    //$("#tbSitioWeb").val('');
+    //$("#tbCorreoElectronico").val('');
+    //$("#tbTelefonosInstitucion").val('');
+    //$("#tbExtensionInstitucion").val('');
+    //$("#tbExtensionInstitucion").val('');
     $("#tbDomicilioInstitucion").val('');
     $("#tbColoniaInstitucion").val('');
     $("#tbCodigoPostalInstitucion").val('');
@@ -208,11 +208,13 @@ function limpiarCamposInstitucion() {
 
 function mostrarContactos() {
     $("#divContactos").css("visibility", "visible");
+    $("#divDatosVarios").css("visibility", "visible");
     obtenerContactos();
 }
 
 function ocultarContactos() {
     $("#divContactos").css("visibility", "hidden");
+    $("#divDatosVarios").css("visibility", "hidden");
 }
 
 function guardarContacto() {

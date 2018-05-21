@@ -97,51 +97,53 @@
                         </select>
                     </div>
                 </div>
-                <div class="row divMargin">
-                    <div class="col-2">
-                        <label class="labelType01">Sitio Web</label>
+                <div id="divDatosVarios">
+                    <div class="row divMargin">
+                        <div class="col-2">
+                            <label class="labelType01">Sitio Web</label>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarSitios' onclick="obtenerSitiosWeb()">Ver Sitios Web</button>
+                        </div>
+                        <!--
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="tbSitioWeb"></input>
+                            <input type="button" class="button-green" onclick="irSitioWeb('tbSitioWeb')"></input>
+                        </div>
+                        -->
+                        <div class="col-2">
+                            <label class="labelType01">Correo electrónico</label>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarCorreos' onclick="obtenerCorreos()">Ver Correos</button>
+                        </div>
+                        <!--<div class="col-4">
+                            <input type="text" class="form-control" id="tbCorreoElectronico"></input>
+                        </div>-->
                     </div>
-                    <div class="col-4">
-                        <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarSitios' onclick="obtenerSitiosWeb()">Ver Sitios Web</button>
+                    <div class="row divMargin">
+                        <div class="col-2">
+                            <label class="labelType01">Teléfonos</label>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarTelefonos' onclick="obtenerTelefonos()">Ver Teléfonos</button>
+                        </div>
+                        <!--
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="tbTelefonosInstitucion"></input>
+                        </div>
+                        -->
+                        <div class="col-2">
+                            <label class="labelType01">Áreas de interés</label>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAreas' onclick="obtenerAreas()">Ver Áreas de interés</button>
+                        </div>
                     </div>
-                    <!--
-                    <div class="col-4">
-                        <input type="text" class="form-control" id="tbSitioWeb"></input>
-                        <input type="button" class="button-green" onclick="irSitioWeb('tbSitioWeb')"></input>
-                    </div>
-                    -->
-                    <div class="col-2">
-                        <label class="labelType01">Correo electrónico</label>
-                    </div>
-                    <div class="col-4">
-                        <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarCorreos' onclick="obtenerCorreos()">Ver Correos</button>
-                    </div>
-                    <!--<div class="col-4">
-                        <input type="text" class="form-control" id="tbCorreoElectronico"></input>
-                    </div>-->
-                </div>
-                <div class="row divMargin">
-                    <div class="col-2">
-                        <label class="labelType01">Teléfonos</label>
-                    </div>
-                    <div class="col-4">
-                        <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarTelefonos' onclick="obtenerTelefonos()">Ver Teléfonos</button>
-                    </div>
-                    <!--
-                    <div class="col-4">
-                        <input type="text" class="form-control" id="tbTelefonosInstitucion"></input>
-                    </div>
-                    -->
-                    <div class="col-2">
-                        <label class="labelType01">Áreas de interés</label>
-                    </div>
-                    <div class="col-4">
-                        <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAreas' onclick="obtenerAreas()">Ver Áreas de interés</button>
-                    </div>
-                </div>
-                <div class="row divMargin">
-                    <div class="col-12">
-                        <button class="btn btn-warning" data-toggle='modal' data-target='#modalMostrarPendientesInstitucion' onclick="obtenerPendientesInstitucion()">Pendientes</button>
+                    <div class="row divMargin">
+                        <div class="col-12">
+                            <button class="btn btn-warning" data-toggle='modal' data-target='#modalMostrarPendientesInstitucion' onclick="obtenerPendientesInstitucion()">Pendientes</button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -576,6 +578,7 @@
     $( document ).ready(function() {
         checkSession();
         $("#divContactos").css("visibility", "hidden");
+        $("#divDatosVarios").css("visibility", "hidden");
         obtenerCategoriasInstitucionSelect();
         obtenerPaisesSelectInstitucion();
         obtenerInstituciones();

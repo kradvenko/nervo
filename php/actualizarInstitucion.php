@@ -7,10 +7,6 @@
         $nombreInstitucion = $_POST["nombreInstitucion"];
         $sectorInstitucion = $_POST["sectorInstitucion"];
         $tipoInstitucion = $_POST["tipoInstitucion"];
-        $sitioWeb = $_POST["sitioWeb"];
-        $correoElectronico = $_POST["correoElectronico"];
-        $telefonos = $_POST["telefonos"];
-        $extension = $_POST["extension"];
         $domicilio = $_POST["domicilio"];
         $colonia = $_POST["colonia"];
         $codigoPostal = $_POST["codigoPostal"];
@@ -28,7 +24,6 @@
 
         $sql = "Update instituciones SET " . 
         "nombreInstitucion = '$nombreInstitucion', sectorInstitucion = '$sectorInstitucion', tipoInstitucion = '$tipoInstitucion', " .
-        "sitioWeb = '$sitioWeb', correoElectronico = '$correoElectronico', telefonos = '$telefonos', extension = '$extension', " .
         "domicilio = '$domicilio', colonia = '$colonia', codigoPostal = '$codigoPostal', idpais = $idpais, idregion = $idregion, idciudad = $idciudad " .
         "Where idInstitucion = $idInstitucion ";
 
