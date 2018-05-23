@@ -539,6 +539,7 @@ function guardarPendienteInstitucion(estado) {
         $.ajax({url: "php/agregarPendienteInstitucion.php", async: false, type: "POST", data: { idInstitucion: idInstitucion, pendiente: pendiente, estado: estado, resolucion: resolucion, fechaInicio: fechaInicio }, success: function(res) {
             if (res == "OK") {
                 obtenerPendientesInstitucion();
+                obtenerInstituciones();
             } else {
                 alert(res);
             }
@@ -547,6 +548,7 @@ function guardarPendienteInstitucion(estado) {
         $.ajax({url: "php/actualizarPendienteInstitucion.php", async: false, type: "POST", data: { idPendienteInstitucion: idPendienteInstitucion, pendiente: pendiente, estado: estado, resolucion: resolucion, fechaFin: fechaFin }, success: function(res) {
             if (res == "OK") {
                 obtenerPendientesInstitucion();
+                obtenerInstituciones();
             } else {
                 alert(res);
             }
