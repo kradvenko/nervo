@@ -198,4 +198,3 @@ CREATE TABLE `institucionpendientes` (
   `resolucion` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`idinstitucionpendiente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
