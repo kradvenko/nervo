@@ -13,8 +13,6 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/nervo.js"></script>
     <script src="js/ficha-fotografia.js"></script>
-    
-
     <title>Acervo artístico de Amado Nervo</title>
 </head>
 <body>
@@ -106,11 +104,20 @@
             <div class="col-2">
                 <label class="labelType01">Autor</label>
             </div>
-            <div class="col-3">
-                <input type="text" class="form-control textbox-center" id="tbAutor"></input>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>+</button>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-7">
+                        <input type="text" class="form-control textbox-center" id="tbAutor"></input>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>+</button>
+                    </div>
+                </div>
+                <div class="row divMargin">
+                    <div class="col-12" id="divAutores">
+                        
+                    </div>
+                </div>
             </div>
             <div class="col-2">
                 <label class="labelType01">Estudio fotográfico</label>
@@ -622,7 +629,9 @@
                 source: "php/obtenerAutoresJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+                    agregarAutor(ui.item.id, ui.item.value);
+                    this.value = '';
+                    return false;
                 }
             });
         });

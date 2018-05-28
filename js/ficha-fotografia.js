@@ -1,6 +1,7 @@
 //Variables para la ficha de fotografia
 var ff_LugarAsunto;
 var ff_LugarToma;
+var ff_Autores = [];
 var ff_Autor;
 var ff_Estudio;
 var ff_Album;
@@ -17,6 +18,7 @@ var ff_soporteRigido;
 var ff_generos = [];
 var ff_genero;
 
+//Autores
 function agregarNuevoAutor() {
     var autor;
     if ($("#tbNuevoAutor").val().length > 0) {
@@ -35,6 +37,25 @@ function agregarNuevoAutor() {
     }});
 }
 
+function agregarAutor(id, autor) {
+    ff_Autor = { id : id, autor : autor };
+    ff_Autores[ff_Autores.length] = ff_Autor;
+    mostrarAutores();
+}
+
+function mostrarAutores() {
+    $("#divAutores").html("");
+    for (i = 0; i <= ff_Autores.length - 1; i++) {
+        ff_Autor = ff_Autores[i];
+        $("#divAutores").html($("#divAutores").html() + '<span class="tag"><span>' + ff_Autor.autor + '</span><span href="" onclick="quitarAutor(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarAutor(index) {
+    ff_Autores.splice(index, 1);
+    mostrarAutores();
+}
+//Estudios
 function agregarNuevoEstudio() {
     var estudio;
     if ($("#tbNuevoEstudio").val().length > 0) {
