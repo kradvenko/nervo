@@ -186,6 +186,11 @@
                 <textarea rows="3" class="form-control"></textarea>
             </div>
         </div>
+        <div class="row divMargin divBackgroundBlue2">
+            <div class="col-12">
+                Caraterísticas físicas del bien
+            </div>
+        </div>
         <div class="row divMargin">
             <div class="col-2">
                 <label class="labelType01">Técnica o proceso fotográfico</label>
@@ -260,8 +265,9 @@
                         
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
+
         <div class="row divMargin">
             <div class="col-2">
                 <label class="labelType01">Estado de Conservación</label>
@@ -378,6 +384,49 @@
             </div>
             <div class="col-4">
                 <textarea rows="3" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row divMargin divBackgroundBlue2">
+            <div class="col-12">
+                Información de captura de la información
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Persona que tomó fotografia del bien</label>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
+            </div>
+            <div class="col-2">
+                <label class="labelType01">Fecha de la toma</label>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Persona que tomó fotografia del bien</label>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
+            </div>
+            <div class="col-2">
+                <label class="labelType01">Fecha de la toma</label>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-12">
+                <button class="btn btn-warning" data-toggle='modal' data-target='#modalMostrarPendientesBien' onclick="obtenerPendientesBien()">Pendientes</button>
+            </div>
+        </div>
+        <div class="row divMargin divBackgroundBlue2">
+            <div class="col-12">
+                Información de captura de la información
             </div>
         </div>
     </div>
@@ -590,6 +639,72 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" onclick="agregarNuevoGenero()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para pendientes del bien-->
+    <div class="modal fade" id="modalMostrarPendientesBien" tabindex="-1" role="dialog" aria-labelledby="modalMostrarPendientesBien" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pendientes de la captura del bien</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row divMargin">
+                        <div class="col-12">
+                            <label class="labelType01">Pendiente</label>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" rows="4" id="tbPendienteInstitucion"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="labelType01">Resolución</label>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" rows="4" id="tbPendienteInstitucionResolucion"></textarea>
+                        </div>
+                        <div class="col-2">
+                            <label class="labelType01">Estado</label>
+                        </div>
+                        <div class="col-2">
+                            <label id="lblPendienteInstitucionEstado"></label>
+                        </div>
+                        <div class="col-2">
+                            <label class="labelType01">Fecha inicio</label>
+                        </div>
+                        <div class="col-2">
+                            <label id="lblPendienteInstitucionFechaInicio"></label>
+                        </div>
+                        <div class="col-2">
+                            <label class="labelType01">Fecha fin</label>
+                        </div>
+                        <div class="col-2">
+                            <label id="lblPendienteInstitucionFechaFin"></label>
+                        </div>
+                    </div>
+                    <div class="row divMargin">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-success" onclick="guardarPendienteInstitucion('ACTIVO')">Guardar</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-danger" onclick="guardarPendienteInstitucion('FINALIZADO')">Finalizar</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-success" onclick="limpiarCamposPendienteInstitucion()">Limpiar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" id="divListaPendientesInstitucion">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposPendienteInstitucion()">Cerrar</button>
                 </div>
             </div>
         </div>
