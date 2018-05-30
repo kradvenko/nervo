@@ -404,21 +404,7 @@
             <div class="col-4">
                 <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
             </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-2">
-                <label class="labelType01">Persona que tomó fotografia del bien</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
-            </div>
-            <div class="col-2">
-                <label class="labelType01">Fecha de la toma</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
-            </div>
-        </div>
+        </div>        
         <div class="row divMargin">
             <div class="col-12">
                 <button class="btn btn-warning" data-toggle='modal' data-target='#modalMostrarPendientesBien' onclick="obtenerPendientesBien()">Pendientes</button>
@@ -426,7 +412,17 @@
         </div>
         <div class="row divMargin divBackgroundBlue2">
             <div class="col-12">
-                Información de captura de la información
+                Imágenes del bien
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-12">
+                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen'>Agregar imagen</button>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-12">
+                                
             </div>
         </div>
     </div>
@@ -831,6 +827,17 @@
                     agregarGenero(ui.item.id, ui.item.value);
                     this.value = '';
                     return false;
+                }
+            });
+        });
+        $(function() {     
+            $("#tbTomaPersona").autocomplete({
+                source: "php/obtenerUsuariosJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    //agregarGenero(ui.item.id, ui.item.value);
+                    //this.value = '';
+                    //return false;
                 }
             });
         });
