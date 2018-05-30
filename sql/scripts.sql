@@ -248,3 +248,60 @@ CREATE TABLE `fichasfotografia` (
   `estado` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idfichafotografia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiaautores` (
+  `idfotografiaautor` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `idautor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiaautor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiatecnica` (
+  `idfotografiatecnica` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `idtecnica` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiatecnica`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiasoportesflexibles` (
+  `idfotografiasoporteflexible` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `idsoporteflexible` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiasoporteflexible`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiasoportesrigidos` (
+  `idfotografiasoporterigido` int(11) NOT NULL,
+  `idfotografia` int(11) DEFAULT NULL,
+  `idsoporterigido` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiasoporterigido`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiageneros` (
+  `idfotografiagenero` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `idgenero` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiagenero`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiapendientes` (
+  `idfotografiapendiente` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `pendiente` varchar(300) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `fechaInicio` varchar(45) DEFAULT NULL,
+  `fechaFin` varchar(45) DEFAULT NULL,
+  `resolucion` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiapendiente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `fotografiaimagenes` (
+  `idfotografiaimagen` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `rutaimagen` varchar(200) DEFAULT NULL,
+  `aprobada` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiaimagen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
