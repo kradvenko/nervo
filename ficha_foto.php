@@ -713,7 +713,7 @@
                 source: "php/obtenerInstitucionesJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //alert(ui.item.id);
+                    elegirInstitucionBien(ui.item.id);
                 }
             });
         });

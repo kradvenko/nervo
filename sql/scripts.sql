@@ -302,6 +302,12 @@ CREATE TABLE `fotografiaimagenes` (
   `aprobada` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idfotografiaimagen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--cambio tabla temas
+CREATE TABLE `temas` (
+  `idtema` int(11) NOT NULL AUTO_INCREMENT,
+  `tema` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idtema`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 
 

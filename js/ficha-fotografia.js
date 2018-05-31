@@ -18,6 +18,31 @@ var ff_soporteRigido;
 var ff_generos = [];
 var ff_genero;
 
+//Funciones de elección de datos
+function elegirInstitucionBien(id) {
+    ff_InstitucionElegida = id;
+}
+
+function elegirLugarAsunto(id) {
+    ff_LugarAsunto = id;
+}
+
+function elegirLugarToma(id) {
+    ff_LugarToma = id;
+}
+
+function elegirEstudio(id) {
+    ff_Estudio = id;
+}
+
+function elegirAlbum(id) {
+    ff_Album = id;
+}
+//Funciones de la ficha
+
+function guardarFichaFoto() {
+    
+}
 //Autores
 function agregarNuevoAutor() {
     var autor;
@@ -207,7 +232,6 @@ function agregarNuevoSoporteFlexible() {
 }
 
 function agregarSoporteFlexible(id, soporteFlexible) {
-    alert(id);
     ff_soporteFlexible = { id : id, soporteFlexible : soporteFlexible };
     ff_soportesFlexibles[ff_soportesFlexibles.length] = ff_soporteFlexible;
     mostrarSoportesFlexibles();
@@ -288,10 +312,10 @@ function agregarGenero(id, genero) {
 }
 
 function mostrarGeneros() {
-    $("#divgeneros").html("");
+    $("#divGeneros").html("");
     for (i = 0; i <= ff_generos.length - 1; i++) {
         ff_genero = ff_generos[i];
-        $("#divgeneros").html($("#divgeneros").html() + '<span class="tag"><span>' + ff_genero.genero + '</span><span href="" onclick="quitarGenero(' + i + ')" class="closeTag">x</span></span>');
+        $("#divGeneros").html($("#divGeneros").html() + '<span class="tag"><span>' + ff_genero.genero + '</span><span href="" onclick="quitarGenero(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
