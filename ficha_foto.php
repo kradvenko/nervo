@@ -183,7 +183,7 @@
                 <label class="labelType01">Anotaciones</label>
             </div>
             <div class="col-4">
-                <textarea rows="3" class="form-control"></textarea>
+                <textarea rows="3" class="form-control" id="taAnotaciones"></textarea>
             </div>
         </div>
         <div class="row divMargin divBackgroundBlue2">
@@ -273,7 +273,7 @@
                 <label class="labelType01">Estado de Conservación</label>
             </div>
             <div class="col-4">
-                <select class="form-control">
+                <select class="form-control" id="sEstadoConservacion">
                     <option value="Bueno">Bueno</option>
                     <option value="Regular">Regular</option>
                     <option value="Malo">Malo</option>                        
@@ -283,7 +283,7 @@
                 <label class="labelType01">Estado de Integridad</label>
             </div>
             <div class="col-4">
-                <select class="form-control">
+                <select class="form-control" id="sEstadoIntegridad">
                     <option value="Completo">Completo</option>
                     <option value="Imcompleto">Imcompleto</option>
                 </select>
@@ -377,13 +377,13 @@
                 <label class="labelType01">Inspecciones o marcas</label>
             </div>
             <div class="col-4">
-                <textarea rows="3" class="form-control"></textarea>
+                <textarea rows="3" class="form-control" id="taInspecciones"></textarea>
             </div>
             <div class="col-2">
                 <label class="labelType01">Características o señas particulares</label>
             </div>
             <div class="col-4">
-                <textarea rows="3" class="form-control"></textarea>
+                <textarea rows="3" class="form-control" id="taCaracteristicas"></textarea>
             </div>
         </div>
         <div class="row divMargin divBackgroundBlue2">
@@ -423,6 +423,11 @@
         <div class="row divMargin">
             <div class="col-12">
                                 
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-12">
+                <button class="btn btn-success" onclick="guardarFichaFoto()">Guardar</button>
             </div>
         </div>
     </div>
@@ -722,7 +727,7 @@
                 source: "php/obtenerLugaresJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //alert(ui.item.id);
+                    elegirLugarAsunto(ui.item.id);
                 }
             });
         });
@@ -731,7 +736,7 @@
                 source: "php/obtenerLugaresJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+                    elegirLugarToma(ui.item.id);
                 }
             });
         });
@@ -751,7 +756,7 @@
                 source: "php/obtenerEstudiosJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+                    elegirEstudio(ui.item.id);
                 }
             });
         });
@@ -760,7 +765,7 @@
                 source: "php/obtenerAlbumesJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+                    elegirAlbum(ui.item.id);
                 }
             });
         });
@@ -769,9 +774,7 @@
                 source: "php/obtenerInstitucionesJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //log("Selected: " + ui.item.value + " aka " + ui.item.id);
-                    ff_InstitucionElegidaNuevoAlbum = ui.item.id;
-                    alert(ff_InstitucionElegidaNuevoAlbum);
+                    ff_InstitucionElegidaNuevoAlbum = ui.item.id;                    
                 }
             });
         });
@@ -835,9 +838,7 @@
                 source: "php/obtenerUsuariosJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    //agregarGenero(ui.item.id, ui.item.value);
-                    //this.value = '';
-                    //return false;
+                    elegirPersonaToma(ui.item.id);
                 }
             });
         });
