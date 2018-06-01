@@ -285,7 +285,7 @@
             <div class="col-4">
                 <select class="form-control" id="sEstadoIntegridad">
                     <option value="Completo">Completo</option>
-                    <option value="Imcompleto">Imcompleto</option>
+                    <option value="Incompleto">Incompleto</option>
                 </select>
             </div>
         </div>
@@ -384,6 +384,14 @@
             </div>
             <div class="col-4">
                 <textarea rows="3" class="form-control" id="taCaracteristicas"></textarea>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Enlaces web</label>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarEnlaces' onclick="obtenerEnlaces()">Ver Enlaces Web</button>
             </div>
         </div>
         <div class="row divMargin divBackgroundBlue2">
@@ -706,6 +714,51 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposPendienteInstitucion()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para mostrar los enlaces web-->
+    <div class="modal fade" id="modalMostrarEnlaces" tabindex="-1" role="dialog" aria-labelledby="modalMostrarEnlaces" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enlaces Web</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row divMargin">
+                        <div class="col-12">
+                            <label class="labelType01">Enlace Web</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbEnlaceWeb"></input>
+                        </div>
+                        <div class="col-12">
+                            <label class="labelType01">Notas</label>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" rows="4" id="tbNotasEnlaceWeb"></textarea>
+                        </div>
+                    </div>
+                    <div class="row divMargin">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-success" onclick="guardarEnlaceWeb()">Guardar</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-success" onclick="limpiarCamposEnlaceWeb()">Limpiar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" id="divListaEnlacesWeb">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposEnlaceWeb()">Cerrar</button>
                 </div>
             </div>
         </div>
