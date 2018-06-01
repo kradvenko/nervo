@@ -48,12 +48,12 @@
         $idPersonaCaptura = $_POST["idPersonaCaptura"];
         $fechaCaptura = $_POST["fechaCaptura"];
         $estado = $_POST["estado"]; 
-        $autores = $_POST["autores"];
-        $temas = $_POST["temas"];
-        $tecnicas = $_POST["tecnicas"];
-        $soportesFlexibles = $_POST["soportesFlexibles"];
-        $soportesRigidos = $_POST["soportesRigidos"];
-        $generos = $_POST["generos"];
+        $autores = (isset($_POST["autores"]) ? $_POST["autores"] : []);
+        $temas = (isset($_POST["temas"]) ? $_POST["temas"] : []);
+        $tecnicas = (isset($_POST["tecnicas"]) ? $_POST["tecnicas"] : []);
+        $soportesFlexibles = (isset($_POST["soportesFlexibles"]) ? $_POST["soportesFlexibles"] : []);
+        $soportesRigidos = (isset($_POST["soportesRigidos"]) ? $_POST["soportesRigidos"] : []);
+        $generos = (isset($_POST["generos"]) ? $_POST["generos"] : []);
 
         /*
         if (!$nombreInstitucion || !$sectorInstitucion || !$tipoInstitucion || !$sitioWeb || !$correoElectronico || !$telefonos 
@@ -85,12 +85,13 @@
 
         $idFichaFoto = $con->insert_id;
 
+        
         for ($i = 0; $i < sizeof($autores); $i++) {
             $sql = "Insert Into fotografiaautores (idfotografia, idautor) " .
             "Values ('$idFichaFoto', " . $autores[$i]["id"] . ")";
             $con->query($sql);
         }
-
+        
         for ($i = 0; $i < sizeof($temas); $i++) {
             $sql = "Insert Into fotografiatemas (idfotografia, idtema) " .
             "Values ('$idFichaFoto', " . $temas[$i]["id"] . ")";
@@ -101,7 +102,7 @@
             $sql = "Insert Into fotografiatecnica (idfotografia, idtecnica) " .
             "Values ('$idFichaFoto', " . $tecnicas[$i]["id"] . ")";
             $con->query($sql);
-        }
+        }        
         
         for ($i = 0; $i < sizeof($soportesFlexibles); $i++) {
             $sql = "Insert Into fotografiasoportesflexibles (idfotografia, idsoporteflexible) " .
@@ -114,12 +115,13 @@
             "Values ('$idFichaFoto', " . $soportesRigidos[$i]["id"] . ")";
             $con->query($sql);
         }
-
+        
         for ($i = 0; $i < sizeof($generos); $i++) {
             $sql = "Insert Into fotografiageneros (idfotografia, idgenero) " .
             "Values ('$idFichaFoto', " . $generos[$i]["id"] . ")";
             $con->query($sql);
         }
+        
 
         //echo $idFichaFoto;
         echo "Se ha agregado la ficha de la fotografía.";

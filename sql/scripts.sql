@@ -308,6 +308,14 @@ CREATE TABLE `temas` (
   `tema` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idtema`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+--01/06/2018
+CREATE TABLE `fotografiaenlaces` (
+  `idfotografiaenlace` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `enlace` varchar(150) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiaenlace`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
