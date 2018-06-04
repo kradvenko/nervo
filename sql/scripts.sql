@@ -316,6 +316,55 @@ CREATE TABLE `fotografiaenlaces` (
   `notas` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idfotografiaenlace`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--04/06/2018
+--Cambio a tabla fichasfotografia
+CREATE TABLE `fichasfotografia` (
+  `idfichafotografia` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `numeroregistrointerno` varchar(45) DEFAULT NULL,
+  `numeroinventario` varchar(45) DEFAULT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
+  `tituloserie` varchar(45) DEFAULT NULL,
+  `idciudadasunto` int(11) DEFAULT NULL,
+  `idciudadtoma` int(11) DEFAULT NULL,
+  `fechaasunto` varchar(45) DEFAULT NULL,
+  `fechatoma` varchar(45) DEFAULT NULL,
+  `idestudio` int(11) DEFAULT NULL,
+  `idalbum` int(11) DEFAULT NULL,
+  `numerofotografia` varchar(45) DEFAULT NULL,
+  `coleccion` varchar(45) DEFAULT NULL,
+  `clavetecnica` varchar(45) DEFAULT NULL,
+  `anotaciones` varchar(400) DEFAULT NULL,
+  `estadoconservacion` varchar(45) DEFAULT NULL,
+  `estadointegridad` varchar(45) DEFAULT NULL,
+  `agrietamiento` varchar(5) DEFAULT NULL,
+  `ataquebiologico` varchar(5) DEFAULT NULL,
+  `burbujas` varchar(5) DEFAULT NULL,
+  `cambioscolor` varchar(5) DEFAULT NULL,
+  `craqueladuras` varchar(5) DEFAULT NULL,
+  `cintasadhesivas` varchar(5) DEFAULT NULL,
+  `deformaciones` varchar(5) DEFAULT NULL,
+  `desprendimientos` varchar(5) DEFAULT NULL,
+  `desvanecimientos` varchar(5) DEFAULT NULL,
+  `huellasdigitales` varchar(5) DEFAULT NULL,
+  `hongos` varchar(5) DEFAULT NULL,
+  `manchas` varchar(5) DEFAULT NULL,
+  `raspaduras` varchar(5) DEFAULT NULL,
+  `ralladuras` varchar(5) DEFAULT NULL,
+  `retocado` varchar(5) DEFAULT NULL,
+  `roturas` varchar(5) DEFAULT NULL,
+  `sellosotinta` varchar(5) DEFAULT NULL,
+  `sulfuracion` varchar(5) DEFAULT NULL,
+  `alto` varchar(45) DEFAULT NULL,
+  `ancho` varchar(45) DEFAULT NULL,
+  `diametro` varchar(45) DEFAULT NULL,
+  `inspeccionesomarcas` varchar(400) DEFAULT NULL,
+  `caracteristicas` varchar(400) DEFAULT NULL,
+  `idpersonacaptura` int(11) DEFAULT NULL,
+  `fechacaptura` varchar(45) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idfichafotografia`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 
 

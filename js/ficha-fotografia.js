@@ -1,4 +1,5 @@
 //Variables para la ficha de fotografia
+var ff_IdFichaFotografia = 0;
 var ff_LugarAsunto = 0;
 var ff_LugarToma = 0;
 var ff_Autores = [];
@@ -6,7 +7,7 @@ var ff_Autor;
 var ff_Estudio = 0;
 var ff_Album = 0;
 var ff_InstitucionElegida = 0;
-var ff_InstitucionElegidaNuevoAlbum;
+var ff_InstitucionElegidaNuevoAlbum = 0;
 var ff_temas = [];
 var ff_tema;
 var ff_tecnicas = [];
@@ -18,7 +19,7 @@ var ff_soporteRigido;
 var ff_generos = [];
 var ff_genero;
 var ff_PersonaToma = 0;
-
+var ff_Reader;
 //Funciones de elección de datos
 function elegirInstitucionBien(id) {
     ff_InstitucionElegida = id;
@@ -85,8 +86,6 @@ function guardarFichaFoto() {
     var diametro = $('#tbDiametro').val();
     var inspeccionesOMarcas = $('#taInspecciones').val();
     var caracteristicas = $('#taCaracteristicas').val();
-    var idPersonaTomo = ff_PersonaToma;
-    var fechaTomaPersona = $('#tbTomaFecha').val();
     var idPersonaCaptura = getCookie("idusuario");
     var currentdate = new Date(); 
     var fechaCaptura = (currentdate.getDate() < 10 ? "0" + currentdate.getDate() : currentdate.getDate()) + "/"
@@ -103,23 +102,183 @@ function guardarFichaFoto() {
     var soportesRigidos = ff_soportesRigidos;
     var generos = ff_generos;
     
-    $.ajax({url: "php/agregarFichaFotografia.php", async: false, type: "POST", data: { idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
-        numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
-        fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
-        claveTecnica: claveTecnica, anotaciones: anotaciones, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
-        ataqueBiologico: ataqueBiologico, burbujas: burbujas, cambiosColor: cambiosColor, craqueladuras: craqueladuras, cintasAdhesivas: cintasAdhesivas,
-        deformaciones: deformaciones, desvanecimientos: desvanecimientos, desprendimientos: desprendimientos, huellasDigitales: huellasDigitales,
-        hongos: hongos, manchas: manchas, raspaduras: raspaduras, ralladuras: ralladuras, retocado: retocado, roturas: roturas, sellosTinta: sellosTinta,
-        sulfuracion: sulfuracion, alto: alto, ancho: ancho, diametro: diametro, inspeccionesOMarcas: inspeccionesOMarcas, caracteristicas: caracteristicas,
-        idPersonaTomo: idPersonaTomo, fechaTomaPersona: fechaTomaPersona, idPersonaCaptura: idPersonaCaptura, fechaCaptura: fechaCaptura, estado: estado,
-        autores: autores, temas: temas, tecnicas: tecnicas, soportesFlexibles: soportesFlexibles, soportesRigidos: soportesRigidos, generos: generos },
-        success: function(res) {
-        if (res == 'OK') {
-            alert("Se ha ingresado la ficha de la fotografía.");
-        } else {
-            alert(res);
-        }
+    if (ff_IdFichaFotografia == 0) {
+        $.ajax({url: "php/agregarFichaFotografia.php", async: false, type: "POST", data: { idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
+            numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
+            fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
+            claveTecnica: claveTecnica, anotaciones: anotaciones, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
+            ataqueBiologico: ataqueBiologico, burbujas: burbujas, cambiosColor: cambiosColor, craqueladuras: craqueladuras, cintasAdhesivas: cintasAdhesivas,
+            deformaciones: deformaciones, desvanecimientos: desvanecimientos, desprendimientos: desprendimientos, huellasDigitales: huellasDigitales,
+            hongos: hongos, manchas: manchas, raspaduras: raspaduras, ralladuras: ralladuras, retocado: retocado, roturas: roturas, sellosTinta: sellosTinta,
+            sulfuracion: sulfuracion, alto: alto, ancho: ancho, diametro: diametro, inspeccionesOMarcas: inspeccionesOMarcas, caracteristicas: caracteristicas,
+            idPersonaCaptura: idPersonaCaptura, fechaCaptura: fechaCaptura, estado: estado,
+            autores: autores, temas: temas, tecnicas: tecnicas, soportesFlexibles: soportesFlexibles, soportesRigidos: soportesRigidos, generos: generos },
+            success: function(res) {
+            if (res == 'OK') {
+                alert("Se ha ingresado la ficha de la fotografía.");
+                obtenerUltimasFichasFotografia();
+                limpiarCamposFichaFotografia();
+            } else {
+                alert(res);
+            }
+        }});
+    }
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        ff_Reader = new FileReader();        
+        ff_Reader.onload = function (e) {
+            $('#imgImagen').attr('src', e.target.result);
+        }        
+        ff_Reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function limpiarCamposAgregarImagen() {
+    ff_Reader = null;
+    $('#imgImagen').attr('src', '');
+    $("#tbTomaPersona").val("");
+    $("#tbTomaFecha").val("");
+    $("#imgInp").val("");
+    
+}
+
+function obtenerUltimasFichasFotografia() {
+    $.ajax({url: "php/obtenerUltimasFichasFotografia.php", async: false, type: "POST", success: function(res) {
+        $("#divUltimasFichas").html(res);
     }});
+}
+
+function elegirFichaFotografia(id) {
+    ff_IdFichaFotografia = id;
+    $.ajax({url: "php/obtenerFichaFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#tbInstitucion").val($(this).find("nombreInstitucion").text());
+            ff_InstitucionElegida = $(this).find("idinstitucion").text();
+            $("#tbNumeroInterno").val($(this).find("numeroregistrointerno").text());
+            $("#tbNumeroInventario").val($(this).find("numeroinventario").text());
+            $("#tbTitulo").val($(this).find("titulo").text());
+            $("#tbTituloSerie").val($(this).find("tituloserie").text());
+            $("#tbLugarAsunto").val($(this).find("ciudadAsunto").text());
+            ff_LugarAsunto = $(this).find("idciudadasunto").text();
+            $("#tbLugarToma").val($(this).find("ciudadToma").text());
+            ff_LugarToma = $(this).find("idciudadtoma").text();
+            $("#tbFechaAsunto").val($(this).find("fechaasunto").text());
+            $("#tbFechaToma").val($(this).find("fechatoma").text());
+            $("#tbEstudio").val($(this).find("estudio").text());
+            ff_Estudio = $(this).find("idestudio").text();
+            $("#tbAlbum").val($(this).find("album").text());
+            ff_Album = $(this).find("idalbum").text();
+            $("#tbNumeroFotografia").val($(this).find("numerofotografia").text());
+            $("#tbColeccion").val($(this).find("coleccion").text());
+            $("#tbClaveTecnica").val($(this).find("clavetecnica").text());
+            $("#taAnotaciones").val($(this).find("anotaciones").text());
+            $("#sEstadoConservacion").val($(this).find("estadoconservacion").text());
+            $("#sEstadoIntegridad").val($(this).find("estadointegridad").text());
+            $(this).find("agrietamiento").text() == 'SI' ? $("#cbAgrietamiento").prop("checked", true) : $("#cbAgrietamiento").prop("checked", false);
+            $(this).find("ataquebiologico").text() == 'SI' ? $("#cbAtaque").prop("checked", true) : $("#cbAtaque").prop("checked", false);
+            $(this).find("burbujas").text() == 'SI' ? $("#cbBurbujas").prop("checked", true) : $("#cbBurbujas").prop("checked", false);
+            $(this).find("cambioscolor").text() == 'SI' ? $("#cbCambios").prop("checked", true) : $("#cbCambios").prop("checked", false);
+            $(this).find("craqueladuras").text() == 'SI' ? $("#cbCraqueladuras").prop("checked", true) : $("#cbCraqueladuras").prop("checked", false);
+            $(this).find("cintasadhesivas").text() == 'SI' ? $("#cbCintas").prop("checked", true) : $("#cbCintas").prop("checked", false);
+            $(this).find("deformaciones").text() == 'SI' ? $("#cbDeformaciones").prop("checked", true) : $("#cbDeformaciones").prop("checked", false);
+            $(this).find("desprendimientos").text() == 'SI' ? $("#cbDesprendimientos").prop("checked", true) : $("#cbDesprendimientos").prop("checked", false);
+            $(this).find("desvanecimientos").text() == 'SI' ? $("#cbDesvanecimiento").prop("checked", true) : $("#cbDesvanecimiento").prop("checked", false);
+            $(this).find("huellasdigitales").text() == 'SI' ? $("#cbHuellas").prop("checked", true) : $("#cbHuellas").prop("checked", false);
+            $(this).find("hongos").text() == 'SI' ? $("#cbHongos").prop("checked", true) : $("#cbHongos").prop("checked", false);
+            $(this).find("manchas").text() == 'SI' ? $("#cbManchas").prop("checked", true) : $("#cbManchas").prop("checked", false);
+            $(this).find("raspaduras").text() == 'SI' ? $("#cbRaspaduras").prop("checked", true) : $("#cbRaspaduras").prop("checked", false);
+            $(this).find("ralladuras").text() == 'SI' ? $("#cbRalladuras").prop("checked", true) : $("#cbRalladuras").prop("checked", false);
+            $(this).find("retocado").text() == 'SI' ? $("#cbRetocado").prop("checked", true) : $("#cbRetocado").prop("checked", false);
+            $(this).find("roturas").text() == 'SI' ? $("#cbRoturas").prop("checked", true) : $("#cbRoturas").prop("checked", false);
+            $(this).find("sellosotinta").text() == 'SI' ? $("#cbSellos").prop("checked", true) : $("#cbSellos").prop("checked", false);
+            $(this).find("sulfuracion").text() == 'SI' ? $("#cbSulfuracion").prop("checked", true) : $("#cbSulfuracion").prop("checked", false);
+            $("#tbAlto").val($(this).find("alto").text());
+            $("#tbAncho").val($(this).find("ancho").text());
+            $("#tbDiametro").val($(this).find("diametro").text());
+            $("#taInspecciones").val($(this).find("inspeccionesomarcas").text());
+            $("#taCaracteristicas").val($(this).find("caracteristicas").text());
+            $("#divInformacionCaptura").html("Capturado por: " + $(this).find("nombre").text() + " - " + $(this).find("fechacaptura").text());
+            $("#divEnlacesWeb").css("visibility", "visible");
+            $("#divImagenesBien").css("visibility", "visible");
+            $("#divPendientes").css("visibility", "visible");
+        });
+    }});
+}
+
+function limpiarCamposFichaFotografia () {
+    ff_IdFichaFotografia = 0;
+    ff_LugarAsunto = 0;
+    ff_LugarToma = 0;
+    ff_Autores = [];
+    ff_Autor;
+    ff_Estudio = 0;
+    ff_Album = 0;
+    ff_InstitucionElegida = 0;
+    ff_InstitucionElegidaNuevoAlbum = 0;
+    ff_temas = [];
+    ff_tema;
+    ff_tecnicas = [];
+    ff_tecnica;
+    ff_soportesFlexibles = [];
+    ff_soporteFlexible;
+    ff_soportesRigidos = [];
+    ff_soporteRigido;
+    ff_generos = [];
+    ff_genero;
+    ff_PersonaToma = 0;
+    $("#tbInstitucion").val("");
+    ff_InstitucionElegida = 0;
+    $("#tbNumeroInterno").val("");
+    $("#tbNumeroInventario").val("");
+    $("#tbTitulo").val("");
+    $("#tbTituloSerie").val("");
+    $("#tbLugarAsunto").val("");
+    ff_LugarAsunto = 0;
+    $("#tbLugarToma").val("");
+    ff_LugarToma = 0;
+    $("#tbFechaAsunto").val("");
+    $("#tbFechaToma").val("");
+    $("#tbEstudio").val("");
+    ff_Estudio = 0;
+    $("#tbAlbum").val("");
+    ff_Album = 0;
+    $("#tbNumeroFotografia").val("");
+    $("#tbColeccion").val("");
+    $("#tbClaveTecnica").val("");
+    $("#taAnotaciones").val("");
+    $("#sEstadoConservacion").val("");
+    $("#sEstadoIntegridad").val("");
+    $("#cbAgrietamiento").prop("checked", false);
+    $("#cbAtaque").prop("checked", false);
+    $("#cbBurbujas").prop("checked", false);
+    $("#cbCambios").prop("checked", false);
+    $("#cbCraqueladuras").prop("checked", false);
+    $("#cbCintas").prop("checked", false);
+    $("#cbDeformaciones").prop("checked", false);
+    $("#cbDesprendimientos").prop("checked", false);
+    $("#cbDesvanecimiento").prop("checked", false);
+    $("#cbHuellas").prop("checked", false);
+    $("#cbHongos").prop("checked", false);
+    $("#cbManchas").prop("checked", false);
+    $("#cbRaspaduras").prop("checked", false);
+    $("#cbRalladuras").prop("checked", false);
+    $("#cbRetocado").prop("checked", false);
+    $("#cbRoturas").prop("checked", false);
+    $("#cbSellos").prop("checked", false);
+    $("#cbSulfuracion").prop("checked", false);    
+    $("#tbAlto").val("");
+    $("#tbAncho").val("");
+    $("#tbDiametro").val("");
+    $("#taInspecciones").val("");
+    $("#taCaracteristicas").val("");
+    $("#tbInstitucion").val("");
+    $("#tbInstitucion").val("");
+    $("#divInformacionCaptura").html("");
+    $("#divEnlacesWeb").css("visibility", "hidden");
+    $("#divImagenesBien").css("visibility", "hidden");
+    $("#divPendientes").css("visibility", "hidden");
 }
 //Autores
 function agregarNuevoAutor() {

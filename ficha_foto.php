@@ -31,6 +31,14 @@
                 Ficha - Fotografía
             </div>
         </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                Últimas fichas
+            </div>
+            <div class="col-10" id="divUltimasFichas">
+
+            </div>
+        </div>
         <div class="row divMargin divBackgroundBlue2">
             <div class="col-12">
                 Datos del bien cultural registrado
@@ -386,7 +394,7 @@
                 <textarea rows="3" class="form-control" id="taCaracteristicas"></textarea>
             </div>
         </div>
-        <div class="row divMargin">
+        <div class="row divMargin" id="divEnlacesWeb">
             <div class="col-2">
                 <label class="labelType01">Enlaces web</label>
             </div>
@@ -398,22 +406,11 @@
             <div class="col-12">
                 Información de captura de la información
             </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-2">
-                <label class="labelType01">Persona que tomó fotografia del bien</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
-            </div>
-            <div class="col-2">
-                <label class="labelType01">Fecha de la toma</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
+            <div class="col-12" id="divInformacionCaptura">
+                
             </div>
         </div>        
-        <div class="row divMargin">
+        <div class="row divMargin" id="divPendientes">
             <div class="col-12">
                 <button class="btn btn-warning" data-toggle='modal' data-target='#modalMostrarPendientesBien' onclick="obtenerPendientesBien()">Pendientes</button>
             </div>
@@ -423,7 +420,7 @@
                 Imágenes del bien
             </div>
         </div>
-        <div class="row divMargin">
+        <div class="row divMargin" id="divImagenesBien">
             <div class="col-12">
                 <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen'>Agregar imagen</button>
             </div>
@@ -434,8 +431,11 @@
             </div>
         </div>
         <div class="row divMargin">
-            <div class="col-12">
-                <button class="btn btn-success" onclick="guardarFichaFoto()">Guardar</button>
+            <div class="col-3">
+                <button class="btn btn-primary" onclick="guardarFichaFoto()">Guardar</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-primary" onclick="limpiarCamposFichaFotografia()">Limpiar campos</button>
             </div>
         </div>
     </div>
@@ -763,6 +763,59 @@
             </div>
         </div>
     </div>
+    <!--Ventana modal para mostrar las imagenes del bien-->
+    <div class="modal fade" id="modalMostrarAgregarImagen" tabindex="-1" role="dialog" aria-labelledby="modalMostrarAgregarImagen" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Imagenes del bien cultural</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row divMargin">
+                        <div class="col-12">
+                            <input type='file' id="imgInp" />
+                        </div>
+                        <div class="col-12">
+                            <img id="imgImagen" src="#" alt="Imágen" />
+                        </div>                            
+                    </div>                    
+                    <div class="row divMargin">
+                        <div class="col-2">
+                            <label class="labelType01">Persona que tomó fotografia del bien</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
+                        </div>
+                        <div class="col-2">
+                            <label class="labelType01">Fecha de la toma</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
+                        </div>
+                    </div>        
+                    <div class="row divMargin">
+                        <div class="col-3">
+                            
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-success" onclick="limpiarCamposAgregarImagen()">Limpiar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" id="divListaImagenesBien">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposAgregarImagen()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     $( document ).ready(function() {
@@ -895,6 +948,10 @@
                 }
             });
         });
+        obtenerUltimasFichasFotografia();
+        $("#divEnlacesWeb").css("visibility", "hidden");
+        $("#divImagenesBien").css("visibility", "hidden");
+        $("#divPendientes").css("visibility", "hidden");
     });
 
     $('#modalAgregarAutor').on('shown.bs.modal', function() {
@@ -920,6 +977,10 @@
     });
     $('#modalAgregarGenero').on('shown.bs.modal', function() {
         $('#tbNuevoGenero').focus();
+    });
+
+    $("#imgInp").change(function(){
+        readURL(this);
     });
     
 </script>

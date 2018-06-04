@@ -43,8 +43,6 @@
         $diametro = $_POST["diametro"];
         $inspeccionesOMarcas = $_POST["inspeccionesOMarcas"];
         $caracteristicas = $_POST["caracteristicas"];
-        $idPersonaTomo = $_POST["idPersonaTomo"];
-        $fechaTomaPersona = $_POST["fechaTomaPersona"];
         $idPersonaCaptura = $_POST["idPersonaCaptura"];
         $fechaCaptura = $_POST["fechaCaptura"];
         $estado = $_POST["estado"]; 
@@ -69,16 +67,14 @@
                 fechaasunto, fechatoma, idestudio, idalbum, numerofotografia, coleccion, clavetecnica, anotaciones, estadoconservacion,
                 estadointegridad, agrietamiento, ataquebiologico, burbujas, cambioscolor, craqueladuras, cintasadhesivas, deformaciones,
                 desprendimientos, desvanecimientos, huellasdigitales, hongos, manchas, raspaduras, ralladuras, retocado, roturas, sellosotinta,
-                sulfuracion, alto, ancho, diametro, inspeccionesomarcas, caracteristicas, idpersonatomo, fechatomapersona, idpersonacaptura,
-                fechacaptura, estado)
+                sulfuracion, alto, ancho, diametro, inspeccionesomarcas, caracteristicas, idpersonacaptura, fechacaptura, estado)
                 VALUES
                 ('$idInstitucion', '$numeroRegistroInterno', '$numeroInventario', '$titulo', '$tituloSerie', '$idCiudadAsunto', '$idCiudadToma',
                 '$fechaAsunto', '$fechaToma', '$idEstudio', '$idAlbum', '$numeroFotografia', '$coleccion', '$claveTecnica', '$anotaciones',
                 '$estadoConservacion', '$estadoIntegridad', '$agrietamiento', '$ataqueBiologico', '$burbujas', '$cambiosColor', '$craqueladuras',
                 '$cintasAdhesivas', '$deformaciones', '$desprendimientos', '$desvanecimientos', '$huellasDigitales', '$hongos', '$manchas',
                 '$raspaduras', '$ralladuras', '$retocado', '$roturas', '$sellosTinta', '$sulfuracion', '$alto', '$ancho', '$diametro',
-                '$inspeccionesOMarcas', '$caracteristicas', '$idPersonaTomo', '$fechaTomaPersona', '$idPersonaCaptura', '$fechaCaptura',
-                '$estado')";
+                '$inspeccionesOMarcas', '$caracteristicas', '$idPersonaCaptura', '$fechaCaptura', '$estado')";
         
 
         $con->query($sql);
