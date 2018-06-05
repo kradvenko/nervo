@@ -104,7 +104,7 @@ CREATE TABLE `estudiosfotograficos` (
 CREATE TABLE `fotografiatemas` (
   `idfotografiatema` int(11) NOT NULL AUTO_INCREMENT,
   `idfotografia` int(11) DEFAULT NULL,
-  `tema` varchar(100) DEFAULT NULL,
+  `idtema` int(11) DEFAULT NULL,
   PRIMARY KEY (`idfotografiatema`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -365,6 +365,23 @@ CREATE TABLE `fichasfotografia` (
   `estado` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idfichafotografia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+--05/06/2018
+CREATE TABLE `fotografiaenlacesweb` (
+  `idfotografiaenlaceweb` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `sitio` varchar(150) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiaenlaceweb`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-
+--Cambio tabla fotografiaimagenes
+CREATE TABLE `fotografiaimagenes` (
+  `idfotografiaimagen` int(11) NOT NULL AUTO_INCREMENT,
+  `idfotografia` int(11) DEFAULT NULL,
+  `idpersonatoma` int(11) DEFAULT NULL,
+  `rutaimagen` varchar(200) DEFAULT NULL,
+  `aprobada` varchar(45) DEFAULT NULL,
+  `fechatoma` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idfotografiaimagen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

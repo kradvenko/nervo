@@ -20,6 +20,8 @@ var ff_generos = [];
 var ff_genero;
 var ff_PersonaToma = 0;
 var ff_Reader;
+var ff_idEnlaceWeb = 0;
+var ff_idImagenElegida = 0;
 //Funciones de elección de datos
 function elegirInstitucionBien(id) {
     ff_InstitucionElegida = id;
@@ -607,4 +609,86 @@ function mostrarGeneros() {
 function quitarGenero(index) {
     ff_generos.splice(index, 1);
     mostrarGeneros();
+}
+//Enlaces web
+function obtenerEnlacesWeb() {
+    $.ajax({url: "php/obtenerEnlacesWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia }, success: function(res) {
+        $("#divListaEnlacesWeb").html(res);
+    }});
+}
+
+function elegirEnlaceWeb(idInstitucionEnlaceWeb, urlEnlaceWeb, notasEnlaceWeb) {
+    ff_idEnlaceWeb = idInstitucionEnlaceWeb;
+    $("#tbEnlaceWeb").val(urlEnlaceWeb);
+    $("#tbNotasEnlaceWeb").val(notasEnlaceWeb);
+}
+
+function guardarEnlaceWeb() {
+    if (ff_IdFichaFotografia == 0) {
+        return;
+    }
+    var enlaceWeb;
+    var notasEnlaceWeb;
+
+    enlaceWeb =  $("#tbEnlaceWeb").val();
+    if (enlaceWeb.length == 0) {
+        alert("No ha escrito la dirección del Enlace web.")
+        return;
+    }
+    notasEnlaceWeb = $("#tbNotasEnlaceWeb").val();
+    if (ff_idEnlaceWeb == 0) {
+        $.ajax({url: "php/agregarEnlaceWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
+            if (res == "OK") {
+                obtenerEnlacesWeb();
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        $.ajax({url: "php/actualizarEnlaceWebFotografia.php", async: false, type: "POST", data: { idEnlaceWeb: ff_idEnlaceWeb, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
+            if (res == "OK") {
+                obtenerEnlacesWeb();
+            } else {
+                alert(res);
+            }
+        }});
+    }
+}
+
+function limpiarCamposEnlaceWeb() {
+    ff_idEnlaceWeb = 0;
+    $("#tbEnlaceWeb").val("");
+    $("#tbNotasEnlaceWeb").val("");
+}
+//Imagenes
+function guardarImagenBien() {
+    var fd = new FormData();
+    var files = $('#imgInp')[0].files[0];
+    fd.append('imgInp', files);
+    var rutaImagen = "imagenesbienes/fotografias/" + files.name;
+    var aprobada = $("#selImagenAprobada").val();
+    var fechaToma = $("#tbTomaFecha").val();
+    
+    $.ajax({ url: "imagenesbienes/subirImagenFotografia.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
+        $('#loading').hide();
+        $("#message").html(data);
+    }});
+
+    if (ff_idImagenElegida == 0) {
+        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+            if (res == "OK") {
+                obtenerImagenesFotografia();
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        
+    }
+}
+
+function obtenerImagenesFotografia() {
+    $.ajax({url: "php/obtenerImagenesFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia }, success: function(res) {
+        $("#divListaImagenesBien").html(res);
+    }});
 }

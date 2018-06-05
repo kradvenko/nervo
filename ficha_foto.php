@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css" />
     <link rel="stylesheet" type="text/css" href="css/nervo.css" />
+    <link rel="stylesheet" type="text/css" href="css/controls.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -399,7 +400,7 @@
                 <label class="labelType01">Enlaces web</label>
             </div>
             <div class="col-4">
-                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarEnlaces' onclick="obtenerEnlaces()">Ver Enlaces Web</button>
+                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarEnlaces' onclick="obtenerEnlacesWeb()">Ver Enlaces Web</button>
             </div>
         </div>
         <div class="row divMargin divBackgroundBlue2">
@@ -422,7 +423,7 @@
         </div>
         <div class="row divMargin" id="divImagenesBien">
             <div class="col-12">
-                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen'>Agregar imagen</button>
+                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen' onclick="obtenerImagenesFotografia()">Agregar imagen</button>
             </div>
         </div>
         <div class="row divMargin">
@@ -774,36 +775,52 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row divMargin">
-                        <div class="col-12">
-                            <input type='file' id="imgInp" />
+                    <form id="fSubirImagen" action="" method="post" enctype="multipart/form-data">
+                        <div class="row divMargin">
+                            <div class="col-12">
+                                <input type='file' name="imgInp" id="imgInp" />
+                            </div>
+                            <div class="col-12">
+                                <img id="imgImagen" src="#" alt="Imágen" />
+                            </div>
+                            <div class="col-12">
+                                <h4 id='loading' >Cargando..</h4>
+                            </div>
+                        </div>                    
+                        <div class="row divMargin">
+                            <div class="col-2">
+                                <label class="labelType01">Persona que tomó fotografia del bien</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
+                            </div>
+                            <div class="col-2">
+                                <label class="labelType01">Fecha de la toma</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <img id="imgImagen" src="#" alt="Imágen" />
-                        </div>                            
-                    </div>                    
-                    <div class="row divMargin">
-                        <div class="col-2">
-                            <label class="labelType01">Persona que tomó fotografia del bien</label>
+                        <div class="row divMargin">
+                            <div class="col-2">
+                                <label class="labelType01">Aprobada para mostrar</label>
+                            </div>
+                            <div class="col-4">
+                                <select id="selImagenAprobada">
+                                    <option value="SI">SI</option>
+                                    <option value="NO" selected>NO</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <input type="text" class="form-control textbox-center" id="tbTomaPersona"></input>
+                        <div class="row divMargin">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-success" onclick="guardarImagenBien()">Guardar</button>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-success" onclick="limpiarCamposAgregarImagen()">Limpiar</button>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <label class="labelType01">Fecha de la toma</label>
-                        </div>
-                        <div class="col-4">
-                            <input type="text" class="form-control textbox-center" id="tbTomaFecha" placeholder="dd/mm/aaaa"></input>
-                        </div>
-                    </div>        
-                    <div class="row divMargin">
-                        <div class="col-3">
-                            
-                        </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-success" onclick="limpiarCamposAgregarImagen()">Limpiar</button>
-                        </div>
-                    </div>
+                    </form>
                     <div class="row">
                         <div class="col-12" id="divListaImagenesBien">
 

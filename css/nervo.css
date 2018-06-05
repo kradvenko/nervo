@@ -234,11 +234,7 @@
     font-size: 15px;
 }
 
-.tableUltimasFichas {
-    margin: 5px;
-}
-
-.tableUltimasFichas td {
+.ultimaFicha {
     text-align: center;
     padding-left: 15px;
     padding-right: 15px;
@@ -250,7 +246,7 @@
     cursor: pointer;
 }
 
-.tableUltimasFichas td:hover {
+.ultimaFicha:hover {
     background: #000000;
     /*border-color: #ffffff;*/
     color: #ffffff;

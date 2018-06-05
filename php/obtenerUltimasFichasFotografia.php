@@ -12,13 +12,11 @@
 
         $result = $con->query($sql);
 
-        echo "<table class='tableUltimasFichas'>";
-        echo "<tr>";
+        
         while ($row = $result->fetch_array()) {            
-            echo "<td onclick='elegirFichaFotografia(" . $row["idfichafotografia"] . ")'>" . $row["titulo"] . "</td>";
+            echo "<span class='ultimaFicha' onclick='elegirFichaFotografia(" . $row["idfichafotografia"] . ")'>" . $row["titulo"] . "</span>";
         }
-        echo "</tr>";
-        echo "</table>";
+        
 
         mysqli_close($con);
     }
