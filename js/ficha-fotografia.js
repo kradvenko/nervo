@@ -115,9 +115,9 @@ function guardarFichaFoto() {
             autores: autores, temas: temas, tecnicas: tecnicas, soportesFlexibles: soportesFlexibles, soportesRigidos: soportesRigidos, generos: generos },
             success: function(res) {
             if (res == 'OK') {
-                alert("Se ha ingresado la ficha de la fotografía.");
                 obtenerUltimasFichasFotografia();
                 limpiarCamposFichaFotografia();
+                alert("Se ha ingresado la ficha de la fotografía.");
             } else {
                 alert(res);
             }
@@ -205,6 +205,54 @@ function elegirFichaFotografia(id) {
             $("#divPendientes").css("visibility", "visible");
         });
     }});
+    $.ajax({url: "php/obtenerAutoresBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        ff_Autores = [];
+        $('cat', res).each(function(index, element) {
+            ff_Autor =  { id: $(this).find("idautor").text(), autor: $(this).find("autor").text() };
+            ff_Autores[ff_Autores.length] = ff_Autor;
+        });
+    }});
+    $.ajax({url: "php/obtenerTemasBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        ff_temas = [];
+        $('cat', res).each(function(index, element) {
+            ff_tema =  { id: $(this).find("idtema").text(), tema: $(this).find("tema").text() };
+            ff_temas[ff_temas.length] = ff_tema;
+        });
+    }});
+    $.ajax({url: "php/obtenerTecnicasFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        ff_tecnicas = [];
+        $('cat', res).each(function(index, element) {
+            ff_tecnica =  { id: $(this).find("idtecnica").text(), tecnica: $(this).find("tecnica").text() };
+            ff_tecnicas[ff_tecnicas.length] = ff_tecnica;
+        });
+    }});
+    $.ajax({url: "php/obtenerSoportesFlexiblesFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        ff_soportesFlexibles = [];
+        $('cat', res).each(function(index, element) {
+            ff_soporteFlexible =  { id: $(this).find("idsoporteflexible").text(), soporteFlexible: $(this).find("soporteflexible").text() };
+            ff_soportesFlexibles[ff_soportesFlexibles.length] = ff_soporteFlexible;
+        });
+    }});
+    $.ajax({url: "php/obtenerSoportesRigidosFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        ff_soportesRigidos = [];
+        $('cat', res).each(function(index, element) {
+            ff_soporteRigido =  { id: $(this).find("idsoporterigido").text(), soporteRigido: $(this).find("soporterigido").text() };
+            ff_soportesRigidos[ff_soportesRigidos.length] = ff_soporteRigido; 
+        });
+    }});
+    $.ajax({url: "php/obtenerGenerosFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+        ff_generos = [];
+        $('cat', res).each(function(index, element) {
+            ff_genero =  { id: $(this).find("idgenero").text(), genero: $(this).find("genero").text() };
+            ff_generos[ff_generos.length] = ff_genero;
+        });
+    }});
+    mostrarAutores();
+    mostrarTemas();
+    mostrarTecnicas();
+    mostrarSoportesFlexibles();
+    mostrarSoportesRigidos();
+    mostrarGeneros();
 }
 
 function limpiarCamposFichaFotografia () {

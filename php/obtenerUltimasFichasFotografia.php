@@ -8,7 +8,7 @@
         $sql = "Select * 
                     From fichasfotografia 
                     Order By idfichafotografia Desc 
-                    Limit 5";
+                    Limit 10";
 
         $result = $con->query($sql);
 

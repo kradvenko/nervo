@@ -120,7 +120,7 @@
         
 
         //echo $idFichaFoto;
-        echo "Se ha agregado la ficha de la fotografía.";
+        echo "OK";
 
         mysqli_close($con);
     }
