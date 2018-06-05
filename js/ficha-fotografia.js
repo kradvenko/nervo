@@ -124,6 +124,26 @@ function guardarFichaFoto() {
                 alert(res);
             }
         }});
+    } else {
+        $.ajax({url: "php/actualizarFichaFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
+            numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
+            fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
+            claveTecnica: claveTecnica, anotaciones: anotaciones, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
+            ataqueBiologico: ataqueBiologico, burbujas: burbujas, cambiosColor: cambiosColor, craqueladuras: craqueladuras, cintasAdhesivas: cintasAdhesivas,
+            deformaciones: deformaciones, desvanecimientos: desvanecimientos, desprendimientos: desprendimientos, huellasDigitales: huellasDigitales,
+            hongos: hongos, manchas: manchas, raspaduras: raspaduras, ralladuras: ralladuras, retocado: retocado, roturas: roturas, sellosTinta: sellosTinta,
+            sulfuracion: sulfuracion, alto: alto, ancho: ancho, diametro: diametro, inspeccionesOMarcas: inspeccionesOMarcas, caracteristicas: caracteristicas,
+            idPersonaCaptura: idPersonaCaptura, fechaCaptura: fechaCaptura, estado: estado,
+            autores: autores, temas: temas, tecnicas: tecnicas, soportesFlexibles: soportesFlexibles, soportesRigidos: soportesRigidos, generos: generos },
+            success: function(res) {
+            if (res == 'OK') {
+                obtenerUltimasFichasFotografia();
+                limpiarCamposFichaFotografia();
+                alert("Se ha actualizado la ficha de la fotografía.");
+            } else {
+                alert(res);
+            }
+        }});
     }
 }
 
@@ -326,6 +346,12 @@ function limpiarCamposFichaFotografia () {
     $("#tbInstitucion").val("");
     $("#tbInstitucion").val("");
     $("#divInformacionCaptura").html("");
+    $("#divAutores").html("");
+    $("#divTemas").html("");
+    $("#divTecnicas").html("");
+    $("#divSoportesFlexibles").html("");
+    $("#divSoportesRigidos").html("");
+    $("#divGeneros").html("");
     $("#divEnlacesWeb").css("visibility", "hidden");
     $("#divImagenesBien").css("visibility", "hidden");
     $("#divPendientes").css("visibility", "hidden");
@@ -664,15 +690,20 @@ function limpiarCamposEnlaceWeb() {
 function guardarImagenBien() {
     var fd = new FormData();
     var files = $('#imgInp')[0].files[0];
-    fd.append('imgInp', files);
-    var rutaImagen = "imagenesbienes/fotografias/" + files.name;
+    var rutaImagen;
+    if (files != null) {
+        fd.append('imgInp', files);
+        fd.append('idFichaFotografia', ff_IdFichaFotografia);
+        rutaImagen = "imagenesbienes/fotografias/" + ff_IdFichaFotografia + "/" + files.name;
+        $.ajax({ url: "imagenesbienes/subirImagenFotografia.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
+            $('#loading').hide();
+            $("#message").html(data);
+        }});
+    } else {
+        rutaImagen = $('#imgImagen').attr('src');
+    }
     var aprobada = $("#selImagenAprobada").val();
-    var fechaToma = $("#tbTomaFecha").val();
-    
-    $.ajax({ url: "imagenesbienes/subirImagenFotografia.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
-        $('#loading').hide();
-        $("#message").html(data);
-    }});
+    var fechaToma = $("#tbTomaFecha").val();    
 
     if (ff_idImagenElegida == 0) {
         $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
@@ -683,7 +714,13 @@ function guardarImagenBien() {
             }
         }});
     } else {
-        
+        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: ff_idImagenElegida, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+            if (res == "OK") {
+                obtenerImagenesFotografia();
+            } else {
+                alert(res);
+            }
+        }});
     }
 }
 
@@ -691,4 +728,13 @@ function obtenerImagenesFotografia() {
     $.ajax({url: "php/obtenerImagenesFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia }, success: function(res) {
         $("#divListaImagenesBien").html(res);
     }});
+}
+
+function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, aprobada, rutaimagen) {
+    ff_idImagenElegida = idimagen;
+    ff_PersonaToma = idpersona;
+    $("#tbTomaPersona").val(personatoma);
+    $("#tbTomaFecha").val(fechatoma);
+    $("#selImagenAprobada").val(aprobada);
+    $('#imgImagen').attr('src', rutaimagen);
 }

@@ -3,6 +3,7 @@
     {
         require_once('connection.php');
         
+        $idFichaFotografia = $_POST["idFichaFotografia"];
         $idInstitucion = $_POST["idInstitucion"];
         $numeroRegistroInterno = $_POST["numeroRegistroInterno"];
         $numeroInventario = $_POST["numeroInventario"];
@@ -53,73 +54,109 @@
         $soportesRigidos = (isset($_POST["soportesRigidos"]) ? $_POST["soportesRigidos"] : []);
         $generos = (isset($_POST["generos"]) ? $_POST["generos"] : []);
 
-        /*
-        if (!$nombreInstitucion || !$sectorInstitucion || !$tipoInstitucion || !$sitioWeb || !$correoElectronico || !$telefonos 
-            || !$extension || !$domicilio || !$colonia || !$codigoPostal || !$idpais || !$idregion || !$idciudad || !$categorias) {
-            echo "Error. Faltan variables.";
-            exit(1);
-        }
-        */
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "INSERT INTO fichasfotografia
-                (idinstitucion, numeroregistrointerno, numeroinventario, titulo, tituloserie, idciudadasunto, idciudadtoma,
-                fechaasunto, fechatoma, idestudio, idalbum, numerofotografia, coleccion, clavetecnica, anotaciones, estadoconservacion,
-                estadointegridad, agrietamiento, ataquebiologico, burbujas, cambioscolor, craqueladuras, cintasadhesivas, deformaciones,
-                desprendimientos, desvanecimientos, huellasdigitales, hongos, manchas, raspaduras, ralladuras, retocado, roturas, sellosotinta,
-                sulfuracion, alto, ancho, diametro, inspeccionesomarcas, caracteristicas, idpersonacaptura, fechacaptura, estado)
-                VALUES
-                ('$idInstitucion', '$numeroRegistroInterno', '$numeroInventario', '$titulo', '$tituloSerie', '$idCiudadAsunto', '$idCiudadToma',
-                '$fechaAsunto', '$fechaToma', '$idEstudio', '$idAlbum', '$numeroFotografia', '$coleccion', '$claveTecnica', '$anotaciones',
-                '$estadoConservacion', '$estadoIntegridad', '$agrietamiento', '$ataqueBiologico', '$burbujas', '$cambiosColor', '$craqueladuras',
-                '$cintasAdhesivas', '$deformaciones', '$desprendimientos', '$desvanecimientos', '$huellasDigitales', '$hongos', '$manchas',
-                '$raspaduras', '$ralladuras', '$retocado', '$roturas', '$sellosTinta', '$sulfuracion', '$alto', '$ancho', '$diametro',
-                '$inspeccionesOMarcas', '$caracteristicas', '$idPersonaCaptura', '$fechaCaptura', '$estado')";
-        
+        $sql = "Update fichasfotografia
+                SET
+                    idinstitucion = $idInstitucion,
+                    numeroregistrointerno = '$numeroRegistroInterno',
+                    numeroinventario = '$numeroInventario',
+                    titulo = '$titulo',
+                    tituloserie = '$tituloSerie',
+                    idciudadasunto = $idCiudadAsunto,
+                    idciudadtoma = $idCiudadToma,
+                    fechaasunto = '$fechaAsunto',
+                    fechatoma = '$fechaToma',
+                    idestudio = $idEstudio,
+                    idalbum = $idAlbum,
+                    numerofotografia = '$numeroFotografia',
+                    coleccion = '$coleccion',
+                    clavetecnica = '$claveTecnica',
+                    anotaciones = '$anotaciones',
+                    estadoconservacion = '$estadoConservacion',
+                    estadointegridad = '$estadoIntegridad',
+                    agrietamiento = '$agrietamiento',
+                    ataquebiologico = '$ataqueBiologico',
+                    burbujas = '$burbujas',
+                    cambioscolor = '$cambiosColor',
+                    craqueladuras = '$craqueladuras',
+                    cintasadhesivas = '$cintasAdhesivas',
+                    deformaciones = '$deformaciones',
+                    desprendimientos = '$desprendimientos',
+                    desvanecimientos = '$desvanecimientos',
+                    huellasdigitales = '$huellasDigitales',
+                    hongos = '$hongos',
+                    manchas = '$manchas',
+                    raspaduras = '$raspaduras',
+                    ralladuras = '$ralladuras',
+                    retocado = '$retocado',
+                    roturas = '$roturas',
+                    sellosotinta = '$sellosTinta',
+                    sulfuracion = '$sulfuracion',
+                    alto = '$alto',
+                    ancho = '$ancho',
+                    diametro = '$diametro',
+                    inspeccionesomarcas = '$inspeccionesOMarcas',
+                    caracteristicas = '$caracteristicas',                
+                    estado = '$estado'
+                    WHERE idfichafotografia = $idFichaFotografia";
 
         $con->query($sql);
 
-        $idFichaFoto = $con->insert_id;
-
+        $sql = "Delete From fotografiaautores Where idfotografia = $idFichaFotografia";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($autores); $i++) {
             $sql = "Insert Into fotografiaautores (idfotografia, idautor) " .
-            "Values ('$idFichaFoto', " . $autores[$i]["id"] . ")";
+            "Values ('$idFichaFotografia', " . $autores[$i]["id"] . ")";
             $con->query($sql);
         }
         
+        $sql = "Delete From fotografiatemas Where idfotografia = $idFichaFotografia";
+        $con->query($sql);
+
         for ($i = 0; $i < sizeof($temas); $i++) {
             $sql = "Insert Into fotografiatemas (idfotografia, idtema) " .
-            "Values ('$idFichaFoto', " . $temas[$i]["id"] . ")";
+            "Values ('$idFichaFotografia', " . $temas[$i]["id"] . ")";
             $con->query($sql);
         }
+
+        $sql = "Delete From fotografiatecnica Where idfotografia = $idFichaFotografia";
+        $con->query($sql);
 
         for ($i = 0; $i < sizeof($tecnicas); $i++) {
             $sql = "Insert Into fotografiatecnica (idfotografia, idtecnica) " .
-            "Values ('$idFichaFoto', " . $tecnicas[$i]["id"] . ")";
+            "Values ('$idFichaFotografia', " . $tecnicas[$i]["id"] . ")";
             $con->query($sql);
-        }        
+        }
+
+        $sql = "Delete From fotografiasoportesflexibles Where idfotografia = $idFichaFotografia";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($soportesFlexibles); $i++) {
             $sql = "Insert Into fotografiasoportesflexibles (idfotografia, idsoporteflexible) " .
-            "Values ('$idFichaFoto', " . $soportesFlexibles[$i]["id"] . ")";
+            "Values ('$idFichaFotografia', " . $soportesFlexibles[$i]["id"] . ")";
             $con->query($sql);
         }
+
+        $sql = "Delete From fotografiasoportesrigidos Where idfotografia = $idFichaFotografia";
+        $con->query($sql);
 
         for ($i = 0; $i < sizeof($soportesRigidos); $i++) {
             $sql = "Insert Into fotografiasoportesrigidos (idfotografia, idsoporterigido) " .
-            "Values ('$idFichaFoto', " . $soportesRigidos[$i]["id"] . ")";
+            "Values ('$idFichaFotografia', " . $soportesRigidos[$i]["id"] . ")";
             $con->query($sql);
         }
+
+        $sql = "Delete From fotografiageneros Where idfotografia = $idFichaFotografia";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($generos); $i++) {
             $sql = "Insert Into fotografiageneros (idfotografia, idgenero) " .
-            "Values ('$idFichaFoto', " . $generos[$i]["id"] . ")";
+            "Values ('$idFichaFotografia', " . $generos[$i]["id"] . ")";
             $con->query($sql);
         }
-        
 
-        //echo $idFichaFoto;
         echo "OK";
 
         mysqli_close($con);

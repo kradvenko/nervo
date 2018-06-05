@@ -37,7 +37,7 @@
             echo "  <td>" . $row["nombre"] . "</td>";
             echo "  <td>" . $row["fechatoma"] . "</td>";
             echo "  <td>" . $row["aprobada"] . "</td>";
-            echo "  <td><button type='button' class='btn btn-success' onclick='elegirImagenFotografia(" . $row["idfotografiaimagen"] . ", \"" . $row["idpersonatoma"] . "\", \"" . $row["nombre"] . "\", \"" . $row["fechatoma"] . "\", \"" . $row["aprobada"] . "\")'>Elegir</button>";
+            echo "  <td><button type='button' class='btn btn-success' onclick='elegirImagenFotografia(" . $row["idfotografiaimagen"] . ", \"" . $row["idpersonatoma"] . "\", \"" . $row["nombre"] . "\", \"" . $row["fechatoma"] . "\", \"" . $row["aprobada"] . "\", \"" . $row["rutaimagen"] . "\")'>Elegir</button>";
             echo "</tr>";
         }
 

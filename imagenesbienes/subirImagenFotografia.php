@@ -17,7 +17,10 @@
                 else
                 {
                     $sourcePath = $_FILES['imgInp']['tmp_name']; // Storing source path of the file in a variable
-                    $targetPath = "fotografias/" . $_FILES['imgInp']['name']; // Target path where file is to be stored
+                    $targetPath = "fotografias/" . $_POST["idFichaFotografia"] . "/" . $_FILES['imgInp']['name']; // Target path where file is to be stored
+                    if (!file_exists("fotografias/" . $_POST["idFichaFotografia"] . "/")) {
+                        mkdir("fotografias/" . $_POST["idFichaFotografia"] . "/", 0777, true);
+                    }
                     move_uploaded_file($sourcePath, $targetPath) ; // Moving Uploaded file
                     echo "<span id='success'>Image Uploaded Successfully...!!</span><br/>";
                     echo "<br/><b>File Name:</b> " . $_FILES["imgInp"]["name"] . "<br>";

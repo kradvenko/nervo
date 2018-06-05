@@ -15,20 +15,20 @@
         $sql = "Select fichasfotografia.*, instituciones.nombreInstitucion,
                 CA.ciudad As ciudadAsunto,
                 CT.ciudad As ciudadToma,
-                estudiosfotograficos.estudio, albumes.album, c.nombre
+                estudiosfotograficos.estudio, albumes.album, C.nombre
                 From fichasfotografia
                 Left Join instituciones
                 On fichasfotografia.idinstitucion = instituciones.idinstitucion
                 Left Join ciudades CA
-                On fichasfotografia.idinstitucion = CA.idciudad
+                On fichasfotografia.idciudadasunto = CA.idciudad
                 Left Join ciudades CT
-                On fichasfotografia.idinstitucion = CT.idciudad
+                On fichasfotografia.idciudadtoma = CT.idciudad
                 Left Join estudiosfotograficos
                 On fichasfotografia.idestudio = estudiosfotograficos.idestudiofotografico
                 Left Join albumes
                 On fichasfotografia.idalbum = albumes.idalbum
                 Left Join usuarios C
-                On fichasfotografia.idpersonacaptura = c.idusuario
+                On fichasfotografia.idpersonacaptura = C.idusuario
                 Where fichasfotografia.idfichafotografia = $idFichaFotografia";
 
         $result = $con->query($sql);

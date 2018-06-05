@@ -240,14 +240,18 @@
     padding-right: 15px;
     font-weight: 100;
     font-size: 16px;
-    background: #066983;
+    background: #5891a0;
     border-color: #000000;
     border: solid 1px;
-    cursor: pointer;
+    cursor: pointer;   
 }
 
 .ultimaFicha:hover {
     background: #000000;
     /*border-color: #ffffff;*/
     color: #ffffff;
+}
+
+.imgPreview {
+    height: 300px;
 }

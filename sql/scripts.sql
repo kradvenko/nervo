@@ -271,7 +271,7 @@ CREATE TABLE `fotografiasoportesflexibles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `fotografiasoportesrigidos` (
-  `idfotografiasoporterigido` int(11) NOT NULL,
+  `idfotografiasoporterigido` int(11) NOT NULL AUTO_INCREMENT,
   `idfotografia` int(11) DEFAULT NULL,
   `idsoporterigido` int(11) DEFAULT NULL,
   PRIMARY KEY (`idfotografiasoporterigido`)
@@ -372,16 +372,16 @@ CREATE TABLE `fotografiaenlacesweb` (
   `sitio` varchar(150) DEFAULT NULL,
   `notas` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idfotografiaenlaceweb`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --Cambio tabla fotografiaimagenes
-CREATE TABLE `fotografiaimagenes` (
-  `idfotografiaimagen` int(11) NOT NULL AUTO_INCREMENT,
-  `idfotografia` int(11) DEFAULT NULL,
-  `idpersonatoma` int(11) DEFAULT NULL,
-  `rutaimagen` varchar(200) DEFAULT NULL,
-  `aprobada` varchar(45) DEFAULT NULL,
-  `fechatoma` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idfotografiaimagen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CREATE TABLE `fotografiaimagenes` (
+    `idfotografiaimagen` int(11) NOT NULL AUTO_INCREMENT,
+    `idfotografia` int(11) DEFAULT NULL,
+    `idpersonatoma` int(11) DEFAULT NULL,
+    `rutaimagen` varchar(200) DEFAULT NULL,
+    `aprobada` varchar(45) DEFAULT NULL,
+    `fechatoma` varchar(45) DEFAULT NULL,
+    PRIMARY KEY (`idfotografiaimagen`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

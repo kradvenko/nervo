@@ -781,10 +781,10 @@
                                 <input type='file' name="imgInp" id="imgInp" />
                             </div>
                             <div class="col-12">
-                                <img id="imgImagen" src="#" alt="Imágen" />
+                                <img id="imgImagen" src="#" alt="Imágen" class="imgPreview" />
                             </div>
                             <div class="col-12">
-                                <h4 id='loading' >Cargando..</h4>
+                                <h4 id='loading' ></h4>
                             </div>
                         </div>                    
                         <div class="row divMargin">
@@ -969,6 +969,7 @@
         $("#divEnlacesWeb").css("visibility", "hidden");
         $("#divImagenesBien").css("visibility", "hidden");
         $("#divPendientes").css("visibility", "hidden");
+        limpiarCamposFichaFotografia();
     });
 
     $('#modalAgregarAutor').on('shown.bs.modal', function() {
