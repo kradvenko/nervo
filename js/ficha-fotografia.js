@@ -46,6 +46,21 @@ function elegirAlbum(id) {
 function elegirPersonaToma(id) {
     ff_PersonaToma = id;
 }
+
+function verAlbum() {
+    if (ff_Album == 0) {
+        return;
+    }
+    $.ajax({url: "php/obtenerAlbumesXML.php", async: false, type: "POST", data: { idAlbum : ff_Album }, success: function(res) {
+        $('resultado', res).each(function(index, element) {
+            $("#tbVerAlbumNombre").val($(this).find("album").text());
+            $("#tbVerAlbumInstitucion").val($(this).find("institucion").text());
+            $("#tbVerAlbumDescripcion").val($(this).find("descripcion").text());
+            $("#tbVerAlbumFotografias").val($(this).find("numerofotografias").text());
+            $("#tbVerAlbumNumero").val($(this).find("numeroalbum").text());
+        });
+    }});
+}
 //Funciones de la ficha
 function guardarFichaFoto() {
     var idInstitucion = ff_InstitucionElegida;
@@ -63,6 +78,7 @@ function guardarFichaFoto() {
     var coleccion = $('#tbColeccion').val();
     var claveTecnica = $('#tbClaveTecnica').val();
     var anotaciones = $('#taAnotaciones').val();
+    var contextoHistorico = $('#taContextoHistorico').val();
     var estadoConservacion = $('#sEstadoConservacion').val();
     var estadoIntegridad = $("#sEstadoIntegridad").val();
     var agrietamiento = $("#cbAgrietamiento").is(":checked") ? "SI" : "NO";
@@ -108,7 +124,7 @@ function guardarFichaFoto() {
         $.ajax({url: "php/agregarFichaFotografia.php", async: false, type: "POST", data: { idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
             numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
             fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
-            claveTecnica: claveTecnica, anotaciones: anotaciones, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
+            claveTecnica: claveTecnica, anotaciones: anotaciones, contextoHistorico: contextoHistorico, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
             ataqueBiologico: ataqueBiologico, burbujas: burbujas, cambiosColor: cambiosColor, craqueladuras: craqueladuras, cintasAdhesivas: cintasAdhesivas,
             deformaciones: deformaciones, desvanecimientos: desvanecimientos, desprendimientos: desprendimientos, huellasDigitales: huellasDigitales,
             hongos: hongos, manchas: manchas, raspaduras: raspaduras, ralladuras: ralladuras, retocado: retocado, roturas: roturas, sellosTinta: sellosTinta,
@@ -128,7 +144,7 @@ function guardarFichaFoto() {
         $.ajax({url: "php/actualizarFichaFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
             numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
             fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
-            claveTecnica: claveTecnica, anotaciones: anotaciones, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
+            claveTecnica: claveTecnica, anotaciones: anotaciones, contextoHistorico: contextoHistorico, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
             ataqueBiologico: ataqueBiologico, burbujas: burbujas, cambiosColor: cambiosColor, craqueladuras: craqueladuras, cintasAdhesivas: cintasAdhesivas,
             deformaciones: deformaciones, desvanecimientos: desvanecimientos, desprendimientos: desprendimientos, huellasDigitales: huellasDigitales,
             hongos: hongos, manchas: manchas, raspaduras: raspaduras, ralladuras: ralladuras, retocado: retocado, roturas: roturas, sellosTinta: sellosTinta,
@@ -196,6 +212,7 @@ function elegirFichaFotografia(id) {
             $("#tbColeccion").val($(this).find("coleccion").text());
             $("#tbClaveTecnica").val($(this).find("clavetecnica").text());
             $("#taAnotaciones").val($(this).find("anotaciones").text());
+            $("#taContextoHistorico").val($(this).find("contextohistorico").text());
             $("#sEstadoConservacion").val($(this).find("estadoconservacion").text());
             $("#sEstadoIntegridad").val($(this).find("estadointegridad").text());
             $(this).find("agrietamiento").text() == 'SI' ? $("#cbAgrietamiento").prop("checked", true) : $("#cbAgrietamiento").prop("checked", false);
@@ -318,6 +335,7 @@ function limpiarCamposFichaFotografia () {
     $("#tbColeccion").val("");
     $("#tbClaveTecnica").val("");
     $("#taAnotaciones").val("");
+    $("#taContextoHistorico").val("");
     $("#sEstadoConservacion").val("");
     $("#sEstadoIntegridad").val("");
     $("#cbAgrietamiento").prop("checked", false);
@@ -417,6 +435,7 @@ function agregarNuevoAlbum() {
     var institucion;
     var descripcion;
     var numeroFotografias;
+    var numeroAlbum;
 
     if ($("#tbNuevoAlbumNombre").val().length > 0) {
         nombre = $("#tbNuevoAlbumNombre").val();
@@ -438,13 +457,15 @@ function agregarNuevoAlbum() {
         alert("No ha introducido un número de fotografías válido.")
         return;
     }
+    numeroAlbum = $("#tbNuevoAlbumNumero").val();
 
-    $.ajax({url: "php/agregarAlbum.php", async: false, type: "POST", data: { nombre : nombre, institucion : institucion, descripcion : descripcion, numeroFotografias : numeroFotografias }, success: function(res) {
+    $.ajax({url: "php/agregarAlbum.php", async: false, type: "POST", data: { nombre : nombre, institucion : institucion, descripcion : descripcion, numeroFotografias : numeroFotografias, numeroAlbum: numeroAlbum }, success: function(res) {
         if (res == 'OK') {
             $("#tbNuevoAlbumNombre").val('');
             $("#tbNuevoAlbumInstitucion").val('');
             $("#tbNuevoAlbumDescripcion").val('');
             $("#tbNuevoAlbumFotografias").val('');
+            $("#tbNuevoAlbumNumero").val('');
             $('#modalAgregarAlbum').modal('hide');
         } else {
             alert(res);

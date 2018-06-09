@@ -19,6 +19,7 @@
         $coleccion = $_POST["coleccion"];
         $claveTecnica = $_POST["claveTecnica"];
         $anotaciones = $_POST["anotaciones"];
+        $contextoHistorico = $_POST["contextoHistorico"];
         $estadoConservacion = $_POST["estadoConservacion"];
         $estadoIntegridad = $_POST["estadoIntegridad"];
         $agrietamiento = $_POST["agrietamiento"];
@@ -73,6 +74,7 @@
                     coleccion = '$coleccion',
                     clavetecnica = '$claveTecnica',
                     anotaciones = '$anotaciones',
+                    contextohistorico = '$contextoHistorico',
                     estadoconservacion = '$estadoConservacion',
                     estadointegridad = '$estadoIntegridad',
                     agrietamiento = '$agrietamiento',

@@ -384,4 +384,13 @@ CREATE TABLE `fotografiaenlacesweb` (
     `fechatoma` varchar(45) DEFAULT NULL,
     PRIMARY KEY (`idfotografiaimagen`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--08/06/2018
+ALTER TABLE `acervonervo`.`albumes` 
+ADD COLUMN `numeroalbum` VARCHAR(45) NULL AFTER `numerofotografias`;
+
+ALTER TABLE `acervonervo`.`fichasfotografia` 
+CHANGE COLUMN `titulo` `titulo` VARCHAR(150) NULL DEFAULT NULL ;
+
+ALTER TABLE `acervonervo`.`fichasfotografia` 
+ADD COLUMN `contextohistorico` VARCHAR(500) NULL AFTER `anotaciones`;
 

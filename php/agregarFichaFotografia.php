@@ -18,6 +18,7 @@
         $coleccion = $_POST["coleccion"];
         $claveTecnica = $_POST["claveTecnica"];
         $anotaciones = $_POST["anotaciones"];
+        $contextoHistorico = $_POST["contextoHistorico"];
         $estadoConservacion = $_POST["estadoConservacion"];
         $estadoIntegridad = $_POST["estadoIntegridad"];
         $agrietamiento = $_POST["agrietamiento"];
@@ -64,13 +65,13 @@
 
         $sql = "INSERT INTO fichasfotografia
                 (idinstitucion, numeroregistrointerno, numeroinventario, titulo, tituloserie, idciudadasunto, idciudadtoma,
-                fechaasunto, fechatoma, idestudio, idalbum, numerofotografia, coleccion, clavetecnica, anotaciones, estadoconservacion,
+                fechaasunto, fechatoma, idestudio, idalbum, numerofotografia, coleccion, clavetecnica, anotaciones, contextohistorico, estadoconservacion,
                 estadointegridad, agrietamiento, ataquebiologico, burbujas, cambioscolor, craqueladuras, cintasadhesivas, deformaciones,
                 desprendimientos, desvanecimientos, huellasdigitales, hongos, manchas, raspaduras, ralladuras, retocado, roturas, sellosotinta,
                 sulfuracion, alto, ancho, diametro, inspeccionesomarcas, caracteristicas, idpersonacaptura, fechacaptura, estado)
                 VALUES
                 ('$idInstitucion', '$numeroRegistroInterno', '$numeroInventario', '$titulo', '$tituloSerie', '$idCiudadAsunto', '$idCiudadToma',
-                '$fechaAsunto', '$fechaToma', '$idEstudio', '$idAlbum', '$numeroFotografia', '$coleccion', '$claveTecnica', '$anotaciones',
+                '$fechaAsunto', '$fechaToma', '$idEstudio', '$idAlbum', '$numeroFotografia', '$coleccion', '$claveTecnica', '$anotaciones', '$contextoHistorico',
                 '$estadoConservacion', '$estadoIntegridad', '$agrietamiento', '$ataqueBiologico', '$burbujas', '$cambiosColor', '$craqueladuras',
                 '$cintasAdhesivas', '$deformaciones', '$desprendimientos', '$desvanecimientos', '$huellasDigitales', '$hongos', '$manchas',
                 '$raspaduras', '$ralladuras', '$retocado', '$roturas', '$sellosTinta', '$sulfuracion', '$alto', '$ancho', '$diametro',

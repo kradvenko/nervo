@@ -7,6 +7,7 @@
         $institucion = $_POST["institucion"];
         $descripcion = $_POST["descripcion"];
         $numeroFotografias = $_POST["numeroFotografias"];
+        $numeroAlbum = $_POST["numeroAlbum"]
 
         if (!$nombre) {
             echo "Error. Faltan variables.";
@@ -15,7 +16,7 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Insert Into albumes (idinstitucion, album, descripcion, numerofotografias) Values (" . $institucion . ", '$nombre', '$descripcion', '$numeroFotografias' )";
+        $sql = "Insert Into albumes (idinstitucion, album, descripcion, numerofotografias, numeroalbum) Values (" . $institucion . ", '$nombre', '$descripcion', '$numeroFotografias', '$numeroAlbum' )";
 
         $con->query($sql);
 

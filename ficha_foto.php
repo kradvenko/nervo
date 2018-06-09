@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css" />
     <link rel="stylesheet" type="text/css" href="css/nervo.css" />
     <link rel="stylesheet" type="text/css" href="css/controls.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -119,7 +120,9 @@
                         <input type="text" class="form-control textbox-center" id="tbAutor"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -135,18 +138,27 @@
                 <input type="text" class="form-control textbox-center" id="tbEstudio"></input>
             </div>
             <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarEstudio'>+</button>
+                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarEstudio'>
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
         </div>
         <div class="row divMargin">
             <div class="col-2">
                 <label class="labelType01">Albúm</label>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <input type="text" class="form-control textbox-center" id="tbAlbum"></input>
             </div>
             <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAlbum'>+</button>
+                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAlbum'>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-success" data-toggle='modal' onclick="verAlbum()" data-target='#modalVerAlbum'>
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
             <div class="col-2">
                 <label class="labelType01">Número de fotografía</label>
@@ -179,7 +191,9 @@
                         <input type="text" class="form-control textbox-center" id="tbTema"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTema'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTema'>
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -193,6 +207,14 @@
             </div>
             <div class="col-4">
                 <textarea rows="3" class="form-control" id="taAnotaciones"></textarea>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Contexto histórico</label>
+            </div>
+            <div class="col-10">
+                <textarea rows="3" class="form-control" id="taContextoHistorico"></textarea>
             </div>
         </div>
         <div class="row divMargin divBackgroundBlue2">
@@ -210,7 +232,9 @@
                         <input type="text" class="form-control textbox-center" id="tbTecnica"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTecnica'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTecnica'>
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -228,7 +252,9 @@
                         <input type="text" class="form-control textbox-center" id="tbSoporteFlexible"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteFlexible'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteFlexible'>
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -248,7 +274,9 @@
                         <input type="text" class="form-control textbox-center" id="tbSoporteRigido"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteRigido'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteRigido'>
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -266,7 +294,9 @@
                         <input type="text" class="form-control textbox-center" id="tbGenero"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGenero'>+</button>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGenero'>
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="row divMargin">
@@ -524,11 +554,67 @@
                         <div class="col-12">
                             <input type="text" class="form-control" id="tbNuevoAlbumFotografias"></input>
                         </div>
+                        <div class="col-12">
+                            <label>Número de albúm</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevoAlbumNumero"></input>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" onclick="agregarNuevoAlbum()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para ver la info de un albúm-->
+    <div class="modal fade" id="modalVerAlbum" tabindex="-1" role="dialog" aria-labelledby="modalVerAlbum" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Información del albúm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Nombre del albúm</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbVerAlbumNombre" disabled></input>
+                        </div>
+                        <div class="col-12">
+                            <label>Institución</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbVerAlbumInstitucion" disabled></input>
+                        </div>
+                        <div class="col-12">
+                            <label>Descripción</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbVerAlbumDescripcion" disabled></input>
+                        </div>
+                        <div class="col-12">
+                            <label>Número de fotografías</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbVerAlbumFotografias" disabled></input>
+                        </div>
+                        <div class="col-12">
+                            <label>Número de albúm</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbVerAlbumNumero" disabled></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

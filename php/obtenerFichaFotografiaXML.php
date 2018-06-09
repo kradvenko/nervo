@@ -53,6 +53,7 @@
             echo "<coleccion>" . $row['coleccion'] . "</coleccion>\n";
             echo "<clavetecnica>" . $row['clavetecnica'] . "</clavetecnica>\n";
             echo "<anotaciones>" . $row['anotaciones'] . "</anotaciones>\n";
+            echo "<contextohistorico>" . $row['contextohistorico'] . "</contextohistorico>\n";
             echo "<estadoconservacion>" . $row['estadoconservacion'] . "</estadoconservacion>\n";
             echo "<estadointegridad>" . $row['estadointegridad'] . "</estadointegridad>\n";
             echo "<agrietamiento>" . $row['agrietamiento'] . "</agrietamiento>\n";
