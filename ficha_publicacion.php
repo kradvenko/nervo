@@ -104,7 +104,7 @@
                 <label class="labelType01">Fecha publicación</label>
             </div>
             <div class="col-2">
-                <input type="text" class="form-control textbox-center" id="tbFechaAsunto" placeholder="dd/mm/aaaa"></input>
+                <input type="text" class="form-control textbox-center" id="tbFechaPublicacion" placeholder="dd/mm/aaaa"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -344,6 +344,28 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
+                <label class="labelType01">Tipo de papel</label>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-7">
+                        <input type="text" class="form-control textbox-center" id="tbTipoPapel"></input>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTipoPapel'>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row divMargin">
+                    <div class="col-12" id="divTiposPapel">
+                        
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
                 <label class="labelType01">Estado de Conservación</label>
             </div>
             <div class="col-4">
@@ -422,7 +444,7 @@
                 <label class="labelType01">Objeto fragmentado (número de fragmentos)</label>
             </div>
             <div class="col-1">
-                <input type="text" class="form-control textbox-center" id="tbOtros"></input>
+                <input type="text" class="form-control textbox-center" id="tbNumeroFragmentos"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -442,11 +464,19 @@
                 <input type="text" class="form-control textbox-center" id="tbAncho"></input>
             </div>            
             <div class="col-1">
-                <label class="labelType01">Diámetro:</label>
+                <label class="labelType01">Profundidad:</label>
             </div>
             <div class="col-2">
-                <input type="text" class="form-control textbox-center" id="tbDiametro"></input>
+                <input type="text" class="form-control textbox-center" id="tbProfundidad"></input>
             </div> 
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Pie de imprenta</label>
+            </div>
+            <div class="col-10">
+                <input type="text" class="form-control textbox-center" id="tbPieImprenta"></input>
+            </div>
         </div>
         <div class="row divMargin">
             <div class="col-2">
@@ -767,12 +797,12 @@
             </div>
         </div>
     </div>
-    <!--Ventana modal para agregar una nueva técnica-->
-    <div class="modal fade" id="modalAgregarTecnica" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTecnica" aria-hidden="true">
+    <!--Ventana modal para agregar un nuevo tipo de encuadernación-->
+    <div class="modal fade" id="modalAgregarTipoEncuadernacion" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTipoEncuadernacion" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar nueva técnica</h5>
+                    <h5 class="modal-title">Agregar nuevo tipo de encuadernación</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -780,23 +810,23 @@
                 <div class="modal-body">
                     <div class="row">                        
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevaTecnica"></input>
+                            <input type="text" class="form-control" id="tbNuevoTipoEncuadernacion"></input>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevaTecnica()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoTipoEncuadernacion()">Guardar cambios</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--Ventana modal para agregar un nuevo soporte flexible-->
-    <div class="modal fade" id="modalAgregarSoporteFlexible" tabindex="-1" role="dialog" aria-labelledby="modalAgregarSoporteFlexible" aria-hidden="true">
+    <!--Ventana modal para agregar una nueva técnica de impresión-->
+    <div class="modal fade" id="modalAgregarTecnicaImpresion" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTecnicaImpresion" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo soporte flexible</h5>
+                    <h5 class="modal-title">Agregar nueva técnica de impresión</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -804,23 +834,23 @@
                 <div class="modal-body">
                     <div class="row">                        
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoSoporteFlexible"></input>
+                            <input type="text" class="form-control" id="tbNuevaTecnicaImpresion"></input>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevoSoporteFlexible()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevaTecnicaImpresion()">Guardar cambios</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--Ventana modal para agregar un nuevo soporte rigido-->
-    <div class="modal fade" id="modalAgregarSoporteRigido" tabindex="-1" role="dialog" aria-labelledby="modalAgregarSoporteRigido" aria-hidden="true">
+    <!--Ventana modal para agregar un nuevo tipo de papel-->
+    <div class="modal fade" id="modalAgregarTipoPapel" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTipoPapel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo soporte flexible</h5>
+                    <h5 class="modal-title">Agregar nuevo tipo de papel</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -828,37 +858,13 @@
                 <div class="modal-body">
                     <div class="row">                        
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoSoporteRigido"></input>
+                            <input type="text" class="form-control" id="tbNuevoTipoPapel"></input>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevoSoporteRigido()">Guardar cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Ventana modal para agregar un nuevo genero-->
-    <div class="modal fade" id="modalAgregarGenero" tabindex="-1" role="dialog" aria-labelledby="modalAgregarGenero" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo genero</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">                        
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoGenero"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevoGenero()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoTipoPapel()">Guardar cambios</button>
                 </div>
             </div>
         </div>
@@ -1147,44 +1153,33 @@
             });
         });
         $(function() {     
-            $("#tbTecnica").autocomplete({
-                source: "php/obtenerTecnicasJSON.php",
+            $("#tbTipoEncuadernacion").autocomplete({
+                source: "php/obtenerTiposEncuadernacionJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    agregarTecnica(ui.item.id, ui.item.value);
+                    agregarTipoEncuadernacion(ui.item.id, ui.item.value);
                     this.value = '';
                     return false;
                 }
             });
         });
         $(function() {     
-            $("#tbSoporteFlexible").autocomplete({
-                source: "php/obtenerSoportesFlexiblesJSON.php",
+            $("#tbTecnicaImpresion").autocomplete({
+                source: "php/obtenerTecnicasImpresionJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    agregarSoporteFlexible(ui.item.id, ui.item.value);
+                    agregarTecnicaImpresion(ui.item.id, ui.item.value);
                     this.value = '';
                     return false;
                 }
             });
         });
         $(function() {     
-            $("#tbSoporteRigido").autocomplete({
-                source: "php/obtenerSoportesRigidosJSON.php",
+            $("#tbTipoPapel").autocomplete({
+                source: "php/obtenerTiposPapelJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    agregarSoporteRigido(ui.item.id, ui.item.value);
-                    this.value = '';
-                    return false;
-                }
-            });
-        });
-        $(function() {     
-            $("#tbGenero").autocomplete({
-                source: "php/obtenerGenerosJSON.php",
-                minLength: 2,
-                select: function(event, ui) {
-                    agregarGenero(ui.item.id, ui.item.value);
+                    agregarTipoPapel(ui.item.id, ui.item.value);
                     this.value = '';
                     return false;
                 }
@@ -1199,7 +1194,7 @@
                 }
             });
         });
-        obtenerUltimasFichasFotografia();
+        obtenerUltimasFichasPublicacion();
         obtenerTemas();
         obtenerGenerosPeriodisticosSelect();
         obtenerGenerosLiterariosSelect();
@@ -1232,14 +1227,14 @@
     $('#modalAgregarNuevaPeriodicidad').on('shown.bs.modal', function() {
         $('#tbNuevaPeriodicidad').focus();
     });
-    $('#modalAgregarSoporteFlexible').on('shown.bs.modal', function() {
-        $('#tbNuevoSoporteFlexible').focus();
+    $('#modalAgregarTipoEncuadernacion').on('shown.bs.modal', function() {
+        $('#tbNuevoTipoEncuadernacion').focus();
     });
-    $('#modalAgregarSoporteRigido').on('shown.bs.modal', function() {
-        $('#tbNuevoSoporteRigido').focus();
+    $('#modalAgregarTecnicaImpresion').on('shown.bs.modal', function() {
+        $('#tbNuevaTecnicaImpresion').focus();
     });
-    $('#modalAgregarGenero').on('shown.bs.modal', function() {
-        $('#tbNuevoGenero').focus();
+    $('#modalAgregarTipoPapel').on('shown.bs.modal', function() {
+        $('#tbNuevoTipoPapel').focus();
     });
 
     $("#imgInp").change(function(){

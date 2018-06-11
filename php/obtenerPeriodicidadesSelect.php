@@ -21,7 +21,7 @@
         echo "<select class='form-control' id='" . $idSelect . "'>";
 
         while ($row = $result->fetch_array()) {
-            echo "<option value='" . $row["idperiodicidad"] . "'>" . $row["periodicidad"] . "</option>";
+            echo "<option value='" . $row["idpublicacionperiodicidad"] . "'>" . $row["periodicidad"] . "</option>";
         }
         
         mysqli_close($con);
