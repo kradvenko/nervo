@@ -1,57 +1,55 @@
 //Variables para la ficha de fotografia
-var ff_IdFichaFotografia = 0;
-var ff_LugarAsunto = 0;
-var ff_LugarToma = 0;
-var ff_Autores = [];
-var ff_Autor;
-var ff_Estudio = 0;
-var ff_Album = 0;
-var ff_InstitucionElegida = 0;
-var ff_InstitucionElegidaNuevoAlbum = 0;
-var ff_temas = [];
-var ff_tema;
-var ff_tecnicas = [];
-var ff_tecnica;
-var ff_soportesFlexibles = [];
-var ff_soporteFlexible;
-var ff_soportesRigidos = [];
-var ff_soporteRigido;
-var ff_generos = [];
-var ff_genero;
-var ff_PersonaToma = 0;
-var ff_Reader;
-var ff_idEnlaceWeb = 0;
-var ff_idImagenElegida = 0;
+var fp_IdFichaPublicacion = 0;
+var fp_LugarAsunto = 0;
+var fp_LugarToma = 0;
+var fp_Autores = [];
+var fp_Autor;
+var fp_Album = 0;
+var fp_InstitucionElegida = 0;
+var fp_InstitucionElegidaNuevoAlbum = 0;
+var fp_temas = [];
+var fp_tema;
+var fp_tecnicas = [];
+var fp_tecnica;
+var fp_soportesFlexibles = [];
+var fp_soporteFlexible;
+var fp_soportesRigidos = [];
+var fp_soporteRigido;
+var fp_generos = [];
+var fp_genero;
+var fp_generosPeriodisticos = [];
+var fp_generoPeriodistico;
+var fp_generosLiterarios = [];
+var fp_generoLiterario;
+var fp_PersonaToma = 0;
+var fp_Reader;
+var fp_idEnlaceWeb = 0;
+var fp_idImagenElegida = 0;
+//Variables para la ficha de publicacion
+var fp_IdPaisNuevaPublicacion = 0;
+var fp_IdPublicacionElegida = 0;
 //Funciones de elección de datos
 function elegirInstitucionBien(id) {
-    ff_InstitucionElegida = id;
-}
-
-function elegirLugarAsunto(id) {
-    ff_LugarAsunto = id;
-}
-
-function elegirLugarToma(id) {
-    ff_LugarToma = id;
-}
-
-function elegirEstudio(id) {
-    ff_Estudio = id;
+    fp_InstitucionElegida = id;
 }
 
 function elegirAlbum(id) {
-    ff_Album = id;
+    fp_Album = id;
 }
 
 function elegirPersonaToma(id) {
-    ff_PersonaToma = id;
+    fp_PersonaToma = id;
+}
+
+function elegirPublicacion(id) {
+    fp_IdPublicacionElegida = id; 
 }
 
 function verAlbum() {
-    if (ff_Album == 0) {
+    if (fp_Album == 0) {
         return;
     }
-    $.ajax({url: "php/obtenerAlbumesXML.php", async: false, type: "POST", data: { idAlbum : ff_Album }, success: function(res) {
+    $.ajax({url: "php/obtenerAlbumesXML.php", async: false, type: "POST", data: { idAlbum : fp_Album }, success: function(res) {
         $('resultado', res).each(function(index, element) {
             $("#tbVerAlbumNombre").val($(this).find("album").text());
             $("#tbVerAlbumInstitucion").val($(this).find("institucion").text());
@@ -67,19 +65,53 @@ function obtenerTemas() {
         $("#divTemasSelect").html(res);
     }});
 }
+function obtenerTiposPublicacionSelect() {
+    $.ajax({url: "php/obtenerTiposPublicacionSelect.php", async: false, type: "POST", data: { idSelect : "selNuevaPublicacionTiposPublicacion" }, success: function(res) {
+        $("#divNuevaPublicacionTiposPublicacion").html(res);
+    }});
+}
+
+function agregarNuevaPublicacionNombre() {
+    var publicacion;
+    var idPais;
+    var idTipoPublicacion;
+
+    publicacion = $("#tbNuevaPublicacion").val();
+    idPais = fp_IdPaisNuevaPublicacion;
+    if (idPais == 0) {
+        alert("No ha elegido un país para la publicación.");
+        return;
+    }
+    idTipoPublicacion = $("#selNuevaPublicacionTiposPublicacion").val();
+
+    $.ajax({url: "php/agregarNuevaPublicacion.php", async: false, type: "POST", data: { publicacion : publicacion, idPais: idPais, idTipoPublicacion: idTipoPublicacion }, success: function(res) {
+        if (res == "OK") {
+            alert("Se ha agregado la publicación.");
+            $('#modalAgregarPublicacion').modal('hide');
+            limpiarCamposNuevaPublicacion();
+        }
+    }});
+}
+
+function limpiarCamposNuevaPublicacion() {
+    $("#tbNuevaPublicacion").val("");
+    $("#tbNuevaPublicacionPais").val("");
+    fp_IdPaisNuevaPublicacion = 0;
+}
+
 //Funciones de la ficha
 function guardarFichaFoto() {
-    var idInstitucion = ff_InstitucionElegida;
+    var idInstitucion = fp_InstitucionElegida;
     var numeroRegistroInterno = $("#tbNumeroInterno").val();
     var numeroInventario = $("#tbNumeroInventario").val();
     var titulo = $('#tbTitulo').val();
     var tituloSerie = $('#tbTituloSerie').val();
-    var idCiudadAsunto = ff_LugarAsunto;
-    var idCiudadToma = ff_LugarToma;
+    var idCiudadAsunto = fp_LugarAsunto;
+    var idCiudadToma = fp_LugarToma;
     var fechaAsunto = $('#tbFechaAsunto').val();
     var fechaToma = $('#tbFechaToma').val();
-    var idEstudio = ff_Estudio;
-    var idAlbum = ff_Album;
+    var idEstudio = fp_Estudio;
+    var idAlbum = fp_Album;
     var numeroFotografia = $('#tbNumeroFotografia').val();
     var coleccion = $('#tbColeccion').val();
     var claveTecnica = $('#tbClaveTecnica').val();
@@ -119,14 +151,14 @@ function guardarFichaFoto() {
                 + (currentdate.getMinutes() < 10 ? ("0" + currentdate.getMinutes()) : currentdate.getMinutes()) + ":"  
                 + (currentdate.getSeconds() < 10 ? ("0" + currentdate.getSeconds()) : currentdate.getSeconds());
     var estado = "ACTIVO";
-    var autores = ff_Autores;
-    var temas = ff_temas;
-    var tecnicas = ff_tecnicas;
-    var soportesFlexibles = ff_soportesFlexibles;
-    var soportesRigidos = ff_soportesRigidos;
-    var generos = ff_generos;
+    var autores = fp_Autores;
+    var temas = fp_temas;
+    var tecnicas = fp_tecnicas;
+    var soportesFlexibles = fp_soportesFlexibles;
+    var soportesRigidos = fp_soportesRigidos;
+    var generos = fp_generos;
     
-    if (ff_IdFichaFotografia == 0) {
+    if (fp_IdFichaPublicacion == 0) {
         $.ajax({url: "php/agregarFichaFotografia.php", async: false, type: "POST", data: { idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
             numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
             fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
@@ -140,14 +172,14 @@ function guardarFichaFoto() {
             success: function(res) {
             if (res == 'OK') {
                 obtenerUltimasFichasFotografia();
-                limpiarCamposFichaFotografia();
+                limpiarCamposFichaPublicacion();
                 alert("Se ha ingresado la ficha de la fotografía.");
             } else {
                 alert(res);
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarFichaFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
+        $.ajax({url: "php/actualizarFichaFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion, idInstitucion : idInstitucion, numeroRegistroInterno: numeroRegistroInterno,
             numeroInventario: numeroInventario, titulo: titulo, tituloSerie: tituloSerie, idCiudadAsunto: idCiudadAsunto, idCiudadToma: idCiudadToma,
             fechaAsunto: fechaAsunto, fechaToma: fechaToma, idEstudio: idEstudio, idAlbum: idAlbum, numeroFotografia: numeroFotografia, coleccion: coleccion,
             claveTecnica: claveTecnica, anotaciones: anotaciones, contextoHistorico: contextoHistorico, estadoConservacion: estadoConservacion, estadoIntegridad: estadoIntegridad, agrietamiento: agrietamiento,
@@ -160,7 +192,7 @@ function guardarFichaFoto() {
             success: function(res) {
             if (res == 'OK') {
                 obtenerUltimasFichasFotografia();
-                limpiarCamposFichaFotografia();
+                limpiarCamposFichaPublicacion();
                 alert("Se ha actualizado la ficha de la fotografía.");
             } else {
                 alert(res);
@@ -171,21 +203,20 @@ function guardarFichaFoto() {
 
 function readURL(input) {
     if (input.files && input.files[0]) {
-        ff_Reader = new FileReader();        
-        ff_Reader.onload = function (e) {
+        fp_Reader = new FileReader();        
+        fp_Reader.onload = function (e) {
             $('#imgImagen').attr('src', e.target.result);
         }        
-        ff_Reader.readAsDataURL(input.files[0]);
+        fp_Reader.readAsDataURL(input.files[0]);
     }
 }
 
 function limpiarCamposAgregarImagen() {
-    ff_Reader = null;
+    fp_Reader = null;
     $('#imgImagen').attr('src', '');
     $("#tbTomaPersona").val("");
     $("#tbTomaFecha").val("");
-    $("#imgInp").val("");
-    
+    $("#imgInp").val("");    
 }
 
 function obtenerUltimasFichasFotografia() {
@@ -195,25 +226,25 @@ function obtenerUltimasFichasFotografia() {
 }
 
 function elegirFichaFotografia(id) {
-    ff_IdFichaFotografia = id;
+    fp_IdFichaPublicacion = id;
     $.ajax({url: "php/obtenerFichaFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
         $('resultado', res).each(function(index, element) {
             $("#tbInstitucion").val($(this).find("nombreInstitucion").text());
-            ff_InstitucionElegida = $(this).find("idinstitucion").text();
+            fp_InstitucionElegida = $(this).find("idinstitucion").text();
             $("#tbNumeroInterno").val($(this).find("numeroregistrointerno").text());
             $("#tbNumeroInventario").val($(this).find("numeroinventario").text());
             $("#tbTitulo").val($(this).find("titulo").text());
             $("#tbTituloSerie").val($(this).find("tituloserie").text());
             $("#tbLugarAsunto").val($(this).find("ciudadAsunto").text());
-            ff_LugarAsunto = $(this).find("idciudadasunto").text();
+            fp_LugarAsunto = $(this).find("idciudadasunto").text();
             $("#tbLugarToma").val($(this).find("ciudadToma").text());
-            ff_LugarToma = $(this).find("idciudadtoma").text();
+            fp_LugarToma = $(this).find("idciudadtoma").text();
             $("#tbFechaAsunto").val($(this).find("fechaasunto").text());
             $("#tbFechaToma").val($(this).find("fechatoma").text());
             $("#tbEstudio").val($(this).find("estudio").text());
-            ff_Estudio = $(this).find("idestudio").text();
+            fp_Estudio = $(this).find("idestudio").text();
             $("#tbAlbum").val($(this).find("album").text());
-            ff_Album = $(this).find("idalbum").text();
+            fp_Album = $(this).find("idalbum").text();
             $("#tbNumeroFotografia").val($(this).find("numerofotografia").text());
             $("#tbColeccion").val($(this).find("coleccion").text());
             $("#tbClaveTecnica").val($(this).find("clavetecnica").text());
@@ -251,45 +282,45 @@ function elegirFichaFotografia(id) {
         });
     }});
     $.ajax({url: "php/obtenerAutoresBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        ff_Autores = [];
+        fp_Autores = [];
         $('cat', res).each(function(index, element) {
-            ff_Autor =  { id: $(this).find("idautor").text(), autor: $(this).find("autor").text() };
-            ff_Autores[ff_Autores.length] = ff_Autor;
+            fp_Autor =  { id: $(this).find("idautor").text(), autor: $(this).find("autor").text() };
+            fp_Autores[fp_Autores.length] = fp_Autor;
         });
     }});
     $.ajax({url: "php/obtenerTemasBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        ff_temas = [];
+        fp_temas = [];
         $('cat', res).each(function(index, element) {
-            ff_tema =  { id: $(this).find("idtema").text(), tema: $(this).find("tema").text() };
-            ff_temas[ff_temas.length] = ff_tema;
+            fp_tema =  { id: $(this).find("idtema").text(), tema: $(this).find("tema").text() };
+            fp_temas[fp_temas.length] = fp_tema;
         });
     }});
     $.ajax({url: "php/obtenerTecnicasFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        ff_tecnicas = [];
+        fp_tecnicas = [];
         $('cat', res).each(function(index, element) {
-            ff_tecnica =  { id: $(this).find("idtecnica").text(), tecnica: $(this).find("tecnica").text() };
-            ff_tecnicas[ff_tecnicas.length] = ff_tecnica;
+            fp_tecnica =  { id: $(this).find("idtecnica").text(), tecnica: $(this).find("tecnica").text() };
+            fp_tecnicas[fp_tecnicas.length] = fp_tecnica;
         });
     }});
     $.ajax({url: "php/obtenerSoportesFlexiblesFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        ff_soportesFlexibles = [];
+        fp_soportesFlexibles = [];
         $('cat', res).each(function(index, element) {
-            ff_soporteFlexible =  { id: $(this).find("idsoporteflexible").text(), soporteFlexible: $(this).find("soporteflexible").text() };
-            ff_soportesFlexibles[ff_soportesFlexibles.length] = ff_soporteFlexible;
+            fp_soporteFlexible =  { id: $(this).find("idsoporteflexible").text(), soporteFlexible: $(this).find("soporteflexible").text() };
+            fp_soportesFlexibles[fp_soportesFlexibles.length] = fp_soporteFlexible;
         });
     }});
     $.ajax({url: "php/obtenerSoportesRigidosFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        ff_soportesRigidos = [];
+        fp_soportesRigidos = [];
         $('cat', res).each(function(index, element) {
-            ff_soporteRigido =  { id: $(this).find("idsoporterigido").text(), soporteRigido: $(this).find("soporterigido").text() };
-            ff_soportesRigidos[ff_soportesRigidos.length] = ff_soporteRigido; 
+            fp_soporteRigido =  { id: $(this).find("idsoporterigido").text(), soporteRigido: $(this).find("soporterigido").text() };
+            fp_soportesRigidos[fp_soportesRigidos.length] = fp_soporteRigido; 
         });
     }});
     $.ajax({url: "php/obtenerGenerosFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        ff_generos = [];
+        fp_generos = [];
         $('cat', res).each(function(index, element) {
-            ff_genero =  { id: $(this).find("idgenero").text(), genero: $(this).find("genero").text() };
-            ff_generos[ff_generos.length] = ff_genero;
+            fp_genero =  { id: $(this).find("idgenero").text(), genero: $(this).find("genero").text() };
+            fp_generos[fp_generos.length] = fp_genero;
         });
     }});
     mostrarAutores();
@@ -300,46 +331,31 @@ function elegirFichaFotografia(id) {
     mostrarGeneros();
 }
 
-function limpiarCamposFichaFotografia () {
-    ff_IdFichaFotografia = 0;
-    ff_LugarAsunto = 0;
-    ff_LugarToma = 0;
-    ff_Autores = [];
-    ff_Autor;
-    ff_Estudio = 0;
-    ff_Album = 0;
-    ff_InstitucionElegida = 0;
-    ff_InstitucionElegidaNuevoAlbum = 0;
-    ff_temas = [];
-    ff_tema;
-    ff_tecnicas = [];
-    ff_tecnica;
-    ff_soportesFlexibles = [];
-    ff_soporteFlexible;
-    ff_soportesRigidos = [];
-    ff_soporteRigido;
-    ff_generos = [];
-    ff_genero;
-    ff_PersonaToma = 0;
+function limpiarCamposFichaPublicacion () {
+    fp_IdFichaPublicacion = 0;
+    fp_LugarAsunto = 0;
+    fp_LugarToma = 0;
+    fp_Autores = [];
+    fp_Autor;
+    fp_Album = 0;
+    fp_InstitucionElegida = 0;
+    fp_InstitucionElegidaNuevoAlbum = 0;
+    fp_temas = [];
+    fp_tema;
+    fp_tecnicas = [];
+    fp_tecnica;
+    fp_generos = [];
+    fp_genero;
+    fp_PersonaToma = 0;
+    fp_generosPeriodisticos = [];
     $("#tbInstitucion").val("");
-    ff_InstitucionElegida = 0;
+    fp_InstitucionElegida = 0;
+    $("#tbPublicacion").val("");
+    fp_IdPublicacionElegida = 0;
     $("#tbNumeroInterno").val("");
     $("#tbNumeroInventario").val("");
-    $("#tbTitulo").val("");
-    $("#tbTituloSerie").val("");
-    $("#tbLugarAsunto").val("");
-    ff_LugarAsunto = 0;
-    $("#tbLugarToma").val("");
-    ff_LugarToma = 0;
-    $("#tbFechaAsunto").val("");
-    $("#tbFechaToma").val("");
-    $("#tbEstudio").val("");
-    ff_Estudio = 0;
     $("#tbAlbum").val("");
-    ff_Album = 0;
-    $("#tbNumeroFotografia").val("");
-    $("#tbColeccion").val("");
-    $("#tbClaveTecnica").val("");
+    fp_Album = 0;
     $("#taAnotaciones").val("");
     $("#taContextoHistorico").val("");
     $("#sEstadoConservacion").val("");
@@ -372,10 +388,7 @@ function limpiarCamposFichaFotografia () {
     $("#divInformacionCaptura").html("");
     $("#divAutores").html("");
     $("#divTemas").html("");
-    $("#divTecnicas").html("");
-    $("#divSoportesFlexibles").html("");
-    $("#divSoportesRigidos").html("");
-    $("#divGeneros").html("");
+    $("#divGenerosPeriodisticos").html("");    
     $("#divEnlacesWeb").css("visibility", "hidden");
     $("#divImagenesBien").css("visibility", "hidden");
     $("#divPendientes").css("visibility", "hidden");
@@ -400,42 +413,149 @@ function agregarNuevoAutor() {
 }
 
 function agregarAutor(id, autor) {
-    ff_Autor = { id : id, autor : autor };
-    ff_Autores[ff_Autores.length] = ff_Autor;
+    fp_Autor = { id : id, autor : autor };
+    fp_Autores[fp_Autores.length] = fp_Autor;
     mostrarAutores();
 }
 
 function mostrarAutores() {
     $("#divAutores").html("");
-    for (i = 0; i <= ff_Autores.length - 1; i++) {
-        ff_Autor = ff_Autores[i];
-        $("#divAutores").html($("#divAutores").html() + '<span class="tag"><span>' + ff_Autor.autor + '</span><span href="" onclick="quitarAutor(' + i + ')" class="closeTag">x</span></span>');
+    for (i = 0; i <= fp_Autores.length - 1; i++) {
+        fp_Autor = fp_Autores[i];
+        $("#divAutores").html($("#divAutores").html() + '<span class="tag"><span>' + fp_Autor.autor + '</span><span href="" onclick="quitarAutor(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
 function quitarAutor(index) {
-    ff_Autores.splice(index, 1);
+    fp_Autores.splice(index, 1);
     mostrarAutores();
 }
-//Estudios
-function agregarNuevoEstudio() {
-    var estudio;
-    if ($("#tbNuevoEstudio").val().length > 0) {
-        estudio = $("#tbNuevoEstudio").val();
+//Géneros periodísticos
+function agregarNuevoGeneroPeriodistico() {
+    var genero;
+    if ($("#tbNuevoGeneroPeriodistico").val().length > 0) {
+        genero = $("#tbNuevoGeneroPeriodistico").val();
     } else {
-        alert("No ha escrito el nombre del estudio.");
+        alert("No ha escrito el nombre del género periodístico.");
         return;
     }
-    $.ajax({url: "php/agregarEstudio.php", async: false, type: "POST", data: { estudio : estudio }, success: function(res) {
+    $.ajax({url: "php/agregarGeneroPeriodistico.php", async: false, type: "POST", data: { genero : genero }, success: function(res) {
         if (res == 'OK') {
-            $("#tbNuevoEstudio").val('');
-            $('#modalAgregarEstudio').modal('hide');
+            $("#tbNuevoGeneroPeriodistico").val('');
+            $('#modalAgregarGeneroPeriodistico').modal('hide');
+            obtenerGenerosPeriodisticosSelect();
         } else {
             alert(res);
         }
     }});
 }
 
+function obtenerGenerosPeriodisticosSelect() {
+    $.ajax({url: "php/obtenerGenerosPeriodisticosSelect.php", async: false, type: "POST", data: { idSelect : "selGenerosPeriodisticos" }, success: function(res) {
+        $("#divGenerosPeriodisticosSelect").html(res);
+    }});
+}
+
+function agregarGeneroPeriodisticoSelect() {
+    var id = $("#selGenerosPeriodisticos").val();
+    var genero = $( "#selGenerosPeriodisticos option:selected" ).text();
+    agregarGeneroPeriodistico(id, genero);
+}
+
+function agregarGeneroPeriodistico(id, genero) {
+    fp_generoPeriodistico = { id : id, genero : genero };
+    fp_generosPeriodisticos[fp_generosPeriodisticos.length] = fp_generoPeriodistico;
+    mostrarGenerosPeriodisticos();
+}
+
+function mostrarGenerosPeriodisticos() {
+    $("#divGenerosPeriodisticos").html("");
+    for (i = 0; i <= fp_generosPeriodisticos.length - 1; i++) {
+        fp_generoPeriodistico = fp_generosPeriodisticos[i];
+        $("#divGenerosPeriodisticos").html($("#divGenerosPeriodisticos").html() + '<span class="tag"><span>' + fp_generoPeriodistico.genero + '</span><span href="" onclick="quitarGeneroPeriodistico(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarGeneroPeriodistico(index) {
+    fp_generosPeriodisticos.splice(index, 1);
+    mostrarGenerosPeriodisticos();
+}
+//Generos literarios
+function agregarNuevoGeneroLiterario() {
+    var genero;
+    if ($("#tbNuevoGeneroLiterario").val().length > 0) {
+        genero = $("#tbNuevoGeneroLiterario").val();
+    } else {
+        alert("No ha escrito el nombre del género literario.");
+        return;
+    }
+    $.ajax({url: "php/agregarGeneroLiterario.php", async: false, type: "POST", data: { genero : genero }, success: function(res) {
+        if (res == 'OK') {
+            $("#tbNuevoGeneroLiterario").val('');
+            $('#modalAgregarGeneroLiterario').modal('hide');
+            obtenerGenerosLiterariosSelect();
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function obtenerGenerosLiterariosSelect() {
+    $.ajax({url: "php/obtenerGenerosLiterariosSelect.php", async: false, type: "POST", data: { idSelect : "selGenerosLiterarios" }, success: function(res) {
+        $("#divGenerosLiterariosSelect").html(res);
+    }});
+}
+
+function agregarGeneroLiterarioSelect() {
+    var id = $("#selGenerosLiterarios").val();
+    var genero = $( "#selGenerosLiterarios option:selected" ).text();
+    agregarGeneroLiterario(id, genero);
+}
+
+function agregarGeneroLiterario(id, genero) {
+    fp_generoLiterario = { id : id, genero : genero };
+    fp_generosLiterarios[fp_generosLiterarios.length] = fp_generoLiterario;
+    mostrarGenerosLiterarios();
+}
+
+function mostrarGenerosLiterarios() {
+    $("#divGenerosLiterarios").html("");
+    for (i = 0; i <= fp_generosLiterarios.length - 1; i++) {
+        fp_generoLiterario = fp_generosLiterarios[i];
+        $("#divGenerosLiterarios").html($("#divGenerosLiterarios").html() + '<span class="tag"><span>' + fp_generoLiterario.genero + '</span><span href="" onclick="quitarGeneroLiterario(' + i + ')" class="closeTag">x</span></span>');
+    }
+}
+
+function quitarGeneroLiterario(index) {
+    fp_generosLiterarios.splice(index, 1);
+    mostrarGenerosLiterarios();
+}
+//Periodicidades
+function agregarNuevaPeriodicidad() {
+    var periodicidad;
+    if ($("#tbNuevaPeriodicidad").val().length > 0) {
+        periodicidad = $("#tbNuevaPeriodicidad").val();
+    } else {
+        alert("No ha escrito el nombre de la periodicidad.");
+        return;
+    }
+    $.ajax({url: "php/agregarPublicacionPeriodicidad.php", async: false, type: "POST", data: { periodicidad : periodicidad }, success: function(res) {
+        if (res == 'OK') {
+            $("#tbNuevaPeriodicidad").val('');
+            $('#modalAgregarNuevaPeriodicidad').modal('hide');
+            obtenerPeriodicidadesSelect();
+        } else {
+            alert(res);
+        }
+    }});
+}
+
+function obtenerPeriodicidadesSelect() {
+    $.ajax({url: "php/obtenerPeriodicidadesSelect.php", async: false, type: "POST", data: { idSelect : "selPeriodicidades" }, success: function(res) {
+        $("#divPeriodicidades").html(res);
+    }});
+}
+//Albumes
 function agregarNuevoAlbum() {
     var nombre;
     var institucion;
@@ -449,7 +569,7 @@ function agregarNuevoAlbum() {
         alert("No ha escrito el nombre del albúm.");
         return;
     }
-    institucion = ff_InstitucionElegidaNuevoAlbum;
+    institucion = fp_InstitucionElegidaNuevoAlbum;
     if (institucion <= 0) {
         alert("No ha elegido una institución para el albúm.")
         return;
@@ -465,7 +585,7 @@ function agregarNuevoAlbum() {
     }
     numeroAlbum = $("#tbNuevoAlbumNumero").val();
 
-    $.ajax({url: "php/agregarAlbum.php", async: false, type: "POST", data: { nombre : nombre, institucion : institucion, descripcion : descripcion, numeroFotografias : numeroFotografias, numeroAlbum: numeroAlbum, tipoFicha: "Fotografia" }, success: function(res) {
+    $.ajax({url: "php/agregarAlbum.php", async: false, type: "POST", data: { nombre : nombre, institucion : institucion, descripcion : descripcion, numeroFotografias : numeroFotografias, numeroAlbum: numeroAlbum, tipoFicha: "Publicacion" }, success: function(res) {
         if (res == 'OK') {
             $("#tbNuevoAlbumNombre").val('');
             $("#tbNuevoAlbumInstitucion").val('');
@@ -505,21 +625,21 @@ function agregarTemaSelect() {
 }
 
 function agregarTema(id, tema) {
-    ff_tema = { id : id, tema : tema };
-    ff_temas[ff_temas.length] = ff_tema;
+    fp_tema = { id : id, tema : tema };
+    fp_temas[fp_temas.length] = fp_tema;
     mostrarTemas();
 }
 
 function mostrarTemas() {
     $("#divTemas").html("");
-    for (i = 0; i <= ff_temas.length - 1; i++) {
-        ff_tema = ff_temas[i];
-        $("#divTemas").html($("#divTemas").html() + '<span class="tag"><span>' + ff_tema.tema + '</span><span href="" onclick="quitarTema(' + i + ')" class="closeTag">x</span></span>');
+    for (i = 0; i <= fp_temas.length - 1; i++) {
+        fp_tema = fp_temas[i];
+        $("#divTemas").html($("#divTemas").html() + '<span class="tag"><span>' + fp_tema.tema + '</span><span href="" onclick="quitarTema(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
 function quitarTema(index) {
-    ff_temas.splice(index, 1);
+    fp_temas.splice(index, 1);
     mostrarTemas();
 }
 //Técnicas fotográficas
@@ -542,21 +662,21 @@ function agregarNuevaTecnica() {
 }
 
 function agregarTecnica(id, tecnica) {
-    ff_tecnica = { id : id, tecnica : tecnica };
-    ff_tecnicas[ff_tecnicas.length] = ff_tecnica;
+    fp_tecnica = { id : id, tecnica : tecnica };
+    fp_tecnicas[fp_tecnicas.length] = fp_tecnica;
     mostrarTecnicas();
 }
 
 function mostrarTecnicas() {
     $("#divTecnicas").html("");
-    for (i = 0; i <= ff_tecnicas.length - 1; i++) {
-        ff_tecnica = ff_tecnicas[i];
-        $("#divTecnicas").html($("#divTecnicas").html() + '<span class="tag"><span>' + ff_tecnica.tecnica + '</span><span href="" onclick="quitarTecnica(' + i + ')" class="closeTag">x</span></span>');
+    for (i = 0; i <= fp_tecnicas.length - 1; i++) {
+        fp_tecnica = fp_tecnicas[i];
+        $("#divTecnicas").html($("#divTecnicas").html() + '<span class="tag"><span>' + fp_tecnica.tecnica + '</span><span href="" onclick="quitarTecnica(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
 function quitarTecnica(index) {
-    ff_tecnicas.splice(index, 1);
+    fp_tecnicas.splice(index, 1);
     mostrarTecnicas();
 }
 //Soportes flexibles
@@ -579,21 +699,21 @@ function agregarNuevoSoporteFlexible() {
 }
 
 function agregarSoporteFlexible(id, soporteFlexible) {
-    ff_soporteFlexible = { id : id, soporteFlexible : soporteFlexible };
-    ff_soportesFlexibles[ff_soportesFlexibles.length] = ff_soporteFlexible;
+    fp_soporteFlexible = { id : id, soporteFlexible : soporteFlexible };
+    fp_soportesFlexibles[fp_soportesFlexibles.length] = fp_soporteFlexible;
     mostrarSoportesFlexibles();
 }
 
 function mostrarSoportesFlexibles() {
     $("#divSoportesFlexibles").html("");
-    for (i = 0; i <= ff_soportesFlexibles.length - 1; i++) {
-        ff_soporteFlexible = ff_soportesFlexibles[i];
-        $("#divSoportesFlexibles").html($("#divSoportesFlexibles").html() + '<span class="tag"><span>' + ff_soporteFlexible.soporteFlexible + '</span><span href="" onclick="quitarSoporteFlexible(' + i + ')" class="closeTag">x</span></span>');
+    for (i = 0; i <= fp_soportesFlexibles.length - 1; i++) {
+        fp_soporteFlexible = fp_soportesFlexibles[i];
+        $("#divSoportesFlexibles").html($("#divSoportesFlexibles").html() + '<span class="tag"><span>' + fp_soporteFlexible.soporteFlexible + '</span><span href="" onclick="quitarSoporteFlexible(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
 function quitarSoporteFlexible(index) {
-    ff_soportesFlexibles.splice(index, 1);
+    fp_soportesFlexibles.splice(index, 1);
     mostrarSoportesFlexibles();
 }
 //Soportes Rigidos
@@ -616,21 +736,21 @@ function agregarNuevoSoporteRigido() {
 }
 
 function agregarSoporteRigido(id, soporteRigido) {
-    ff_soporteRigido = { id : id, soporteRigido : soporteRigido };
-    ff_soportesRigidos[ff_soportesRigidos.length] = ff_soporteRigido;
+    fp_soporteRigido = { id : id, soporteRigido : soporteRigido };
+    fp_soportesRigidos[fp_soportesRigidos.length] = fp_soporteRigido;
     mostrarSoportesRigidos();
 }
 
 function mostrarSoportesRigidos() {
     $("#divSoportesRigidos").html("");
-    for (i = 0; i <= ff_soportesRigidos.length - 1; i++) {
-        ff_soporteRigido = ff_soportesRigidos[i];
-        $("#divSoportesRigidos").html($("#divSoportesRigidos").html() + '<span class="tag"><span>' + ff_soporteRigido.soporteRigido + '</span><span href="" onclick="quitarSoporteRigido(' + i + ')" class="closeTag">x</span></span>');
+    for (i = 0; i <= fp_soportesRigidos.length - 1; i++) {
+        fp_soporteRigido = fp_soportesRigidos[i];
+        $("#divSoportesRigidos").html($("#divSoportesRigidos").html() + '<span class="tag"><span>' + fp_soporteRigido.soporteRigido + '</span><span href="" onclick="quitarSoporteRigido(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
 function quitarSoporteRigido(index) {
-    ff_soportesRigidos.splice(index, 1);
+    fp_soportesRigidos.splice(index, 1);
     mostrarSoportesRigidos();
 }
 //Generos
@@ -653,38 +773,38 @@ function agregarNuevoGenero() {
 }
 
 function agregarGenero(id, genero) {
-    ff_genero = { id : id, genero : genero };
-    ff_generos[ff_generos.length] = ff_genero;
+    fp_genero = { id : id, genero : genero };
+    fp_generos[fp_generos.length] = fp_genero;
     mostrarGeneros();
 }
 
 function mostrarGeneros() {
     $("#divGeneros").html("");
-    for (i = 0; i <= ff_generos.length - 1; i++) {
-        ff_genero = ff_generos[i];
-        $("#divGeneros").html($("#divGeneros").html() + '<span class="tag"><span>' + ff_genero.genero + '</span><span href="" onclick="quitarGenero(' + i + ')" class="closeTag">x</span></span>');
+    for (i = 0; i <= fp_generos.length - 1; i++) {
+        fp_genero = fp_generos[i];
+        $("#divGeneros").html($("#divGeneros").html() + '<span class="tag"><span>' + fp_genero.genero + '</span><span href="" onclick="quitarGenero(' + i + ')" class="closeTag">x</span></span>');
     }
 }
 
 function quitarGenero(index) {
-    ff_generos.splice(index, 1);
+    fp_generos.splice(index, 1);
     mostrarGeneros();
 }
 //Enlaces web
 function obtenerEnlacesWeb() {
-    $.ajax({url: "php/obtenerEnlacesWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia }, success: function(res) {
+    $.ajax({url: "php/obtenerEnlacesWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion }, success: function(res) {
         $("#divListaEnlacesWeb").html(res);
     }});
 }
 
 function elegirEnlaceWeb(idInstitucionEnlaceWeb, urlEnlaceWeb, notasEnlaceWeb) {
-    ff_idEnlaceWeb = idInstitucionEnlaceWeb;
+    fp_idEnlaceWeb = idInstitucionEnlaceWeb;
     $("#tbEnlaceWeb").val(urlEnlaceWeb);
     $("#tbNotasEnlaceWeb").val(notasEnlaceWeb);
 }
 
 function guardarEnlaceWeb() {
-    if (ff_IdFichaFotografia == 0) {
+    if (fp_IdFichaPublicacion == 0) {
         return;
     }
     var enlaceWeb;
@@ -696,8 +816,8 @@ function guardarEnlaceWeb() {
         return;
     }
     notasEnlaceWeb = $("#tbNotasEnlaceWeb").val();
-    if (ff_idEnlaceWeb == 0) {
-        $.ajax({url: "php/agregarEnlaceWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
+    if (fp_idEnlaceWeb == 0) {
+        $.ajax({url: "php/agregarEnlaceWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
             if (res == "OK") {
                 obtenerEnlacesWeb();
             } else {
@@ -705,7 +825,7 @@ function guardarEnlaceWeb() {
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarEnlaceWebFotografia.php", async: false, type: "POST", data: { idEnlaceWeb: ff_idEnlaceWeb, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
+        $.ajax({url: "php/actualizarEnlaceWebFotografia.php", async: false, type: "POST", data: { idEnlaceWeb: fp_idEnlaceWeb, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
             if (res == "OK") {
                 obtenerEnlacesWeb();
             } else {
@@ -716,7 +836,7 @@ function guardarEnlaceWeb() {
 }
 
 function limpiarCamposEnlaceWeb() {
-    ff_idEnlaceWeb = 0;
+    fp_idEnlaceWeb = 0;
     $("#tbEnlaceWeb").val("");
     $("#tbNotasEnlaceWeb").val("");
 }
@@ -727,8 +847,8 @@ function guardarImagenBien() {
     var rutaImagen;
     if (files != null) {
         fd.append('imgInp', files);
-        fd.append('idFichaFotografia', ff_IdFichaFotografia);
-        rutaImagen = "imagenesbienes/fotografias/" + ff_IdFichaFotografia + "/" + files.name;
+        fd.append('idFichaFotografia', fp_IdFichaPublicacion);
+        rutaImagen = "imagenesbienes/fotografias/" + fp_IdFichaPublicacion + "/" + files.name;
         $.ajax({ url: "imagenesbienes/subirImagenFotografia.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
             $('#loading').hide();
             $("#message").html(data);
@@ -739,8 +859,8 @@ function guardarImagenBien() {
     var aprobada = $("#selImagenAprobada").val();
     var fechaToma = $("#tbTomaFecha").val();    
 
-    if (ff_idImagenElegida == 0) {
-        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+    if (fp_idImagenElegida == 0) {
+        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion, idPersonaToma: fp_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
             if (res == "OK") {
                 obtenerImagenesFotografia();
             } else {
@@ -748,7 +868,7 @@ function guardarImagenBien() {
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: ff_idImagenElegida, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: fp_idImagenElegida, idPersonaToma: fp_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
             if (res == "OK") {
                 obtenerImagenesFotografia();
             } else {
@@ -759,14 +879,14 @@ function guardarImagenBien() {
 }
 
 function obtenerImagenesFotografia() {
-    $.ajax({url: "php/obtenerImagenesFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia }, success: function(res) {
+    $.ajax({url: "php/obtenerImagenesFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion }, success: function(res) {
         $("#divListaImagenesBien").html(res);
     }});
 }
 
 function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, aprobada, rutaimagen) {
-    ff_idImagenElegida = idimagen;
-    ff_PersonaToma = idpersona;
+    fp_idImagenElegida = idimagen;
+    fp_PersonaToma = idpersona;
     $("#tbTomaPersona").val(personatoma);
     $("#tbTomaFecha").val(fechatoma);
     $("#selImagenAprobada").val(aprobada);

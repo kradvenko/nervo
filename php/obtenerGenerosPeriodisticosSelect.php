@@ -12,17 +12,18 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Select * From paises";
+        $sql = "Select *
+                From generosperiodisticos
+                Order By genero";
 
         $result = $con->query($sql);
 
         echo "<select class='form-control' id='" . $idSelect . "'>";
 
         while ($row = $result->fetch_array()) {
-            echo "<option value='" . $row["idpais"] . "'>" . $row["pais"] . "</option>";            
+            echo "<option value='" . $row["idgeneroperiodistico"] . "'>" . $row["genero"] . "</option>";
         }
         
-        echo "</select>";
         mysqli_close($con);
     }
     catch (Throwable $t)

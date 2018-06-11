@@ -14,7 +14,7 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/nervo.js"></script>
-    <script src="js/ficha-fotografia.js"></script>
+    <script src="js/ficha-publicacion.js"></script>
     <title>Acervo artístico de Amado Nervo</title>
 </head>
 <body>
@@ -30,7 +30,7 @@
         ?>
         <div class="row divMargin divBackgroundBlue">
             <div class="col-12">
-                Ficha - Fotografía
+                Ficha - Publicaciones (Periodicos y Revistas)
             </div>
         </div>
         <div class="row divMargin">
@@ -56,6 +56,19 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
+                <label class="labelType01">Publicación</label>
+            </div>
+            <div class="col-9">
+                <input type="text" class="form-control textbox-center" id="tbPublicacion"></input>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-success" onclick="obtenerTiposPublicacionSelect()" data-toggle='modal' data-target='#modalAgregarPublicacion'>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
                 <label class="labelType01">Número de registro interno</label>
             </div>
             <div class="col-4">
@@ -70,45 +83,81 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
-                <label class="labelType01">Título</label>
+                <label class="labelType01">No. de edición</label>
             </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbTitulo"></input>
-            </div>
-            <div class="col-2">
-                <label class="labelType01">Título serie</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbTituloSerie"></input>
-            </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-2">
-                <label class="labelType01">Lugar asunto</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbLugarAsunto"></input>
+            <div class="col-1">
+                <input type="text" class="form-control textbox-center" id="tbNumeroEdicion"></input>
             </div>
             <div class="col-2">
-                <label class="labelType01">Lugar toma</label>
+                <label class="labelType01">No. de publicación</label>
             </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbLugarToma"></input>
+            <div class="col-1">
+                <input type="text" class="form-control textbox-center" id="tbNumeroPublicacion"></input>
             </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-3">
-                <label class="labelType01">Fecha asunto</label>
+            <div class="col-2">
+                <label class="labelType01">No. total de páginas</label>
             </div>
-            <div class="col-3">
+            <div class="col-1">
+                <input type="text" class="form-control textbox-center" id="tbNumeroTotalPaginas"></input>
+            </div>
+            <div class="col-1">
+                <label class="labelType01">Fecha publicación</label>
+            </div>
+            <div class="col-2">
                 <input type="text" class="form-control textbox-center" id="tbFechaAsunto" placeholder="dd/mm/aaaa"></input>
             </div>
-            <div class="col-3">
-                <label class="labelType01">Fecha toma</label>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
+                <label class="labelType01">Géneros periodísticos</label>
             </div>
-            <div class="col-3">
-                <input type="text" class="form-control textbox-center" id="tbFechaToma" placeholder="dd/mm/aaaa"></input>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-8" id="divGenerosPeriodisticosSelect">
+                
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" onclick="agregarGeneroPeriodisticoSelect()">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGeneroPeriodistico'>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" id="divGenerosPeriodisticos">
+                        
+                    </div>
+                </div>     
+            </div>            
+            <div class="col-2">
+                <label class="labelType01">Géneros literarios</label>
             </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-8" id="divGenerosLiterariosSelect">
+                
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" onclick="agregarGeneroLiterarioSelect()">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGeneroLiterario'>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" id="divGenerosLiterarios">
+                        
+                    </div>
+                </div>     
+            </div>    
         </div>
         <div class="row divMargin">
             <div class="col-2">
@@ -132,19 +181,6 @@
                 </div>
             </div>
             <div class="col-2">
-                <label class="labelType01">Estudio fotográfico</label>
-            </div>
-            <div class="col-3">
-                <input type="text" class="form-control textbox-center" id="tbEstudio"></input>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarEstudio'>
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-2">
                 <label class="labelType01">Albúm</label>
             </div>
             <div class="col-2">
@@ -160,25 +196,59 @@
                     <i class="fas fa-search"></i>
                 </button>
             </div>
+        </div>
+        <div class="row divMargin">            
             <div class="col-2">
-                <label class="labelType01">Número de fotografía</label>
+                <label class="labelType01">Título de la sección</label>
             </div>
-            <div class="col-1">
-                <input type="text" class="form-control textbox-center" id="tbNumeroFotografia"></input>
+            <div class="col-4">
+                <input type="text" class="form-control textbox-center" id="tbTituloSeccion"></input>
+            </div>
+            <div class="col-3">
+                <label class="labelType01">No. página en la que se encuentra</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control textbox-center" id="tbNumeroPaginaEncuentra"></input>
             </div>
         </div>
         <div class="row divMargin">
             <div class="col-2">
-                <label class="labelType01">Colección</label>
+                <label class="labelType01">No. de columnas</label>
             </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbColeccion"></input>
+            <div class="col-1">
+                <input type="text" class="form-control textbox-center" id="tbNumeroColumnas"></input>
+            </div>
+            <div class="col-1">
+                <label class="labelType01">Hallazgo</label>
             </div>
             <div class="col-2">
-                <label class="labelType01">Clave técnica</label>
+                <select id="selHallazgo" class="form-control">
+                    <option value="SI">SI</option>
+                    <option value="NO">NO</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <label class="labelType01">Periodicidad de la publicación</label>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-9" id="divPeriodicidades">
+                        
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarNuevaPeriodicidad'>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row divMargin">            
+            <div class="col-2">
+                <label class="labelType01">ISSN</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbClaveTecnica"></input>
+                <input type="text" class="form-control textbox-center" id="tbISSN"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -232,89 +302,46 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
-                <label class="labelType01">Técnica o proceso fotográfico</label>
+                <label class="labelType01">Tipo de encuadernación</label>
             </div>
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control textbox-center" id="tbTecnica"></input>
+                        <input type="text" class="form-control textbox-center" id="tbTipoEncuadernacion"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTecnica'>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTipoEncuadernacion'>
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
                 <div class="row divMargin">
-                    <div class="col-12" id="divTecnicas">
+                    <div class="col-12" id="divTiposEncuadernacion">
                         
                     </div>
                 </div>
             </div>
             <div class="col-2">
-                <label class="labelType01">Soportes flexibles</label>
+                <label class="labelType01">Técnica de impresión</label>
             </div>
             <div class="col-4">
                 <div class="row">
                     <div class="col-7">
-                        <input type="text" class="form-control textbox-center" id="tbSoporteFlexible"></input>
+                        <input type="text" class="form-control textbox-center" id="tbTecnicaImpresion"></input>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteFlexible'>
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarTecnicaImpresion'>
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
                 <div class="row divMargin">
-                    <div class="col-12" id="divSoportesFlexibles">
+                    <div class="col-12" id="divTecnicasImpresion">
                         
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row divMargin">
-            <div class="col-2">
-                <label class="labelType01">Soportes rígidos</label>
-            </div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-7">
-                        <input type="text" class="form-control textbox-center" id="tbSoporteRigido"></input>
-                    </div>
-                    <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarSoporteRigido'>
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="row divMargin">
-                    <div class="col-12" id="divSoportesRigidos">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <label class="labelType01">Genero</label>
-            </div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-7">
-                        <input type="text" class="form-control textbox-center" id="tbGenero"></input>
-                    </div>
-                    <div class="col-2">
-                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGenero'>
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="row divMargin">
-                    <div class="col-12" id="divGeneros">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row divMargin">
             <div class="col-2">
                 <label class="labelType01">Estado de Conservación</label>
@@ -338,34 +365,25 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
-                <input type="checkbox" value="Agrietamiento" id="cbAgrietamiento"> <label for="cbAgrietamiento" class="labelType01">Agrietamiento</label>
+                <input type="checkbox" value="Arrugas" id="cbArrugas"> <label for="cbArrugas" class="labelType01">Arrugas</label>
             </div>
             <div class="col-2">
                 <input type="checkbox" value="Ataque biológico" id="cbAtaque"> <label for="cbAtaque" class="labelType01">Ataque biológico</label>
             </div>
             <div class="col-2">
-                <input type="checkbox" value="Burbujas" id="cbBurbujas"> <label for="cbBurbujas" class="labelType01">Burbujas</label>
-            </div>
-            <div class="col-2">
-                <input type="checkbox" value="Cambios de Color" id="cbCambios"> <label for="cbCambios" class="labelType01">Cambios de Color</label>
-            </div>
-            <div class="col-2">
-                <input type="checkbox" value="Craqueladuras" id="cbCraqueladuras"> <label for="cbCraqueladuras" class="labelType01">Craqueladuras</label>
-            </div>
-            <div class="col-2">
                 <input type="checkbox" value="Cintas adhesivas" id="cbCintas"> <label for="cbCintas" class="labelType01">Cintas adhesivas</label>
             </div>
-        </div>
-        <div class="row divMargin">
             <div class="col-2">
                 <input type="checkbox" value="Deformaciones" id="cbDeformaciones"> <label for="cbDeformaciones" class="labelType01">Deformaciones</label>
             </div>
             <div class="col-2">
-                <input type="checkbox" value="Desprendimientos" id="cbDesprendimientos"> <label for="cbDesprendimientos" class="labelType01">Desprendimientos</label>
+                <input type="checkbox" value="Deshojado" id="cbDeshojado"> <label for="cbDeshojado" class="labelType01">Deshojado</label>
             </div>
             <div class="col-2">
-                <input type="checkbox" value="Desvanecimento por luz" id="cbDesvanecimiento"> <label for="cbDesvanecimiento" class="labelType01">Desvan. por luz</label>
+                <input type="checkbox" value="Etiquetas" id="cbEtiquetas"> <label for="cbEtiquetas" class="labelType01">Etiquetas</label>
             </div>
+        </div>
+        <div class="row divMargin">            
             <div class="col-2">
                 <input type="checkbox" value="Huellas digitales" id="cbHuellas"> <label for="cbHuellas" class="labelType01">Huellas digitales</label>
             </div>
@@ -375,10 +393,8 @@
             <div class="col-2">
                 <input type="checkbox" value="Manchas" id="cbManchas"> <label for="cbManchas" class="labelType01">Manchas</label>
             </div>
-        </div>
-        <div class="row divMargin">
             <div class="col-2">
-                <input type="checkbox" value="Raspaduras" id="cbRaspaduras"> <label for="cbRaspaduras" class="labelType01">Raspaduras</label>
+                <input type="checkbox" value="Rasgaduras" id="cbRasgaduras"> <label for="cbRasgaduras" class="labelType01">Rasgaduras</label>
             </div>
             <div class="col-2">
                 <input type="checkbox" value="Ralladuras" id="cbRalladuras"> <label for="cbRalladuras" class="labelType01">Ralladuras</label>
@@ -386,14 +402,27 @@
             <div class="col-2">
                 <input type="checkbox" value="Retocado" id="cbRetocado"> <label for="cbRetocado" class="labelType01">Retocado</label>
             </div>
+        </div>
+        <div class="row divMargin">            
             <div class="col-2">
                 <input type="checkbox" value="Roturas" id="cbRoturas"> <label for="cbRoturas" class="labelType01">Roturas</label>
             </div>
             <div class="col-2">
                 <input type="checkbox" value="Sellos o inscripciones por tinta" id="cbSellos"> <label for="cbSellos" class="labelType01">Sellos o tinta</label>
-            </div>            
+            </div>
             <div class="col-2">
-                <input type="checkbox" value="Sulfuración" id="cbSulfuracion"> <label for="cbSulfuracion" class="labelType01">Sulfuración</label>
+                <label class="labelType01">Otros</label>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control textbox-center" id="tbOtros"></input>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-4">
+                <label class="labelType01">Objeto fragmentado (número de fragmentos)</label>
+            </div>
+            <div class="col-1">
+                <input type="text" class="form-control textbox-center" id="tbOtros"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -474,7 +503,46 @@
                 <button class="btn btn-primary" onclick="guardarFichaFoto()">Guardar</button>
             </div>
             <div class="col-3">
-                <button class="btn btn-primary" onclick="limpiarCamposFichaFotografia()">Limpiar campos</button>
+                <button class="btn btn-primary" onclick="limpiarCamposFichaPublicacion()">Limpiar campos</button>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar una nueva publicación-->
+    <div class="modal fade" id="modalAgregarPublicacion" tabindex="-1" role="dialog" aria-labelledby="modalAgregarPublicacion" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nueva publicación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Nombre de la publicación</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevaPublicacion"></input>
+                        </div>
+                        <div class="col-12">
+                            <label>País</label>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevaPublicacionPais"></input>
+                        </div>
+                        <div class="col-12">
+                            <label>Tipo de publicación</label>
+                        </div>
+                        <div class="col-12" id="divNuevaPublicacionTiposPublicacion">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevaPublicacionNombre()">Guardar cambios</button>
+                </div>
             </div>
         </div>
     </div>
@@ -502,12 +570,12 @@
             </div>
         </div>
     </div>
-    <!--Ventana modal para agregar un nuevo estudio fotográfico-->
-    <div class="modal fade" id="modalAgregarEstudio" tabindex="-1" role="dialog" aria-labelledby="modalAgregarEstudio" aria-hidden="true">
+    <!--Ventana modal para agregar un nuevo genero periodistico-->
+    <div class="modal fade" id="modalAgregarGeneroPeriodistico" tabindex="-1" role="dialog" aria-labelledby="modalAgregarGeneroPeriodistico" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo estudio fotográfico</h5>
+                    <h5 class="modal-title">Agregar nuevo género periodístico</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -515,13 +583,61 @@
                 <div class="modal-body">
                     <div class="row">                        
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoEstudio"></input>
+                            <input type="text" class="form-control" id="tbNuevoGeneroPeriodistico"></input>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevoEstudio()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoGeneroPeriodistico()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar un nuevo genero literario-->
+    <div class="modal fade" id="modalAgregarGeneroLiterario" tabindex="-1" role="dialog" aria-labelledby="modalAgregarGeneroLiterario" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nuevo género literario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevoGeneroLiterario"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoGeneroLiterario()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para agregar una nueva periodicidad de publicación-->
+    <div class="modal fade" id="modalAgregarNuevaPeriodicidad" tabindex="-1" role="dialog" aria-labelledby="modalAgregarNuevaPeriodicidad" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar nuevo género literario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="tbNuevaPeriodicidad"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevaPeriodicidad()">Guardar cambios</button>
                 </div>
             </div>
         </div>
@@ -940,6 +1056,24 @@
             });
         });
         $(function() {     
+            $("#tbNuevaPublicacionPais").autocomplete({
+                source: "php/obtenerPaisesJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    fp_IdPaisNuevaPublicacion = ui.item.id;                    
+                }
+            });
+        });
+        $(function() {     
+            $("#tbPublicacion").autocomplete({
+                source: "php/obtenerPublicacionesJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    elegirPublicacion(ui.item.id);
+                }
+            });
+        });
+        $(function() {     
             $("#tbLugarAsunto").autocomplete({
                 source: "php/obtenerLugaresJSON.php",
                 minLength: 2,
@@ -983,7 +1117,7 @@
                 function(request, response) {
                 $.getJSON(
                     "php/obtenerAlbumesJSON.php",
-                    { term: request.term, tipoFicha: "Fotografia" }, 
+                    { term: request.term, tipoFicha: "Publicacion" },
                     response
                 );},
                 minLength: 2,
@@ -997,7 +1131,7 @@
                 source: "php/obtenerInstitucionesJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
-                    ff_InstitucionElegidaNuevoAlbum = ui.item.id;                    
+                    fp_InstitucionElegidaNuevoAlbum = ui.item.id;
                 }
             });
         });
@@ -1067,17 +1201,27 @@
         });
         obtenerUltimasFichasFotografia();
         obtenerTemas();
+        obtenerGenerosPeriodisticosSelect();
+        obtenerGenerosLiterariosSelect();
+        obtenerPeriodicidadesSelect();
         $("#divEnlacesWeb").css("visibility", "hidden");
         $("#divImagenesBien").css("visibility", "hidden");
         $("#divPendientes").css("visibility", "hidden");
-        limpiarCamposFichaFotografia();
+        limpiarCamposFichaPublicacion();
+        limpiarCamposNuevaPublicacion();
     });
-
+    
+    $('#modalAgregarPublicacion').on('shown.bs.modal', function() {
+        $('#tbNuevaPublicacion').focus();
+    });
     $('#modalAgregarAutor').on('shown.bs.modal', function() {
         $('#tbNuevoAutor').focus();
     });
-    $('#modalAgregarEstudio').on('shown.bs.modal', function() {
-        $('#tbNuevoEstudio').focus();
+    $('#modalAgregarGeneroPeriodistico').on('shown.bs.modal', function() {
+        $('#tbNuevoGeneroPeriodistico').focus();
+    });
+    $('#modalAgregarGeneroLiterario').on('shown.bs.modal', function() {
+        $('#tbNuevoGeneroLiterario').focus();
     });
     $('#modalAgregarAlbum').on('shown.bs.modal', function() {
         $('#tbNuevoAlbumNombre').focus();
@@ -1085,8 +1229,8 @@
     $('#modalAgregarTema').on('shown.bs.modal', function() {
         $('#tbNuevoTema').focus();
     });
-    $('#modalAgregarTecnica').on('shown.bs.modal', function() {
-        $('#tbNuevaTecnica').focus();
+    $('#modalAgregarNuevaPeriodicidad').on('shown.bs.modal', function() {
+        $('#tbNuevaPeriodicidad').focus();
     });
     $('#modalAgregarSoporteFlexible').on('shown.bs.modal', function() {
         $('#tbNuevoSoporteFlexible').focus();

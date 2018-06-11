@@ -12,14 +12,14 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Select * From paises";
+        $sql = "Select * From tipospublicacion Order By tipo";
 
         $result = $con->query($sql);
 
         echo "<select class='form-control' id='" . $idSelect . "'>";
 
         while ($row = $result->fetch_array()) {
-            echo "<option value='" . $row["idpais"] . "'>" . $row["pais"] . "</option>";            
+            echo "<option value='" . $row["idtipopublicacion"] . "'>" . $row["tipo"] . "</option>";            
         }
         
         echo "</select>";

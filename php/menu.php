@@ -33,7 +33,8 @@
                         Fichas de bienes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item mainMenuElement" href="ficha_foto.php">Fotografías</a>                        
+                        <a class="dropdown-item mainMenuElement" href="ficha_foto.php">Fotografías</a>
+                        <a class="dropdown-item mainMenuElement" href="ficha_publicacion.php">Publicaciones</a>
                         </div>
                     </li>
                     </ul>

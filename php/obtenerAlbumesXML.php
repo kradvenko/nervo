@@ -29,6 +29,7 @@
             echo "<descripcion>" . $row['descripcion'] . "</descripcion>\n";
             echo "<numerofotografias>" . $row['numerofotografias'] . "</numerofotografias>\n";
             echo "<numeroalbum>" . $row['numeroalbum'] . "</numeroalbum>\n";
+            echo "<tipoficha>" . $row['tipoficha'] . "</tipoficha>\n";
             echo "</cat>";
         }
 

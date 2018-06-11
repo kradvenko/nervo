@@ -6,19 +6,18 @@
         header('Content-type: application/json');
 
         $term = $_GET["term"];
-        $tipoFicha = $_GET["tipoFicha"];
 
         $con = new mysqli($hn, $un, $pw, $db);
 
         $data = array();
 
-        $sql = "Select * From albumes " .
-                "Where albumes.album Like '%$term%' And tipoficha = '$tipoFicha'";
+        $sql = "Select * From paises " .
+                "Where paises.pais Like '%$term%'";
 
         $result = $con->query($sql);
 
         while ($row = $result->fetch_array()) {
-            $ciudad = array("id" => $row["idalbum"] , "value" => ($row["album"]));
+            $ciudad = array("id" => $row["idpais"] , "value" => $row["pais"]);
             array_push($data, $ciudad);
         }
         

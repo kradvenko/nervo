@@ -393,4 +393,38 @@ CHANGE COLUMN `titulo` `titulo` VARCHAR(150) NULL DEFAULT NULL ;
 
 ALTER TABLE `acervonervo`.`fichasfotografia` 
 ADD COLUMN `contextohistorico` VARCHAR(500) NULL AFTER `anotaciones`;
+--09/06/2018
+ALTER TABLE `acervonervo`.`albumes` 
+ADD COLUMN `tipoficha` VARCHAR(45) NULL AFTER `numeroalbum`;
 
+CREATE TABLE `publicaciones` (
+  `idpublicacion` int(11) NOT NULL AUTO_INCREMENT,
+  `idpais` int(11) DEFAULT NULL,
+  `idtipo` int(11) DEFAULT NULL,
+  `publicacion` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idpublicacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tipospublicacion` (
+  `idtipopublicacion` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idtipopublicacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `generosperiodisticos` (
+  `idgeneroperiodistico` int(11) NOT NULL AUTO_INCREMENT,
+  `genero` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`idgeneroperiodistico`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `generosliterarios` (
+  `idgeneroliterario` int(11) NOT NULL AUTO_INCREMENT,
+  `genero` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`idgeneroliterario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publicacionperiodicidades` (
+  `idpublicacionperiodicidad` int(11) NOT NULL AUTO_INCREMENT,
+  `periodicidad` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idpublicacionperiodicidad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
