@@ -543,3 +543,8 @@ CREATE TABLE `publicaciontipospapel` (
   `idtipopapel` int(11) DEFAULT NULL,
   PRIMARY KEY (`idpublicaciontipopapel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--12/06/2018
+ALTER TABLE `albumes` 
+ADD COLUMN `de` VARCHAR(20) NULL AFTER `tipoficha`,
+ADD COLUMN `a` VARCHAR(20) NULL AFTER `de`;

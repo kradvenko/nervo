@@ -563,6 +563,21 @@
                             <input type="text" class="form-control" id="tbNuevoAlbumFotografias"></input>
                         </div>
                         <div class="col-12">
+                            <label>Rango de fotografías</label>
+                        </div>
+                        <div class="col-1">
+                            <label>De</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" id="tbNuevoAlbumFotografiasDe"></input>
+                        </div>
+                        <div class="col-1">
+                            <label>A</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" id="tbNuevoAlbumFotografiasA"></input>
+                        </div>
+                        <div class="col-12">
                             <label>Número de albúm</label>
                         </div>
                         <div class="col-12">
@@ -612,6 +627,21 @@
                         </div>
                         <div class="col-12">
                             <input type="text" class="form-control" id="tbVerAlbumFotografias" disabled></input>
+                        </div>
+                        <div class="col-12">
+                            <label>Rango de fotografías</label>
+                        </div>
+                        <div class="col-1">
+                            <label>De</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" id="tbVerAlbumFotografiasDe" disabled></input>
+                        </div>
+                        <div class="col-1">
+                            <label>A</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" id="tbVerAlbumFotografiasA" disabled></input>
                         </div>
                         <div class="col-12">
                             <label>Número de albúm</label>

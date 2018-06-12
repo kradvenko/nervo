@@ -30,6 +30,8 @@
             echo "<numerofotografias>" . $row['numerofotografias'] . "</numerofotografias>\n";
             echo "<numeroalbum>" . $row['numeroalbum'] . "</numeroalbum>\n";
             echo "<tipoficha>" . $row['tipoficha'] . "</tipoficha>\n";
+            echo "<de>" . $row['de'] . "</de>\n";
+            echo "<a>" . $row['a'] . "</a>\n";
             echo "</cat>";
         }
 

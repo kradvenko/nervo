@@ -57,6 +57,8 @@ function verAlbum() {
             $("#tbVerAlbumInstitucion").val($(this).find("institucion").text());
             $("#tbVerAlbumDescripcion").val($(this).find("descripcion").text());
             $("#tbVerAlbumFotografias").val($(this).find("numerofotografias").text());
+            $("#tbVerAlbumFotografiasDe").val($(this).find("de").text());
+            $("#tbVerAlbumFotografiasA").val($(this).find("a").text());
             $("#tbVerAlbumNumero").val($(this).find("numeroalbum").text());
         });
     }});
@@ -441,6 +443,8 @@ function agregarNuevoAlbum() {
     var institucion;
     var descripcion;
     var numeroFotografias;
+    var de;
+    var a;
     var numeroAlbum;
 
     if ($("#tbNuevoAlbumNombre").val().length > 0) {
@@ -464,13 +468,17 @@ function agregarNuevoAlbum() {
         return;
     }
     numeroAlbum = $("#tbNuevoAlbumNumero").val();
+    de = $("#tbNuevoAlbumFotografiasDe").val();
+    a = $("#tbNuevoAlbumFotografiasA").val();
 
-    $.ajax({url: "php/agregarAlbum.php", async: false, type: "POST", data: { nombre : nombre, institucion : institucion, descripcion : descripcion, numeroFotografias : numeroFotografias, numeroAlbum: numeroAlbum, tipoFicha: "Fotografia" }, success: function(res) {
+    $.ajax({url: "php/agregarAlbum.php", async: false, type: "POST", data: { nombre : nombre, institucion : institucion, descripcion : descripcion, numeroFotografias : numeroFotografias, numeroAlbum: numeroAlbum, tipoFicha: "Fotografia", de, a }, success: function(res) {
         if (res == 'OK') {
             $("#tbNuevoAlbumNombre").val('');
             $("#tbNuevoAlbumInstitucion").val('');
             $("#tbNuevoAlbumDescripcion").val('');
             $("#tbNuevoAlbumFotografias").val('');
+            $("#tbNuevoAlbumFotografiasDe").val('');
+            $("#tbNuevoAlbumFotografiasA").val('');
             $("#tbNuevoAlbumNumero").val('');
             $('#modalAgregarAlbum').modal('hide');
         } else {
