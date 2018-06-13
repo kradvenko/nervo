@@ -22,6 +22,7 @@ var ff_PersonaToma = 0;
 var ff_Reader;
 var ff_idEnlaceWeb = 0;
 var ff_idImagenElegida = 0;
+var idPendienteBien = 0;
 //Funciones de elección de datos
 function elegirInstitucionBien(id) {
     ff_InstitucionElegida = id;
@@ -779,4 +780,75 @@ function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, apr
     $("#tbTomaFecha").val(fechatoma);
     $("#selImagenAprobada").val(aprobada);
     $('#imgImagen').attr('src', rutaimagen);
+}
+
+//Pendientes bien
+function obtenerPendientesBien() {
+    $.ajax({url: "php/obtenerPendientesBien.php", async: false, type: "POST", data: { idBien: ff_IdFichaFotografia, tipoBien: "fotografia" }, success: function(res) {
+        $("#divListaPendientesBien").html(res);
+    }});
+}
+
+function elegirPendienteBien(idBienPendiente, pendiente, estado, fechaInicio, fechaFin, resolucion) {
+    idPendienteBien = idBienPendiente;
+    $("#tbPendienteBien").val(pendiente);
+    $("#tbPendienteBienResolucion").val(resolucion);
+    $("#lblPendienteBienEstado").text(estado);
+    $("#lblPendienteBienFechaInicio").text(fechaInicio);
+    $("#lblPendienteBienFechaFin").text(fechaFin);
+}
+
+function guardarPendienteBien(estado) {
+    if (ff_IdFichaFotografia == 0) {
+        return;
+    }
+    var pendiente;
+    var resolucion;
+    var fechaInicio;
+    var fechaFin;
+
+    pendiente =  $("#tbPendienteBien").val();
+    if (pendiente.length == 0) {
+        alert("No ha escrito el pendiente.")
+        return;
+    }
+    resolucion = $("#tbPendienteBienResolucion").val();
+    var d = new Date();
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+    var output = ((''+day).length<2 ? '0' : '') + day + '/' +
+    ((''+month).length<2 ? '0' : '') + month + '/' +
+    d.getFullYear();
+
+    fechaInicio = output;
+    fechaFin = output;
+
+    if (idPendienteBien == 0) {
+        $.ajax({url: "php/agregarPendienteBien.php", async: false, type: "POST", data: { idBien: ff_IdFichaFotografia, tipoBien: "fotografia", pendiente: pendiente, estado: estado, resolucion: resolucion, fechaInicio: fechaInicio }, success: function(res) {
+            if (res == "OK") {
+                obtenerPendientesBien();
+                //obtenerBienes();
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        $.ajax({url: "php/actualizarPendienteBien.php", async: false, type: "POST", data: { idPendienteBien: idPendienteBien, tipoBien: "fotografia", pendiente: pendiente, estado: estado, resolucion: resolucion, fechaFin: fechaFin }, success: function(res) {
+            if (res == "OK") {
+                obtenerPendientesBien();
+                //obtenerBienes();
+            } else {
+                alert(res);
+            }
+        }});
+    }
+}
+
+function limpiarCamposPendienteBien() {
+    idPendienteBien = 0;
+    $("#tbPendienteBien").val("");
+    $("#tbPendienteBienResolucion").val("");
+    $("#lblPendienteBienEstado").text("");
+    $("#lblPendienteBienFechaInicio").text("");
+    $("#lblPendienteBienFechaFin").text("");
 }

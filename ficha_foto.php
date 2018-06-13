@@ -793,52 +793,52 @@
                             <label class="labelType01">Pendiente</label>
                         </div>
                         <div class="col-12">
-                            <textarea class="form-control" rows="4" id="tbPendienteInstitucion"></textarea>
+                            <textarea class="form-control" rows="4" id="tbPendienteBien"></textarea>
                         </div>
                         <div class="col-12">
                             <label class="labelType01">Resolución</label>
                         </div>
                         <div class="col-12">
-                            <textarea class="form-control" rows="4" id="tbPendienteInstitucionResolucion"></textarea>
+                            <textarea class="form-control" rows="4" id="tbPendienteBienResolucion"></textarea>
                         </div>
                         <div class="col-2">
                             <label class="labelType01">Estado</label>
                         </div>
                         <div class="col-2">
-                            <label id="lblPendienteInstitucionEstado"></label>
+                            <label id="lblPendienteBienEstado"></label>
                         </div>
                         <div class="col-2">
                             <label class="labelType01">Fecha inicio</label>
                         </div>
                         <div class="col-2">
-                            <label id="lblPendienteInstitucionFechaInicio"></label>
+                            <label id="lblPendienteBienFechaInicio"></label>
                         </div>
                         <div class="col-2">
                             <label class="labelType01">Fecha fin</label>
                         </div>
                         <div class="col-2">
-                            <label id="lblPendienteInstitucionFechaFin"></label>
+                            <label id="lblPendienteBienFechaFin"></label>
                         </div>
                     </div>
                     <div class="row divMargin">
                         <div class="col-3">
-                            <button type="button" class="btn btn-success" onclick="guardarPendienteInstitucion('ACTIVO')">Guardar</button>
+                            <button type="button" class="btn btn-success" onclick="guardarPendienteBien('ACTIVO')">Guardar</button>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-danger" onclick="guardarPendienteInstitucion('FINALIZADO')">Finalizar</button>
+                            <button type="button" class="btn btn-danger" onclick="guardarPendienteBien('FINALIZADO')">Finalizar</button>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-success" onclick="limpiarCamposPendienteInstitucion()">Limpiar</button>
+                            <button type="button" class="btn btn-success" onclick="limpiarCamposPendienteBien()">Limpiar</button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12" id="divListaPendientesInstitucion">
+                        <div class="col-12" id="divListaPendientesBien">
 
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposPendienteInstitucion()">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposPendienteBien()">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -1126,6 +1126,9 @@
     });
     $('#modalAgregarGenero').on('shown.bs.modal', function() {
         $('#tbNuevoGenero').focus();
+    });
+    $('#modalMostrarPendientesBien').on('shown.bs.modal', function() {
+        $('#tbPendienteBien').focus();
     });
 
     $("#imgInp").change(function(){
