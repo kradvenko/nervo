@@ -324,6 +324,7 @@ function limpiarCamposFichaFotografia () {
     ff_generos = [];
     ff_genero;
     ff_PersonaToma = 0;
+    $("#tbBuscar").val("");
     $("#tbInstitucion").val("");
     ff_InstitucionElegida = 0;
     $("#tbNumeroInterno").val("");
