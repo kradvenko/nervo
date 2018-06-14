@@ -13,14 +13,14 @@
 
         $sql = "Select * 
                     From fichasfotografia
-                    Where fichasfotografia.titulo Like '%$term%' 
+                    Where fichasfotografia.numerofotografia Like '%$term%' 
                     Order By idfichafotografia Desc 
                     Limit 10";       
 
         $result = $con->query($sql);
 
         while ($row = $result->fetch_array()) {
-            $item = array("id" => $row["idfichafotografia"] , "value" => json_encode($row["titulo"]));
+            $item = array("id" => $row["idfichafotografia"] , "value" => json_encode($row["numerofotografia"]));
             array_push($data, $item);
         }
         

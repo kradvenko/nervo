@@ -43,6 +43,14 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
+                Buscar por número fotografía
+            </div>
+            <div class="col-10">
+                <input type="text" class="form-control textbox-center" id="tbBuscarNumero"></input>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
                 Últimas fichas
             </div>
             <div class="col-10" id="divUltimasFichas">
@@ -1107,7 +1115,7 @@
         });$(function() {     
             $("#tbBuscar").autocomplete({
                 source: "php/obtenerFichasFotografiaJSON.php",
-                minLength: 2,
+                minLength: 1,
                 select: function(event, ui) {
                     elegirFichaFotografia(ui.item.id);
                 }
