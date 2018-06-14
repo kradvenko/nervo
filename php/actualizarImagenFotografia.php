@@ -8,6 +8,7 @@
         $fechaToma = $_POST["fechaToma"];
         $rutaImagen = $_POST["rutaImagen"];
         $aprobada = $_POST["aprobada"];
+        $personaEdita = $_POST["personaEdita"];
 
         if (!$idImagen || !$rutaImagen) {
             echo "Error. Faltan variables.";
@@ -17,7 +18,7 @@
         $con = new mysqli($hn, $un, $pw, $db);
 
         $sql = "Update fotografiaimagenes Set idPersonaToma = " . $idPersonaToma . ", fechatoma = '" . $fechaToma . "', " .
-        "rutaimagen = '" . $rutaImagen . "', aprobada = '" . $aprobada . "' " .
+        "rutaimagen = '" . $rutaImagen . "', aprobada = '" . $aprobada . "', personaedita = '" . $personaEdita . "' " .
         "Where idfotografiaimagen = " . $idImagen;
 
         $con->query($sql);

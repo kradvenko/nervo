@@ -43,14 +43,6 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
-                Buscar por número fotografía
-            </div>
-            <div class="col-10">
-                <input type="text" class="form-control textbox-center" id="tbBuscarNumero"></input>
-            </div>
-        </div>
-        <div class="row divMargin">
-            <div class="col-2">
                 Últimas fichas
             </div>
             <div class="col-10" id="divUltimasFichas">
@@ -952,6 +944,12 @@
                                     <option value="SI">SI</option>
                                     <option value="NO" selected>NO</option>
                                 </select>
+                            </div>
+                            <div class="col-2">
+                                <label class="labelType01">Persona que editó la fotografía</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control textbox-center" id="tbPersonaEdita"></input>
                             </div>
                         </div>
                         <div class="row divMargin">

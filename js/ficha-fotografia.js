@@ -747,10 +747,11 @@ function guardarImagenBien() {
         rutaImagen = $('#imgImagen').attr('src');
     }
     var aprobada = $("#selImagenAprobada").val();
-    var fechaToma = $("#tbTomaFecha").val();    
+    var fechaToma = $("#tbTomaFecha").val();
+    var personaEdita = $("#tbPersonaEdita").val();
 
     if (ff_idImagenElegida == 0) {
-        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita }, success: function(res) {
             if (res == "OK") {
                 obtenerImagenesFotografia();
             } else {
@@ -758,7 +759,7 @@ function guardarImagenBien() {
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: ff_idImagenElegida, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: ff_idImagenElegida, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita }, success: function(res) {
             if (res == "OK") {
                 obtenerImagenesFotografia();
             } else {
@@ -774,13 +775,14 @@ function obtenerImagenesFotografia() {
     }});
 }
 
-function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, aprobada, rutaimagen) {
+function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, aprobada, rutaimagen, personaedita) {
     ff_idImagenElegida = idimagen;
     ff_PersonaToma = idpersona;
     $("#tbTomaPersona").val(personatoma);
     $("#tbTomaFecha").val(fechatoma);
     $("#selImagenAprobada").val(aprobada);
     $('#imgImagen').attr('src', rutaimagen);
+    $("#tbPersonaEdita").val(personaedita);
 }
 
 //Pendientes bien

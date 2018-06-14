@@ -27,6 +27,7 @@
         echo "  <th class='text-left'>Persona toma</th>";
         echo "  <th class='text-left'>Fecha toma</th>";
         echo "  <th class='text-left'>Aprobada</th>";
+        echo "  <th class='text-left'>Persona edita</th>";
         echo "  <th class='text-left'></th>";
         echo " </tr>";
         echo "</thead>";
@@ -37,7 +38,8 @@
             echo "  <td>" . $row["nombre"] . "</td>";
             echo "  <td>" . $row["fechatoma"] . "</td>";
             echo "  <td>" . $row["aprobada"] . "</td>";
-            echo "  <td><button type='button' class='btn btn-success' onclick='elegirImagenFotografia(" . $row["idfotografiaimagen"] . ", \"" . $row["idpersonatoma"] . "\", \"" . $row["nombre"] . "\", \"" . $row["fechatoma"] . "\", \"" . $row["aprobada"] . "\", \"" . $row["rutaimagen"] . "\")'>Elegir</button>";
+            echo "  <td>" . $row["personaedita"] . "</td>";
+            echo "  <td><button type='button' class='btn btn-success' onclick='elegirImagenFotografia(" . $row["idfotografiaimagen"] . ", \"" . $row["idpersonatoma"] . "\", \"" . $row["nombre"] . "\", \"" . $row["fechatoma"] . "\", \"" . $row["aprobada"] . "\", \"" . $row["rutaimagen"] . "\", \"" . $row["personaedita"] . "\")'>Elegir</button>";
             echo "</tr>";
         }
 
