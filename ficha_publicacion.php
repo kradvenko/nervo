@@ -702,12 +702,14 @@
                         <div class="col-12">
                             <input type="text" class="form-control" id="tbNuevoAlbumDescripcion"></input>
                         </div>
+                        <!--
                         <div class="col-12">
                             <label>Número de fotografías</label>
                         </div>
                         <div class="col-12">
                             <input type="text" class="form-control" id="tbNuevoAlbumFotografias"></input>
                         </div>
+                        -->
                         <div class="col-12">
                             <label>Número de albúm</label>
                         </div>
