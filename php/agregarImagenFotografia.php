@@ -9,6 +9,7 @@
         $rutaImagen = $_POST["rutaImagen"];
         $aprobada = $_POST["aprobada"];
         $personaEdita = $_POST["personaEdita"];
+        $thumbnail = $_POST["thumbnail"];
 
         if (!$idFichaFotografia || !$rutaImagen) {
             echo "Error. Faltan variables.";
@@ -17,7 +18,7 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Insert Into fotografiaimagenes (idfotografia, idpersonatoma, rutaimagen, aprobada, fechatoma, personaedita) Values (" . $idFichaFotografia . ", " . $idPersonaToma . ", '" . $rutaImagen . "', '" . $aprobada . "', '" . $fechaToma . "', '" . $personaEdita . "')";
+        $sql = "Insert Into fotografiaimagenes (idfotografia, idpersonatoma, rutaimagen, aprobada, fechatoma, personaedita, thumbnail) Values (" . $idFichaFotografia . ", " . $idPersonaToma . ", '" . $rutaImagen . "', '" . $aprobada . "', '" . $fechaToma . "', '" . $personaEdita . "', '" . $thumbnail . "')";
 
         $con->query($sql);
 

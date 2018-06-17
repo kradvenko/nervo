@@ -548,3 +548,33 @@ CREATE TABLE `publicaciontipospapel` (
 ALTER TABLE `albumes` 
 ADD COLUMN `de` VARCHAR(20) NULL AFTER `tipoficha`,
 ADD COLUMN `a` VARCHAR(20) NULL AFTER `de`;
+--16/06/2018
+ALTER TABLE `acervonervo`.`fotografiaimagenes` 
+ADD COLUMN `thumbnail` VARCHAR(100) NULL AFTER `personaedita`;
+
+ALTER TABLE `acervonervo`.`fichaspublicacion` 
+ADD COLUMN `deformaciones` VARCHAR(5) NULL AFTER `cintasadhesivas`;
+
+CREATE TABLE `publicacionpendientes` (
+  `idpublicacionpendiente` int(11) NOT NULL AUTO_INCREMENT,
+  `idpublicacion` int(11) DEFAULT NULL,
+  `pendiente` varchar(300) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `fechaInicio` varchar(45) DEFAULT NULL,
+  `fechaFin` varchar(45) DEFAULT NULL,
+  `resolucion` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`idpublicacionpendiente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publicacionimagenes` (
+  `idpublicacionimagen` int(11) NOT NULL AUTO_INCREMENT,
+  `idpublicacion` int(11) DEFAULT NULL,
+  `idpersonatoma` int(11) DEFAULT NULL,
+  `rutaimagen` varchar(200) DEFAULT NULL,
+  `aprobada` varchar(45) DEFAULT NULL,
+  `fechatoma` varchar(45) DEFAULT NULL,
+  `personaedita` varchar(150) DEFAULT NULL,
+  `thumbnail` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idpublicacionimagen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

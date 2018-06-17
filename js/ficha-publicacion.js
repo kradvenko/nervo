@@ -25,6 +25,7 @@ var fp_idEnlaceWeb = 0;
 var fp_idImagenElegida = 0;
 var fp_IdPaisNuevaPublicacion = 0;
 var fp_IdPublicacionElegida = 0;
+var idPendienteBien = 0;
 //Funciones de elección de datos
 function elegirInstitucionBien(id) {
     fp_InstitucionElegida = id;
@@ -232,7 +233,7 @@ function elegirFichaPublicacion(id) {
             $("#tbInstitucion").val($(this).find("nombreInstitucion").text());
             fp_InstitucionElegida = $(this).find("idinstitucion").text();
             $("#tbPublicacion").val($(this).find("publicacion").text());
-            fp_IdPublicacionElegida = $(this).find("dipublicacion").text();
+            fp_IdPublicacionElegida = $(this).find("idpublicacion").text();
             $("#tbNumeroInterno").val($(this).find("numeroregistrointerno").text());
             $("#tbNumeroInventario").val($(this).find("numeroinventario").text());
             $("#tbNumeroEdicion").val($(this).find("numeroedicion").text());
@@ -279,48 +280,42 @@ function elegirFichaPublicacion(id) {
             $("#divPendientes").css("visibility", "visible");
         });
     }});
-    $.ajax({url: "php/obtenerAutoresBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+    $.ajax({url: "php/obtenerAutoresPublicacionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
         fp_Autores = [];
         $('cat', res).each(function(index, element) {
             fp_Autor =  { id: $(this).find("idautor").text(), autor: $(this).find("autor").text() };
             fp_Autores[fp_Autores.length] = fp_Autor;
         });
     }});
-    $.ajax({url: "php/obtenerTemasBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+    $.ajax({url: "php/obtenerTemasPublicacionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
         fp_temas = [];
         $('cat', res).each(function(index, element) {
             fp_tema =  { id: $(this).find("idtema").text(), tema: $(this).find("tema").text() };
             fp_temas[fp_temas.length] = fp_tema;
         });
     }});
-    $.ajax({url: "php/obtenerTecnicasFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        fp_tecnicas = [];
+    $.ajax({url: "php/obtenerTiposEncuadernacionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
+        fp_tiposEncuadernacion = [];
         $('cat', res).each(function(index, element) {
-            fp_tecnica =  { id: $(this).find("idtecnica").text(), tecnica: $(this).find("tecnica").text() };
-            fp_tecnicas[fp_tecnicas.length] = fp_tecnica;
+            fp_tipoEncuadernacion =  { id: $(this).find("idtipoencuadernacion").text(), tipo: $(this).find("tipoencuadernacion").text() };
+            fp_tiposEncuadernacion[fp_tiposEncuadernacion.length] = fp_tipoEncuadernacion;
         });
     }});
-    $.ajax({url: "php/obtenerSoportesFlexiblesFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        fp_soportesFlexibles = [];
+    $.ajax({url: "php/obtenerTecnicasImpresionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
+        fp_tecnicasImpresion = [];
         $('cat', res).each(function(index, element) {
-            fp_soporteFlexible =  { id: $(this).find("idsoporteflexible").text(), soporteFlexible: $(this).find("soporteflexible").text() };
-            fp_soportesFlexibles[fp_soportesFlexibles.length] = fp_soporteFlexible;
+            fp_tecnicaImpresion =  { id: $(this).find("idtecnicaimpresion").text(), tecnica: $(this).find("tecnicaimpresion").text() };
+            fp_tecnicasImpresion[fp_tecnicasImpresion.length] = fp_tecnicaImpresion;
         });
     }});
-    $.ajax({url: "php/obtenerSoportesRigidosFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        fp_soportesRigidos = [];
+    $.ajax({url: "php/obtenerTiposPapelXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
+        fp_tiposPapel = [];
         $('cat', res).each(function(index, element) {
-            fp_soporteRigido =  { id: $(this).find("idsoporterigido").text(), soporteRigido: $(this).find("soporterigido").text() };
-            fp_soportesRigidos[fp_soportesRigidos.length] = fp_soporteRigido; 
+            fp_tipoPapel =  { id: $(this).find("idtipopapel").text(), tipo: $(this).find("tipopapel").text() };
+            fp_tiposPapel[fp_tiposPapel.length] = fp_tipoPapel;
         });
     }});
-    $.ajax({url: "php/obtenerGenerosFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
-        fp_generos = [];
-        $('cat', res).each(function(index, element) {
-            fp_genero =  { id: $(this).find("idgenero").text(), genero: $(this).find("genero").text() };
-            fp_generos[fp_generos.length] = fp_genero;
-        });
-    }});
+    
     mostrarAutores();
     mostrarTemas();
     mostrarGenerosLiterarios();
@@ -818,9 +813,10 @@ function guardarImagenBien() {
     var rutaImagen;
     if (files != null) {
         fd.append('imgInp', files);
-        fd.append('idFichaFotografia', fp_IdFichaPublicacion);
-        rutaImagen = "imagenesbienes/fotografias/" + fp_IdFichaPublicacion + "/" + files.name;
-        $.ajax({ url: "imagenesbienes/subirImagenFotografia.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
+        fd.append('idFichaPublicacion', fp_IdFichaPublicacion);
+        rutaImagen = "imagenesbienes/publicaciones/" + fp_IdFichaPublicacion + "/" + files.name;
+        thumbnail = fp_IdFichaPublicacion + "_" + files.name;
+        $.ajax({ url: "imagenesbienes/subirImagenPublicacion.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
             $('#loading').hide();
             $("#message").html(data);
         }});
@@ -828,20 +824,21 @@ function guardarImagenBien() {
         rutaImagen = $('#imgImagen').attr('src');
     }
     var aprobada = $("#selImagenAprobada").val();
-    var fechaToma = $("#tbTomaFecha").val();    
+    var fechaToma = $("#tbTomaFecha").val();
+    var personaEdita = $("#tbPersonaEdita").val();
 
     if (fp_idImagenElegida == 0) {
-        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion, idPersonaToma: fp_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+        $.ajax({url: "php/agregarImagenPublicacion.php", async: false, type: "POST", data: { idFichaPublicacion: fp_IdFichaPublicacion, idPersonaToma: fp_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita, thumbnail: thumbnail }, success: function(res) {
             if (res == "OK") {
-                obtenerImagenesFotografia();
+                obtenerImagenesPublicacion();
             } else {
                 alert(res);
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: fp_idImagenElegida, idPersonaToma: fp_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma }, success: function(res) {
+        $.ajax({url: "php/actualizarImagenPublicacion.php", async: false, type: "POST", data: { idImagen: fp_idImagenElegida, idPersonaToma: fp_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita, thumbnail: thumbnail }, success: function(res) {
             if (res == "OK") {
-                obtenerImagenesFotografia();
+                obtenerImagenesPublicacion();
             } else {
                 alert(res);
             }
@@ -849,8 +846,8 @@ function guardarImagenBien() {
     }
 }
 
-function obtenerImagenesFotografia() {
-    $.ajax({url: "php/obtenerImagenesFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion }, success: function(res) {
+function obtenerImagenesPublicacion() {
+    $.ajax({url: "php/obtenerImagenesPublicacion.php", async: false, type: "POST", data: { idFichaPublicacion: fp_IdFichaPublicacion }, success: function(res) {
         $("#divListaImagenesBien").html(res);
     }});
 }
@@ -862,4 +859,75 @@ function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, apr
     $("#tbTomaFecha").val(fechatoma);
     $("#selImagenAprobada").val(aprobada);
     $('#imgImagen').attr('src', rutaimagen);
+}
+
+//Pendientes bien
+function obtenerPendientesBien() {
+    $.ajax({url: "php/obtenerPendientesBien.php", async: false, type: "POST", data: { idBien: fp_IdFichaPublicacion, tipoBien: "publicacion" }, success: function(res) {
+        $("#divListaPendientesBien").html(res);
+    }});
+}
+
+function elegirPendienteBien(idBienPendiente, pendiente, estado, fechaInicio, fechaFin, resolucion) {
+    idPendienteBien = idBienPendiente;
+    $("#tbPendienteBien").val(pendiente);
+    $("#tbPendienteBienResolucion").val(resolucion);
+    $("#lblPendienteBienEstado").text(estado);
+    $("#lblPendienteBienFechaInicio").text(fechaInicio);
+    $("#lblPendienteBienFechaFin").text(fechaFin);
+}
+
+function guardarPendienteBien(estado) {
+    if (fp_IdFichaPublicacion == 0) {
+        return;
+    }
+    var pendiente;
+    var resolucion;
+    var fechaInicio;
+    var fechaFin;
+
+    pendiente =  $("#tbPendienteBien").val();
+    if (pendiente.length == 0) {
+        alert("No ha escrito el pendiente.")
+        return;
+    }
+    resolucion = $("#tbPendienteBienResolucion").val();
+    var d = new Date();
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+    var output = ((''+day).length<2 ? '0' : '') + day + '/' +
+    ((''+month).length<2 ? '0' : '') + month + '/' +
+    d.getFullYear();
+
+    fechaInicio = output;
+    fechaFin = output;
+
+    if (idPendienteBien == 0) {
+        $.ajax({url: "php/agregarPendienteBien.php", async: false, type: "POST", data: { idBien: fp_IdFichaPublicacion, tipoBien: "publicacion", pendiente: pendiente, estado: estado, resolucion: resolucion, fechaInicio: fechaInicio }, success: function(res) {
+            if (res == "OK") {
+                obtenerPendientesBien();
+                //obtenerBienes();
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        $.ajax({url: "php/actualizarPendienteBien.php", async: false, type: "POST", data: { idPendienteBien: idPendienteBien, tipoBien: "publicacion", pendiente: pendiente, estado: estado, resolucion: resolucion, fechaFin: fechaFin }, success: function(res) {
+            if (res == "OK") {
+                obtenerPendientesBien();
+                //obtenerBienes();
+            } else {
+                alert(res);
+            }
+        }});
+    }
+}
+
+function limpiarCamposPendienteBien() {
+    idPendienteBien = 0;
+    $("#tbPendienteBien").val("");
+    $("#tbPendienteBienResolucion").val("");
+    $("#lblPendienteBienEstado").text("");
+    $("#lblPendienteBienFechaInicio").text("");
+    $("#lblPendienteBienFechaFin").text("");
 }

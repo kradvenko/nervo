@@ -3,7 +3,7 @@
     {
         require_once('connection.php');
 
-        $idImagen = $_POST["idImagen"];
+        $idFichaPublicacion = $_POST["idFichaPublicacion"];
         $idPersonaToma = $_POST["idPersonaToma"];
         $fechaToma = $_POST["fechaToma"];
         $rutaImagen = $_POST["rutaImagen"];
@@ -11,17 +11,14 @@
         $personaEdita = $_POST["personaEdita"];
         $thumbnail = $_POST["thumbnail"];
 
-        if (!$idImagen || !$rutaImagen) {
+        if (!$idFichaPublicacion || !$rutaImagen) {
             echo "Error. Faltan variables.";
             exit(1);
         }
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Update fotografiaimagenes Set idPersonaToma = " . $idPersonaToma . ", fechatoma = '" . $fechaToma . "', " .
-        "rutaimagen = '" . $rutaImagen . "', aprobada = '" . $aprobada . "', personaedita = '" . $personaEdita . "', " .
-        "thumbnail = '" . $thumbnail . "' " .
-        "Where idfotografiaimagen = " . $idImagen;
+        $sql = "Insert Into publicacionimagenes (idpublicacion, idpersonatoma, rutaimagen, aprobada, fechatoma, personaedita, thumbnail) Values (" . $idFichaPublicacion . ", " . $idPersonaToma . ", '" . $rutaImagen . "', '" . $aprobada . "', '" . $fechaToma . "', '" . $personaEdita . "', '" . $thumbnail . "')";
 
         $con->query($sql);
 

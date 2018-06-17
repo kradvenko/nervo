@@ -61,6 +61,7 @@
             echo "<arrugas>" . $row['arrugas'] . "</arrugas>\n";
             echo "<ataquebiologico>" . $row['ataquebiologico'] . "</ataquebiologico>\n";
             echo "<cintasadhesivas>" . $row['cintasadhesivas'] . "</cintasadhesivas>\n";
+            echo "<deformaciones>" . $row['deformaciones'] . "</deformaciones>\n";
             echo "<deshojado>" . $row['deshojado'] . "</deshojado>\n";
             echo "<etiquetas>" . $row['etiquetas'] . "</etiquetas>\n";
             echo "<huellasdigitales>" . $row['huellasdigitales'] . "</huellasdigitales>\n";

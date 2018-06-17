@@ -3,6 +3,7 @@
     {
         require_once('connection.php');
         
+        $idFichaPublicacion = $_POST["idFichaPublicacion"];
         $idInstitucion = $_POST["idInstitucion"];
         $idPublicacion = $_POST["idPublicacion"];
         $numeroRegistroInterno = $_POST["numeroRegistroInterno"];
@@ -57,23 +58,58 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "INSERT INTO fichaspublicacion
-        (idinstitucion, idpublicacion, numeroregistrointerno, numeroinventario, numeroedicion, numeropublicacion, numerototalpaginas,
-        fechapublicacion, idalbum, tituloseccion, numeropaginaencuentra, numerocolumnas, hallazgo, idperiodicidad, issn, anotaciones,
-        contextohistorico, estadoconservacion, estadointegridad, arrugas, ataquebiologico, cintasadhesivas, deshojado, etiquetas,
-        huellasdigitales, hongos, manchas, rasgaduras, ralladuras, retocado, roturas, sellosotinta, otros, numerofragmentos, alto,
-        ancho, profundidad, pieimprenta, inspeccionesomarcas, caracteristicas, idpersonacaptura, fechacaptura, estado)
-        VALUES
-        ($idInstitucion, $idPublicacion, '$numeroRegistroInterno', '$numeroInventario', '$numeroEdicion', '$numeroPublicacion',
-        '$numeroTotalPaginas', '$fechaPublicacion', $idAlbum, '$tituloSeccion', '$numeroPaginaEncuentra', '$numeroColumnas', '$hallazgo', $idPeriodicidad,
-        '$issn', '$anotaciones', '$contextoHistorico', '$estadoConservacion', '$estadoIntegridad', '$arrugas',
-        '$ataqueBiologico', '$cintasAdhesivas', '$deshojado', '$etiquetas', '$huellasDigitales', '$hongos', '$manchas', '$rasgaduras',
-        '$ralladuras', '$retocado', '$roturas', '$sellosTinta', '$otros', '$numeroFragmentos', '$alto', '$ancho', '$profundidad',
-        '$pieImprenta', '$inspeccionesOMarcas', '$caracteristicas', $idPersonaCaptura, '$fechaCaptura', '$estado');";
+        $sql = "UPDATE fichaspublicacion
+                SET
+                    idinstitucion = $idInstitucion,
+                    idpublicacion = $idPublicacion,
+                    numeroregistrointerno = '$numeroRegistroInterno',
+                    numeroinventario = '$numeroInventario',
+                    numeroedicion = '$numeroEdicion',
+                    numeropublicacion = '$numeroPublicacion',
+                    numerototalpaginas = '$numeroTotalPaginas',
+                    fechapublicacion = '$fechaPublicacion',
+                    idalbum = $idAlbum,
+                    tituloseccion = '$tituloSeccion',
+                    numeropaginaencuentra = '$numeroPaginaEncuentra',
+                    numerocolumnas = '$numeroColumnas',
+                    hallazgo = '$hallazgo',
+                    idperiodicidad = $idPeriodicidad,
+                    issn = '$issn',
+                    anotaciones = '$anotaciones',
+                    contextohistorico = '$contextoHistorico',
+                    estadoconservacion = '$estadoConservacion',
+                    estadointegridad = '$estadoIntegridad',
+                    arrugas = '$arrugas',
+                    ataquebiologico = '$ataqueBiologico',
+                    cintasadhesivas = '$cintasAdhesivas',
+                    deformaciones = '$deformaciones',
+                    deshojado = '$deshojado',
+                    etiquetas = '$etiquetas',
+                    huellasdigitales = '$huellasDigitales',
+                    hongos = '$hongos',
+                    manchas = '$manchas',
+                    rasgaduras = '$rasgaduras',
+                    ralladuras = '$ralladuras',
+                    retocado = '$retocado',
+                    roturas = '$roturas',
+                    sellosotinta = '$sellosTinta',
+                    otros = '$otros',
+                    numerofragmentos = '$numeroFragmentos',
+                    alto = '$alto',
+                    ancho = '$ancho',
+                    profundidad = '$profundidad',
+                    pieimprenta = '$pieImprenta',
+                    inspeccionesomarcas = '$inspeccionesOMarcas',
+                    caracteristicas = '$caracteristicas',
+                    idpersonacaptura = $idPersonaCaptura,
+                    fechacaptura = '$fechaCaptura',
+                    estado = '$estado'
+                WHERE idfichapublicacion = $idFichaPublicacion";
 
         $con->query($sql);
-        
-        $idFichaPublicacion = $con->insert_id;
+
+        $sql = "Delete From publicacionautores Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($autores); $i++) {
             $sql = "Insert Into publicacionautores (idpublicacion, idautor) " .
@@ -81,17 +117,26 @@
             $con->query($sql);
         }
         
+        $sql = "Delete From publicaciontemas Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
+
         for ($i = 0; $i < sizeof($temas); $i++) {
             $sql = "Insert Into publicaciontemas (idpublicacion, idtema) " .
             "Values ('$idFichaPublicacion', " . $temas[$i]["id"] . ")";
             $con->query($sql);
         }
 
+        $sql = "Delete From publicaciongenerosperiodisticos Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
+
         for ($i = 0; $i < sizeof($generosPeriodisticos); $i++) {
             $sql = "Insert Into publicaciongenerosperiodisticos (idpublicacion, idgeneroperiodistico) " .
             "Values ('$idFichaPublicacion', " . $generosPeriodisticos[$i]["id"] . ")";
             $con->query($sql);
-        }        
+        }
+
+        $sql = "Delete From publicaciongenerosliterarios Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($generosLiterarios); $i++) {
             $sql = "Insert Into publicaciongenerosliterarios (idpublicacion, idgeneroliterario) " .
@@ -99,17 +144,26 @@
             $con->query($sql);
         }
 
+        $sql = "Delete From publicaciontiposencuadernacion Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
+
         for ($i = 0; $i < sizeof($tiposEncuadernacion); $i++) {
             $sql = "Insert Into publicaciontiposencuadernacion (idpublicacion, idtipoencuadernacion) " .
             "Values ('$idFichaPublicacion', " . $tiposEncuadernacion[$i]["id"] . ")";
             $con->query($sql);
         }
+
+        $sql = "Delete From publicaciontecnicasimpresion Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($tecnicasImpresion); $i++) {
             $sql = "Insert Into publicaciontecnicasimpresion (idpublicacion, idtecnicaimpresion) " .
             "Values ('$idFichaPublicacion', " . $tecnicasImpresion[$i]["id"] . ")";
             $con->query($sql);
         }
+
+        $sql = "Delete From publicaciontipospapel Where idpublicacion = $idFichaPublicacion";
+        $con->query($sql);
         
         for ($i = 0; $i < sizeof($tiposPapel); $i++) {
             $sql = "Insert Into publicaciontipospapel (idpublicacion, idtipopapel) " .
@@ -117,7 +171,6 @@
             $con->query($sql);
         }
 
-        //echo $idFichaPublicacion;
         echo "OK";
 
         mysqli_close($con);

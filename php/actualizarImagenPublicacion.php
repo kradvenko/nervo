@@ -18,10 +18,10 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "Update fotografiaimagenes Set idPersonaToma = " . $idPersonaToma . ", fechatoma = '" . $fechaToma . "', " .
+        $sql = "Update publicacionimagenes Set idPersonaToma = " . $idPersonaToma . ", fechatoma = '" . $fechaToma . "', " .
         "rutaimagen = '" . $rutaImagen . "', aprobada = '" . $aprobada . "', personaedita = '" . $personaEdita . "', " .
         "thumbnail = '" . $thumbnail . "' " .
-        "Where idfotografiaimagen = " . $idImagen;
+        "Where idpublicacionimagen = " . $idImagen;
 
         $con->query($sql);
 

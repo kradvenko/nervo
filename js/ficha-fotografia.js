@@ -253,14 +253,14 @@ function elegirFichaFotografia(id) {
             $("#divPendientes").css("visibility", "visible");
         });
     }});
-    $.ajax({url: "php/obtenerAutoresBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+    $.ajax({url: "php/obtenerAutoresFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
         ff_Autores = [];
         $('cat', res).each(function(index, element) {
             ff_Autor =  { id: $(this).find("idautor").text(), autor: $(this).find("autor").text() };
             ff_Autores[ff_Autores.length] = ff_Autor;
         });
     }});
-    $.ajax({url: "php/obtenerTemasBienXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
+    $.ajax({url: "php/obtenerTemasFotografiaXML.php", async: false, type: "POST", data: { idFichaFotografia : id }, success: function(res) {
         ff_temas = [];
         $('cat', res).each(function(index, element) {
             ff_tema =  { id: $(this).find("idtema").text(), tema: $(this).find("tema").text() };
@@ -735,10 +735,12 @@ function guardarImagenBien() {
     var fd = new FormData();
     var files = $('#imgInp')[0].files[0];
     var rutaImagen;
+    var thumbnail;
     if (files != null) {
         fd.append('imgInp', files);
         fd.append('idFichaFotografia', ff_IdFichaFotografia);
         rutaImagen = "imagenesbienes/fotografias/" + ff_IdFichaFotografia + "/" + files.name;
+        thumbnail = ff_IdFichaFotografia + "_" + files.name;
         $.ajax({ url: "imagenesbienes/subirImagenFotografia.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
             $('#loading').hide();
             $("#message").html(data);
@@ -751,7 +753,7 @@ function guardarImagenBien() {
     var personaEdita = $("#tbPersonaEdita").val();
 
     if (ff_idImagenElegida == 0) {
-        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita }, success: function(res) {
+        $.ajax({url: "php/agregarImagenFotografia.php", async: false, type: "POST", data: { idFichaFotografia: ff_IdFichaFotografia, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita, thumbnail: thumbnail }, success: function(res) {
             if (res == "OK") {
                 obtenerImagenesFotografia();
             } else {
@@ -759,7 +761,7 @@ function guardarImagenBien() {
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: ff_idImagenElegida, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita }, success: function(res) {
+        $.ajax({url: "php/actualizarImagenFotografia.php", async: false, type: "POST", data: { idImagen: ff_idImagenElegida, idPersonaToma: ff_PersonaToma, rutaImagen: rutaImagen, aprobada: aprobada, fechaToma: fechaToma, personaEdita: personaEdita, thumbnail: thumbnail }, success: function(res) {
             if (res == "OK") {
                 obtenerImagenesFotografia();
             } else {
