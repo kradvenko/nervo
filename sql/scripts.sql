@@ -577,4 +577,7 @@ CREATE TABLE `publicacionimagenes` (
   `thumbnail` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idpublicacionimagen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+--18/06/2018
+ALTER TABLE `acervonervo`.`paises` 
+ADD COLUMN `image` VARCHAR(45) NULL AFTER `pais`,
+ADD COLUMN `prefix` VARCHAR(10) NULL AFTER `image`;
