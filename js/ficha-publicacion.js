@@ -174,7 +174,10 @@ function guardarFichaFoto() {
             success: function(res) {
             if (res == 'OK') {
                 obtenerUltimasFichasPublicacion();
-                limpiarCamposFichaPublicacion();
+                //limpiarCamposFichaPublicacion();
+                $("#divEnlacesWeb").css("visibility", "visible");
+                $("#divImagenesBien").css("visibility", "visible");
+                $("#divPendientes").css("visibility", "visible");
                 alert("Se ha ingresado la ficha de la publicación.");
             } else {
                 alert(res);

@@ -143,7 +143,10 @@ function guardarFichaFoto() {
             success: function(res) {
             if (res == 'OK') {
                 obtenerUltimasFichasFotografia();
-                limpiarCamposFichaFotografia();
+                //limpiarCamposFichaFotografia();
+                $("#divEnlacesWeb").css("visibility", "visible");
+                $("#divImagenesBien").css("visibility", "visible");
+                $("#divPendientes").css("visibility", "visible");
                 alert("Se ha ingresado la ficha de la fotografía.");
             } else {
                 alert(res);
