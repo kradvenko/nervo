@@ -385,13 +385,13 @@ CREATE TABLE `fotografiaenlacesweb` (
     PRIMARY KEY (`idfotografiaimagen`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --08/06/2018
-ALTER TABLE `acervonervo`.`albumes` 
+ALTER TABLE `albumes` 
 ADD COLUMN `numeroalbum` VARCHAR(45) NULL AFTER `numerofotografias`;
 
-ALTER TABLE `acervonervo`.`fichasfotografia` 
+ALTER TABLE `fichasfotografia` 
 CHANGE COLUMN `titulo` `titulo` VARCHAR(150) NULL DEFAULT NULL ;
 
-ALTER TABLE `acervonervo`.`fichasfotografia` 
+ALTER TABLE `fichasfotografia` 
 ADD COLUMN `contextohistorico` VARCHAR(500) NULL AFTER `anotaciones`;
 --09/06/2018
 ALTER TABLE `albumes` 
@@ -549,10 +549,10 @@ ALTER TABLE `albumes`
 ADD COLUMN `de` VARCHAR(20) NULL AFTER `tipoficha`,
 ADD COLUMN `a` VARCHAR(20) NULL AFTER `de`;
 --16/06/2018
-ALTER TABLE `acervonervo`.`fotografiaimagenes` 
+ALTER TABLE `fotografiaimagenes` 
 ADD COLUMN `thumbnail` VARCHAR(100) NULL AFTER `personaedita`;
 
-ALTER TABLE `acervonervo`.`fichaspublicacion` 
+ALTER TABLE `fichaspublicacion` 
 ADD COLUMN `deformaciones` VARCHAR(5) NULL AFTER `cintasadhesivas`;
 
 CREATE TABLE `publicacionpendientes` (
@@ -578,6 +578,135 @@ CREATE TABLE `publicacionimagenes` (
   PRIMARY KEY (`idpublicacionimagen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --18/06/2018
-ALTER TABLE `acervonervo`.`paises` 
+ALTER TABLE `paises` 
 ADD COLUMN `image` VARCHAR(45) NULL AFTER `pais`,
 ADD COLUMN `prefix` VARCHAR(10) NULL AFTER `image`;
+--19/06/2018
+CREATE TABLE `idiomas` (
+  `ididioma` INT NOT NULL AUTO_INCREMENT,
+  `idioma` VARCHAR(45) NULL,
+  PRIMARY KEY (`ididioma`));
+
+CREATE TABLE `fichaslibro` (
+  `idfichalibro` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) DEFAULT NULL,
+  `numeroregistrointerno` varchar(45) DEFAULT NULL,
+  `numeroinventario` varchar(45) DEFAULT NULL,
+  `titulo` varchar(100) DEFAULT NULL,
+  `subtitulo` varchar(100) DEFAULT NULL,
+  `imprenta` varchar(100) DEFAULT NULL,
+  `prologo` text,
+  `compiladores` varchar(500) DEFAULT NULL,
+  `editorial` varchar(100) DEFAULT NULL,
+  `lugaredicion` varchar(100) DEFAULT NULL,
+  `ididioma` int(11) DEFAULT NULL,
+  `fechaedicion` varchar(45) DEFAULT NULL,
+  `fechaimpresion` varchar(45) DEFAULT NULL,
+  `fechareimpresion` varchar(45) DEFAULT NULL,
+  `isbn` varchar(45) DEFAULT NULL,
+  `volumen` varchar(45) DEFAULT NULL,
+  `tomo` varchar(45) DEFAULT NULL,
+  `tiraje` varchar(45) DEFAULT NULL,
+  `ejemplares` varchar(45) DEFAULT NULL,
+  `ciudad` varchar(100) DEFAULT NULL,
+  `coleccion` varchar(100) DEFAULT NULL,
+  `numerototalcoleccion` varchar(45) DEFAULT NULL,
+  `anotaciones` varchar(400) DEFAULT NULL,
+  `contextohistorico` varchar(500) DEFAULT NULL,
+  `estadoconservacion` varchar(45) DEFAULT NULL,
+  `estadointegridad` varchar(45) DEFAULT NULL,
+  `idpersonacaptura` int(11) DEFAULT NULL,
+  `fechacaptura` varchar(45) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idfichalibro`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `libroautores` (
+  `idlibroautor` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idautor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibroautor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `libroilustradores` (
+  `idlibroilustrador` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idautor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibroilustrador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `librotemas` (
+  `idlibrotema` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idtema` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibrotema`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `librogenerosliterarios` (
+  `idlibrogeneroliterario` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idgeneroliterario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibrogeneroliterario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `librotiposencuadernacion` (
+  `idlibrotipoencuadernacion` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idtipoencuadernacion` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibrotipoencuadernacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `librotecnicasimpresion` (
+  `idlibrotecnicaimpresion` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idtecnicaimpresion` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibrotecnicaimpresion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `librotipospapel` (
+  `idlibrotipopapel` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idtipopapel` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idlibrotipopapel`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publicacionenlacesweb` (
+  `idpublicacionenlaceweb` int(11) NOT NULL AUTO_INCREMENT,
+  `idpublicacion` int(11) DEFAULT NULL,
+  `sitio` varchar(150) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idpublicacionenlaceweb`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `libroenlacesweb` (
+  `idlibroenlaceweb` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `sitio` varchar(150) DEFAULT NULL,
+  `notas` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idlibroenlaceweb`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `libropendientes` (
+  `idlibropendiente` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `pendiente` varchar(300) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL,
+  `fechaInicio` varchar(45) DEFAULT NULL,
+  `fechaFin` varchar(45) DEFAULT NULL,
+  `resolucion` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`idlibropendiente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `libroimagenes` (
+  `idlibroimagen` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `idpersonatoma` int(11) DEFAULT NULL,
+  `rutaimagen` varchar(200) DEFAULT NULL,
+  `aprobada` varchar(45) DEFAULT NULL,
+  `fechatoma` varchar(45) DEFAULT NULL,
+  `personaedita` varchar(150) DEFAULT NULL,
+  `thumbnail` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idlibroimagen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+

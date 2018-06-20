@@ -297,6 +297,20 @@ function elegirFichaPublicacion(id) {
             fp_temas[fp_temas.length] = fp_tema;
         });
     }});
+    $.ajax({url: "php/obtenerGenerosLiterariosPublicacionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
+        fp_generosLiterarios = [];
+        $('cat', res).each(function(index, element) {
+            fp_generoLiterario =  { id: $(this).find("idgeneroliterario").text(), genero: $(this).find("genero").text() };
+            fp_generosLiterarios[fp_generosLiterarios.length] = fp_generoLiterario;
+        });
+    }});
+    $.ajax({url: "php/obtenerGenerosPeriodisticosPublicacionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
+        fp_generosPeriodisticos = [];
+        $('cat', res).each(function(index, element) {
+            fp_generoPeriodistico =  { id: $(this).find("idgeneroperiodistico").text(), genero: $(this).find("genero").text() };
+            fp_generosPeriodisticos[fp_generosPeriodisticos.length] = fp_generoPeriodistico;
+        });
+    }});
     $.ajax({url: "php/obtenerTiposEncuadernacionXML.php", async: false, type: "POST", data: { idFichaPublicacion : id }, success: function(res) {
         fp_tiposEncuadernacion = [];
         $('cat', res).each(function(index, element) {
@@ -764,7 +778,7 @@ function quitarTema(index) {
 }
 //Enlaces web
 function obtenerEnlacesWeb() {
-    $.ajax({url: "php/obtenerEnlacesWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion }, success: function(res) {
+    $.ajax({url: "php/obtenerEnlacesWebFicha.php", async: false, type: "POST", data: { idBien: fp_IdFichaPublicacion, tipoBien: "publicacion" }, success: function(res) {
         $("#divListaEnlacesWeb").html(res);
     }});
 }
@@ -789,7 +803,7 @@ function guardarEnlaceWeb() {
     }
     notasEnlaceWeb = $("#tbNotasEnlaceWeb").val();
     if (fp_idEnlaceWeb == 0) {
-        $.ajax({url: "php/agregarEnlaceWebFotografia.php", async: false, type: "POST", data: { idFichaFotografia: fp_IdFichaPublicacion, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
+        $.ajax({url: "php/agregarEnlaceWebFicha.php", async: false, type: "POST", data: { idBien: fp_IdFichaPublicacion, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb, tipoBien: "publicacion" }, success: function(res) {
             if (res == "OK") {
                 obtenerEnlacesWeb();
             } else {
@@ -797,7 +811,7 @@ function guardarEnlaceWeb() {
             }
         }});
     } else {
-        $.ajax({url: "php/actualizarEnlaceWebFotografia.php", async: false, type: "POST", data: { idEnlaceWeb: fp_idEnlaceWeb, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb }, success: function(res) {
+        $.ajax({url: "php/actualizarEnlaceWebFicha.php", async: false, type: "POST", data: { idEnlaceWeb: fp_idEnlaceWeb, enlaceWeb: enlaceWeb, notasEnlaceWeb: notasEnlaceWeb, tipoBien: "publicacion" }, success: function(res) {
             if (res == "OK") {
                 obtenerEnlacesWeb();
             } else {

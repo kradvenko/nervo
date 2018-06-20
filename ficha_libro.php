@@ -14,7 +14,7 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/nervo.js"></script>
-    <script src="js/ficha-publicacion.js"></script>
+    <script src="js/ficha-libro.js"></script>
     <title>Acervo artístico de Amado Nervo</title>
 </head>
 <body>
@@ -108,18 +108,8 @@
             <div class="col-2">
                 <label class="labelType01">Imprenta</label>
             </div>
-            <div class="col-2">
+            <div class="col-4">
                 <input type="text" class="form-control textbox-center" id="tbImprenta"></input>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarImprenta'>
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' onclick="verImprenta()" data-target='#modalVerImprenta'>
-                    <i class="fas fa-search"></i>
-                </button>
             </div>
         </div>
         <div class="row divMargin">
@@ -127,31 +117,21 @@
                 <label class="labelType01">Prologo</label>
             </div>
             <div class="col-4">
-                <textarea rows="3" class="form-control" id="taAnotaciones"></textarea>
+                <textarea rows="3" class="form-control" id="taPrologo"></textarea>
             </div>
             <div class="col-2">
                 <label class="labelType01">Compiladores</label>
             </div>
             <div class="col-4">
-                <textarea rows="3" class="form-control" id="tacompiladores"></textarea>
+                <textarea rows="3" class="form-control" id="taCompiladores"></textarea>
             </div>
         </div>
         <div class="row divMargin">
             <div class="col-2">
                 <label class="labelType01">Editorial</label>
             </div>
-            <div class="col-2">
+            <div class="col-4">
                 <input type="text" class="form-control textbox-center" id="tbEditorial"></input>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarImprenta'>
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-success" data-toggle='modal' onclick="verImprenta()" data-target='#modalVerImprenta'>
-                    <i class="fas fa-search"></i>
-                </button>
             </div>
             <div class="col-2">
                 <label class="labelType01">Lugar de edición</label>
@@ -164,11 +144,16 @@
             <div class="col-2">
                 <label class="labelType01">Idioma</label>
             </div>
-            <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbLugarEdicion"></input>
+            <div class="col-3" id="divIdiomas">
+                
+            </div>
+            <div class="col-1">
+                <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarIdioma'>
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
             <div class="col-2">
-                <label class="labelType01">Año de edición</label>
+                <label class="labelType01">Fecha de edición</label>
             </div>
             <div class="col-4">
                 <input type="text" class="form-control textbox-center" id="tbFechaEdicion"></input>
@@ -182,7 +167,7 @@
                 <input type="text" class="form-control textbox-center" id="tbFechaImpresion"></input>
             </div>
             <div class="col-2">
-                <label class="labelType01">Año de reimpresión</label>
+                <label class="labelType01">Fecha de reimpresión</label>
             </div>
             <div class="col-4">
                 <input type="text" class="form-control textbox-center" id="tbFechaReimpresion"></input>
@@ -216,7 +201,7 @@
                 <input type="text" class="form-control textbox-center" id="tbTiraje"></input>
             </div>
             <div class="col-1">
-                <label class="labelType01">Ejemplares</label>
+                <label class="labelType01">No. Ejemplar</label>
             </div>
             <div class="col-1">
                 <input type="text" class="form-control textbox-center" id="tbEjemplares"></input>
@@ -225,7 +210,7 @@
                 <label class="labelType01">Ciudad</label>
             </div>
             <div class="col-2">
-                <input type="text" class="form-control textbox-center" id="tbEjemplares"></input>
+                <input type="text" class="form-control textbox-center" id="tbCiudad"></input>
             </div>
         </div>
         <div class="row divMargin">
@@ -239,31 +224,59 @@
                 <label class="labelType01">Número total colección</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control textbox-center" id="tbColeccion"></input>
+                <input type="text" class="form-control textbox-center" id="tbNumeroTotalColeccion"></input>
             </div>
         </div>
         <div class="row divMargin">
-                <div class="col-2">
-                    <label class="labelType01">Ilustrador</label>
-                </div>
-                <div class="col-4">
-                    <div class="row">
-                        <div class="col-7">
-                            <input type="text" class="form-control textbox-center" id="tbIlustrador"></input>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row divMargin">
-                        <div class="col-12" id="divIlustradores">
-                            
-                        </div>
-                    </div>
-                </div>               
+            <div class="col-2">
+                <label class="labelType01">Ilustrador</label>
             </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-7">
+                        <input type="text" class="form-control textbox-center" id="tbIlustrador"></input>
+                    </div>
+                    <div class="col-2">
+                        
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarAutor'>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row divMargin">
+                    <div class="col-12" id="divIlustradores">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <label class="labelType01">Géneros literarios</label>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-8" id="divGenerosLiterariosSelect">
+                
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" onclick="agregarGeneroLiterarioSelect()">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success" data-toggle='modal' data-target='#modalAgregarGeneroLiterario'>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" id="divGenerosLiterarios">
+                        
+                    </div>
+                </div>     
+            </div>
+        </div>        
         <div class="row divMargin">
             <div class="col-2">
                 <label class="labelType01">Temas</label>
@@ -535,7 +548,7 @@
         </div>
         <div class="row divMargin" id="divImagenesBien">
             <div class="col-12">
-                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen' onclick="obtenerImagenesPublicacion()">Agregar imagen</button>
+                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen' onclick="obtenerImagenesLibro()">Agregar imagen</button>
             </div>
         </div>
         <div class="row divMargin">
@@ -545,49 +558,10 @@
         </div>
         <div class="row divMargin">
             <div class="col-3">
-                <button class="btn btn-primary" onclick="guardarFichaFoto()">Guardar</button>
+                <button class="btn btn-primary" onclick="guardarFichaLibro()">Guardar</button>
             </div>
             <div class="col-3">
-                <button class="btn btn-primary" onclick="limpiarCamposFichaPublicacion()">Limpiar campos</button>
-            </div>
-        </div>
-    </div>
-    <!--Ventana modal para agregar una nueva publicación-->
-    <div class="modal fade" id="modalAgregarPublicacion" tabindex="-1" role="dialog" aria-labelledby="modalAgregarPublicacion" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Agregar nueva publicación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Nombre de la publicación</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevaPublicacion"></input>
-                        </div>
-                        <div class="col-12">
-                            <label>País</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevaPublicacionPais"></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Tipo de publicación</label>
-                        </div>
-                        <div class="col-12" id="divNuevaPublicacionTiposPublicacion">
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevaPublicacionNombre()">Guardar cambios</button>
-                </div>
+                <button class="btn btn-primary" onclick="limpiarCamposFichaLibro()">Limpiar campos</button>
             </div>
         </div>
     </div>
@@ -615,12 +589,12 @@
             </div>
         </div>
     </div>
-    <!--Ventana modal para agregar un nuevo genero periodistico-->
-    <div class="modal fade" id="modalAgregarGeneroPeriodistico" tabindex="-1" role="dialog" aria-labelledby="modalAgregarGeneroPeriodistico" aria-hidden="true">
+    <!--Ventana modal para agregar un nuevo idioma-->
+    <div class="modal fade" id="modalAgregarIdioma" tabindex="-1" role="dialog" aria-labelledby="modalAgregarIdioma" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo género periodístico</h5>
+                    <h5 class="modal-title">Agregar nuevo idioma</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -628,13 +602,13 @@
                 <div class="modal-body">
                     <div class="row">                        
                         <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoGeneroPeriodistico"></input>
+                            <input type="text" class="form-control" id="tbNuevoIdioma"></input>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevoGeneroPeriodistico()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="agregarNuevoIdioma()">Guardar cambios</button>
                 </div>
             </div>
         </div>
@@ -663,133 +637,7 @@
             </div>
         </div>
     </div>
-    <!--Ventana modal para agregar una nueva periodicidad de publicación-->
-    <div class="modal fade" id="modalAgregarNuevaPeriodicidad" tabindex="-1" role="dialog" aria-labelledby="modalAgregarNuevaPeriodicidad" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo género literario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">                        
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevaPeriodicidad"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevaPeriodicidad()">Guardar cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Ventana modal para agregar un nuevo albúm-->
-    <div class="modal fade" id="modalAgregarAlbum" tabindex="-1" role="dialog" aria-labelledby="modalAgregarAlbum" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Agregar nuevo albúm</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Nombre del albúm</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoAlbumNombre"></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Institución</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoAlbumInstitucion"></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Descripción</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoAlbumDescripcion"></input>
-                        </div>
-                        <!--
-                        <div class="col-12">
-                            <label>Número de fotografías</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoAlbumFotografias"></input>
-                        </div>
-                        -->
-                        <div class="col-12">
-                            <label>Número de albúm</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbNuevoAlbumNumero"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarNuevoAlbum()">Guardar cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Ventana modal para ver la info de un albúm-->
-    <div class="modal fade" id="modalVerAlbum" tabindex="-1" role="dialog" aria-labelledby="modalVerAlbum" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Información del albúm</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Nombre del albúm</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbVerAlbumNombre" disabled></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Institución</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbVerAlbumInstitucion" disabled></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Descripción</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbVerAlbumDescripcion" disabled></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Número de fotografías</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbVerAlbumFotografias" disabled></input>
-                        </div>
-                        <div class="col-12">
-                            <label>Número de albúm</label>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" id="tbVerAlbumNumero" disabled></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!--Ventana modal para agregar un nuevo tema-->
     <div class="modal fade" id="modalAgregarTema" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTema" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -1085,47 +933,22 @@
             });
         });
         $(function() {     
-            $("#tbNuevaPublicacionPais").autocomplete({
-                source: "php/obtenerPaisesJSON.php",
-                minLength: 2,
-                select: function(event, ui) {
-                    fp_IdPaisNuevaPublicacion = ui.item.id;                    
-                }
-            });
-        });
-        $(function() {     
-            $("#tbPublicacion").autocomplete({
-                source: "php/obtenerPublicacionesJSON.php",
-                minLength: 2,
-                select: function(event, ui) {
-                    elegirPublicacion(ui.item.id);
-                }
-            });
-        });
-        $(function() {     
-            $("#tbLugarAsunto").autocomplete({
-                source: "php/obtenerLugaresJSON.php",
-                minLength: 2,
-                select: function(event, ui) {
-                    elegirLugarAsunto(ui.item.id);
-                }
-            });
-        });
-        $(function() {     
-            $("#tbLugarToma").autocomplete({
-                source: "php/obtenerLugaresJSON.php",
-                minLength: 2,
-                select: function(event, ui) {
-                    elegirLugarToma(ui.item.id);
-                }
-            });
-        });
-        $(function() {     
             $("#tbAutor").autocomplete({
                 source: "php/obtenerAutoresJSON.php",
                 minLength: 2,
                 select: function(event, ui) {
                     agregarAutor(ui.item.id, ui.item.value);
+                    this.value = '';
+                    return false;
+                }
+            });
+        });
+        $(function() {     
+            $("#tbIlustrador").autocomplete({
+                source: "php/obtenerAutoresJSON.php",
+                minLength: 2,
+                select: function(event, ui) {
+                    agregarIlustrador(ui.item.id, ui.item.value);
                     this.value = '';
                     return false;
                 }
@@ -1217,38 +1040,27 @@
                 }
             });
         });
-        obtenerUltimasFichasPublicacion();
+        obtenerUltimasFichasLibro();
+        obtenerIdiomasSelect();
         obtenerTemas();
-        obtenerGenerosPeriodisticosSelect();
         obtenerGenerosLiterariosSelect();
-        obtenerPeriodicidadesSelect();
         $("#divEnlacesWeb").css("visibility", "hidden");
         $("#divImagenesBien").css("visibility", "hidden");
         $("#divPendientes").css("visibility", "hidden");
-        limpiarCamposFichaPublicacion();
-        limpiarCamposNuevaPublicacion();
+        limpiarCamposFichaLibro();
     });
     
-    $('#modalAgregarPublicacion').on('shown.bs.modal', function() {
-        $('#tbNuevaPublicacion').focus();
+    $('#modalAgregarIdioma').on('shown.bs.modal', function() {
+        $('#tbNuevoIdioma').focus();
     });
     $('#modalAgregarAutor').on('shown.bs.modal', function() {
         $('#tbNuevoAutor').focus();
     });
-    $('#modalAgregarGeneroPeriodistico').on('shown.bs.modal', function() {
-        $('#tbNuevoGeneroPeriodistico').focus();
-    });
     $('#modalAgregarGeneroLiterario').on('shown.bs.modal', function() {
         $('#tbNuevoGeneroLiterario').focus();
     });
-    $('#modalAgregarAlbum').on('shown.bs.modal', function() {
-        $('#tbNuevoAlbumNombre').focus();
-    });
     $('#modalAgregarTema').on('shown.bs.modal', function() {
         $('#tbNuevoTema').focus();
-    });
-    $('#modalAgregarNuevaPeriodicidad').on('shown.bs.modal', function() {
-        $('#tbNuevaPeriodicidad').focus();
     });
     $('#modalAgregarTipoEncuadernacion').on('shown.bs.modal', function() {
         $('#tbNuevoTipoEncuadernacion').focus();
