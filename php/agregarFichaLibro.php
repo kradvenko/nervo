@@ -99,7 +99,8 @@
             $con->query($sql);
         }
 
-        echo "OK";
+        echo $idFichaLibro;
+        //echo "OK";
 
         mysqli_close($con);
     }

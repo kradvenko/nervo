@@ -120,13 +120,13 @@
         }
         
 
-        //echo $idFichaFoto;
-        echo "OK";
+        echo $idFichaFoto;
+        //echo "OK";
 
         mysqli_close($con);
     }
     catch (Throwable $t)
     {
-        echo $t;
+        echo "0";
     }
 ?>

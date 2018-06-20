@@ -131,9 +131,10 @@ function guardarFichaLibro() {
             idPersonaCaptura: idPersonaCaptura, fechaCaptura: fechaCaptura, estado: estado,
             autores: autores, ilustradores: ilustradores, temas: temas, generosLiterarios, tiposEncuadernacion, tecnicasImpresion, tiposPapel },
             success: function(res) {
-            if (res == 'OK') {
+            if (res > 0) {
                 obtenerUltimasFichasLibro();
                 //limpiarCamposFichaPublicacion();
+                fl_IdFichaLibro = res;
                 $("#divEnlacesWeb").css("visibility", "visible");
                 $("#divImagenesBien").css("visibility", "visible");
                 $("#divPendientes").css("visibility", "visible");

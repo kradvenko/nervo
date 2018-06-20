@@ -172,9 +172,10 @@ function guardarFichaFoto() {
             idPersonaCaptura: idPersonaCaptura, fechaCaptura: fechaCaptura, estado: estado,
             autores: autores, temas: temas, generosPeriodisticos, generosLiterarios, tiposEncuadernacion, tecnicasImpresion, tiposPapel },
             success: function(res) {
-            if (res == 'OK') {
+            if (res > 0) {
                 obtenerUltimasFichasPublicacion();
                 //limpiarCamposFichaPublicacion();
+                fp_IdFichaPublicacion = res;
                 $("#divEnlacesWeb").css("visibility", "visible");
                 $("#divImagenesBien").css("visibility", "visible");
                 $("#divPendientes").css("visibility", "visible");

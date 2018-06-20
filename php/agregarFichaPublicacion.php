@@ -117,8 +117,8 @@
             $con->query($sql);
         }
 
-        //echo $idFichaPublicacion;
-        echo "OK";
+        echo $idFichaPublicacion;
+        //echo "OK";
 
         mysqli_close($con);
     }

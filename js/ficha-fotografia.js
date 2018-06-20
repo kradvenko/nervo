@@ -141,9 +141,10 @@ function guardarFichaFoto() {
             idPersonaCaptura: idPersonaCaptura, fechaCaptura: fechaCaptura, estado: estado,
             autores: autores, temas: temas, tecnicas: tecnicas, soportesFlexibles: soportesFlexibles, soportesRigidos: soportesRigidos, generos: generos },
             success: function(res) {
-            if (res == 'OK') {
+            if (res > 0) {
                 obtenerUltimasFichasFotografia();
                 //limpiarCamposFichaFotografia();
+                ff_IdFichaFotografia = res;
                 $("#divEnlacesWeb").css("visibility", "visible");
                 $("#divImagenesBien").css("visibility", "visible");
                 $("#divPendientes").css("visibility", "visible");
