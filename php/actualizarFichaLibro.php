@@ -76,6 +76,9 @@
                     estado = '$estado'
                     WHERE idfichalibro = $idFichaLibro";
 
+        echo $sql;
+        return;
+
         $con->query($sql);
 
         $sql = "Delete From libroautores Where idlibro = $idFichaLibro";
