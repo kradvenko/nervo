@@ -1,4 +1,6 @@
 <?php
+    set_time_limit(300);
+    ini_set('memory_limit', '512M');
     if(isset($_FILES["imgInp"]["type"]))
     {
         $validextensions = array("jpeg", "jpg", "png");

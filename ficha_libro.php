@@ -547,8 +547,11 @@
             </div>
         </div>
         <div class="row divMargin" id="divImagenesBien">
-            <div class="col-12">
+            <div class="col-3">
                 <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarImagen' onclick="obtenerImagenesLibro()">Agregar imagen</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-info" data-toggle='modal' data-target='#modalMostrarAgregarPdf' onclick="obtenerPdfsLibro()">Agregar Pdf</button>
             </div>
         </div>
         <div class="row divMargin">
@@ -916,6 +919,55 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposAgregarImagen()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Ventana modal para mostrar los Pdfs del bien-->
+    <div class="modal fade" id="modalMostrarAgregarPdf" tabindex="-1" role="dialog" aria-labelledby="modalMostrarAgregarPdf" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pdfs del bien cultural</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="fSubirImagen" action="" method="post" enctype="multipart/form-data">
+                        <div class="row divMargin">
+                            <div class="col-12">
+                                <input type='file' name="pdfInp" id="pdfInp" />
+                            </div>
+                        </div>
+                        <div class="row divMargin">
+                            <div class="col-2">
+                                <label class="labelType01">Aprobado para mostrar</label>
+                            </div>
+                            <div class="col-4">
+                                <select id="selPdfAprobado">
+                                    <option value="SI">SI</option>
+                                    <option value="NO" selected>NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row divMargin">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-success" onclick="guardarPdfBien()">Guardar</button>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-success" onclick="limpiarCamposAgregarPdf()">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-12" id="divListaPdfSBien">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarCamposAgregarPdf()">Cerrar</button>
                 </div>
             </div>
         </div>

@@ -709,4 +709,11 @@ CREATE TABLE `libroimagenes` (
   PRIMARY KEY (`idlibroimagen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE `libropdfs` (
+  `idlibropdf` int(11) NOT NULL AUTO_INCREMENT,
+  `idlibro` int(11) DEFAULT NULL,
+  `aprobado` varchar(45) DEFAULT NULL,
+  `fechasubido` varchar(45) DEFAULT NULL,
+  `rutapdf` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idlibropdf`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

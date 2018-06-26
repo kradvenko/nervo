@@ -20,6 +20,7 @@ var fl_Reader;
 var fl_idEnlaceWeb = 0;
 var fl_idImagenElegida = 0;
 var idPendienteBien = 0;
+var fl_idPdfElegido = 0;
 //Funciones de elección de datos
 function elegirInstitucionBien(id) {
     fl_InstitucionElegida = id;
@@ -701,13 +702,70 @@ function obtenerImagenesLibro() {
     }});
 }
 
-function elegirImagenFotografia(idimagen, idpersona, personatoma, fechatoma, aprobada, rutaimagen) {
+function elegirImagenLibro(idimagen, idpersona, personatoma, fechatoma, aprobada, rutaimagen) {
     fl_idImagenElegida = idimagen;
     fl_PersonaToma = idpersona;
     $("#tbTomaPersona").val(personatoma);
     $("#tbTomaFecha").val(fechatoma);
     $("#selImagenAprobada").val(aprobada);
     $('#imgImagen').attr('src', rutaimagen);
+}
+
+//PDFs
+function guardarPdfBien() {
+    var fd = new FormData();
+    var files = $('#pdfInp')[0].files[0];
+    var rutaPdf;
+    var fecha = obtenerFechaActual();
+    if (files != null) {
+        fd.append('pdfInp', files);
+        fd.append('idFichaLibro', fl_IdFichaLibro);
+        rutaPdf = "pdf/libros/" + fl_IdFichaLibro + "/" + files.name;
+        //thumbnail = fl_IdFichaLibro + "_" + files.name;
+        $.ajax({ url: "pdf/subirPdfLibro.php", type: "POST", data: fd, contentType: false, cache: false, processData: false, success: function(data) {
+            if (data == "OK") {
+                
+            } else {
+                alert(data);
+                return;
+            }
+        }});
+    }
+    var aprobado = $("#selPdfAprobado").val();
+
+    if (fl_idPdfElegido == 0) {
+        $.ajax({url: "php/agregarPdfLibro.php", async: false, type: "POST", data: { idFichaLibro: fl_IdFichaLibro, rutaPdf: rutaPdf, aprobado: aprobado, fecha: fecha }, success: function(res) {
+            if (res == "OK") {
+                obtenerPdfsLibro();
+            } else {
+                alert(res);
+            }
+        }});
+    } else {
+        $.ajax({url: "php/actualizarPdfLibro.php", async: false, type: "POST", data: { idPdf: fl_idPdfElegido, rutaPdf: rutaPdf, aprobado: aprobado }, success: function(res) {
+            if (res == "OK") {
+                obtenerPdfsLibro();
+            } else {
+                alert(res);
+            }
+        }});
+    }
+}
+
+function obtenerPdfsLibro() {
+    $.ajax({url: "php/obtenerPdfsLibro.php", async: false, type: "POST", data: { idFichaLibro: fl_IdFichaLibro }, success: function(res) {
+        $("#divListaPdfSBien").html(res);
+    }});
+}
+
+function elegirPdfLibro(idpdf, aprobado, rutapdf) {
+    fl_idPdfElegido = idpdf;
+    $("#selPdfAprobado").val(aprobado);
+}
+
+function limpiarCamposAgregarPdf() {
+    $("#selPdfAprobado").val("NO");
+    $("#pdfInp").val("");
 }
 
 //Pendientes bien

@@ -70,6 +70,17 @@ function cerrarSesion() {
 function irSitioWeb(it) {
     window.open($("#" + it).val(), '_blank');
 }
+
+function obtenerFechaActual() {
+    var currentdate = new Date(); 
+    var fechaCaptura = (currentdate.getDate() < 10 ? "0" + currentdate.getDate() : currentdate.getDate()) + "/"
+                + ((currentdate.getMonth() + 1) < 10 ? ("0" + (currentdate.getMonth() + 1)) : (currentdate.getMonth() + 1)) + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + (currentdate.getHours() < 10 ? ("0" + currentdate.getHours()) : currentdate.getHours()) + ":"  
+                + (currentdate.getMinutes() < 10 ? ("0" + currentdate.getMinutes()) : currentdate.getMinutes()) + ":"  
+                + (currentdate.getSeconds() < 10 ? ("0" + currentdate.getSeconds()) : currentdate.getSeconds());
+    return fechaCaptura;
+}
 //Funciones para el módulo de localidades
 function obtenerPaises() {
     $.ajax({url: "php/obtenerPaises.php", async: false, type: "POST", success: function(res) {
