@@ -35,6 +35,14 @@
         </div>
         <div class="row divMargin">
             <div class="col-2">
+                Buscar por título
+            </div>
+            <div class="col-10">
+                <input type="text" class="form-control textbox-center" id="tbBuscar"></input>
+            </div>
+        </div>
+        <div class="row divMargin">
+            <div class="col-2">
                 Últimas fichas
             </div>
             <div class="col-10" id="divUltimasFichas">
@@ -1089,6 +1097,15 @@
                 minLength: 2,
                 select: function(event, ui) {
                     elegirPersonaToma(ui.item.id);
+                }
+            });
+        });
+        $(function() {     
+            $("#tbBuscar").autocomplete({
+                source: "php/obtenerFichasLibroJSON.php",
+                minLength: 1,
+                select: function(event, ui) {
+                    elegirFichaLibro(ui.item.id);
                 }
             });
         });
