@@ -45,7 +45,7 @@
 
         $con = new mysqli($hn, $un, $pw, $db);
 
-        $sql = "UPDATE acervonervo.fichaslibro
+        $sql = "UPDATE fichaslibro
                     SET
                     idinstitucion = $idInstitucion,
                     numeroregistrointerno = '$numeroRegistroInterno',
@@ -75,9 +75,6 @@
                     estadointegridad = '$estadoIntegridad',
                     estado = '$estado'
                     WHERE idfichalibro = $idFichaLibro";
-
-        echo $sql;
-        return;
 
         $con->query($sql);
 
