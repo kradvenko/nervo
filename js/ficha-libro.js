@@ -307,6 +307,7 @@ function limpiarCamposFichaLibro () {
     fl_tiposEncuadernacion = [];
     fl_tecnicasImpresion = [];
     fl_tiposPapel = [];
+    $("#tbBuscar").val("");
     $("#tbInstitucion").val("");
     $("#tbNumeroInterno").val("");
     $("#tbNumeroInventario").val("");

@@ -717,3 +717,6 @@ CREATE TABLE `libropdfs` (
   `rutapdf` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idlibropdf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `instituciones` 
+ADD COLUMN `imagen` VARCHAR(100) NULL AFTER `idciudad`;
