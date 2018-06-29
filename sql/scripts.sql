@@ -720,3 +720,6 @@ CREATE TABLE `libropdfs` (
 
 ALTER TABLE `instituciones` 
 ADD COLUMN `imagen` VARCHAR(100) NULL AFTER `idciudad`;
+--28/06/2018
+ALTER TABLE `ciudades` 
+ADD COLUMN `imagen` VARCHAR(100) NULL AFTER `ciudad`;
