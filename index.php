@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/Mapa.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/nervo.js"></script>
@@ -15,38 +15,30 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div class="container">
+    <div class="container">        
         <div class="row">
             <div class="col-4">
-                
             </div>
             <div class="col-4">
-                Inicio de sesión
-            </div>
-            <div class="col-4">
-                
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-
-            </div>
-            <div class="col-4">
-                <div class="col-6">
-                    Usuario
-                </div>
-                <div class="col-6">
-                    <input type="text" id="tbUsuario"/>
-                </div>
-                <div class="col-6">
-                    Contraseña
-                </div>
-                <div class="col-6">
-                    <input type="password" id="tbPassword"/>
+                <div class="divLogin">
+                    <div class="divLoginHeader">
+                        Inicio de sesión
+                    </div>
+                    <div class="">
+                        Usuario
+                    </div>
+                    <div class="">
+                        <input type="text" id="tbUsuario" class="form-control"/>
+                    </div>
+                    <div class="">
+                        Contraseña
+                    </div>
+                    <div class="">
+                        <input type="password" id="tbPassword" class="form-control"/>
+                    </div>
                 </div>
             </div>
             <div class="col-4">
-                
             </div>
         </div>
     </div>    
@@ -63,6 +55,7 @@
                 userLogin();
             }
         });
+        $("#tbUsuario").focus();
     });
 </script>
 </html>
