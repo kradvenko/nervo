@@ -5,7 +5,7 @@
 
         header('Content-type: application/json');
 
-        $term = $_GET["term"];
+        $term = utf8_encode($_GET["term"]);
 
         $con = new mysqli($hn, $un, $pw, $db);
 
@@ -20,7 +20,7 @@
         $result = $con->query($sql);
 
         while ($row = $result->fetch_array()) {
-            $item = array("id" => $row["idfichafotografia"] , "value" => json_encode($row["numerofotografia"]));
+            $item = array("id" => $row["idfichafotografia"] , "value" => json_encode(utf8_decode($row["numerofotografia"])));
             array_push($data, $item);
         }
         

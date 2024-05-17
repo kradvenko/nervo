@@ -19,7 +19,7 @@
         echo "<select class='form-control' id='" . $idSelect . "'>";
 
         while ($row = $result->fetch_array()) {
-            echo "<option value='" . $row["idpais"] . "'>" . $row["pais"] . "</option>";            
+            echo "<option value='" . $row["idpais"] . "'>" . utf8_decode($row["pais"]) . "</option>";            
         }
         
         echo "</select>";

@@ -21,8 +21,8 @@
         while ($row = $result->fetch_array()) {
             echo '<div class="col-12">';            
             echo '<div class="divTarjetaContacto" onclick="elegirContacto(' . $row["idcontacto"] . ')">';
-            echo '<div class="divTarjetaContactoHeader">' . $row["nombreContacto"] . '</div>';
-            echo '<div class="divTarjetaContactoBody">' . $row["area"] . '</div></div></div>';
+            echo '<div class="divTarjetaContactoHeader">' . utf8_decode($row["nombreContacto"]) . '</div>';
+            echo '<div class="divTarjetaContactoBody">' . utf8_decode($row["area"]) . '</div></div></div>';
         }
 
         mysqli_close($con);

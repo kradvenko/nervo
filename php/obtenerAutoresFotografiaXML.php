@@ -26,7 +26,7 @@
         while ($row = $result->fetch_array()) {
             echo "<cat>";
             echo "<idautor>" . $row['idautor'] . "</idautor>\n";
-            echo "<autor>" . $row['autor'] . "</autor>\n";
+            echo "<autor>" . utf8_decode($row['autor']) . "</autor>\n";
             echo "</cat>";
         }
 

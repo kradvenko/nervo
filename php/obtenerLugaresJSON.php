@@ -23,7 +23,7 @@
         $result = $con->query($sql);
 
         while ($row = $result->fetch_array()) {
-            $ciudad = array("id" => $row["idciudad"] , "value" => $row["Lugar"]);
+            $ciudad = array("id" => $row["idciudad"] , "value" => utf8_decode($row["Lugar"]));
             array_push($data, $ciudad);
         }
         

@@ -41,8 +41,8 @@
             echo "<idinstitucion>" . $row['idinstitucion'] . "</idinstitucion>\n";
             echo "<numeroregistrointerno>" . $row['numeroregistrointerno'] . "</numeroregistrointerno>\n";
             echo "<numeroinventario>" . $row['numeroinventario'] . "</numeroinventario>\n";
-            echo "<titulo>" . $row['titulo'] . "</titulo>\n";
-            echo "<tituloserie>" . $row['tituloserie'] . "</tituloserie>\n";
+            echo "<titulo>" . utf8_decode($row['titulo']) . "</titulo>\n";
+            echo "<tituloserie>" . utf8_decode($row['tituloserie']) . "</tituloserie>\n";
             echo "<idciudadasunto>" . $row['idciudadasunto'] . "</idciudadasunto>\n";
             echo "<idciudadtoma>" . $row['idciudadtoma'] . "</idciudadtoma>\n";
             echo "<fechaasunto>" . $row['fechaasunto'] . "</fechaasunto>\n";
@@ -52,9 +52,9 @@
             echo "<numerofotografia>" . $row['numerofotografia'] . "</numerofotografia>\n";
             echo "<coleccion>" . $row['coleccion'] . "</coleccion>\n";
             echo "<clavetecnica>" . $row['clavetecnica'] . "</clavetecnica>\n";
-            echo "<anotaciones>" . $row['anotaciones'] . "</anotaciones>\n";
-            echo "<contextohistorico>" . $row['contextohistorico'] . "</contextohistorico>\n";
-            echo "<estadoconservacion>" . $row['estadoconservacion'] . "</estadoconservacion>\n";
+            echo "<anotaciones>" . utf8_decode($row['anotaciones']) . "</anotaciones>\n";
+            echo "<contextohistorico>" . utf8_decode($row['contextohistorico']) . "</contextohistorico>\n";
+            echo "<estadoconservacion>" . utf8_decode($row['estadoconservacion']) . "</estadoconservacion>\n";
             echo "<estadointegridad>" . $row['estadointegridad'] . "</estadointegridad>\n";
             echo "<agrietamiento>" . $row['agrietamiento'] . "</agrietamiento>\n";
             echo "<ataquebiologico>" . $row['ataquebiologico'] . "</ataquebiologico>\n";

@@ -19,11 +19,11 @@
         while ($row = $result->fetch_array()) {
             echo '<div class="col-12">';            
             echo '<div class="divTarjetaInstitucion" onclick="elegirInstitucion(' . $row["idinstitucion"] . ')">';
-            echo '<div class="divTarjetaInstitucionHeader">' . $row["nombreInstitucion"] . '</div>';
+            echo '<div class="divTarjetaInstitucionHeader">' . utf8_decode($row["nombreInstitucion"]) . '</div>';
             if ($row["pendientes"] > 0) {
-                echo '<div class="divTarjetaInstitucionBody">' . $row["pais"] . '<span class="badge badge-warning">' . $row["pendientes"] . '</span></div></div></div>';
+                echo '<div class="divTarjetaInstitucionBody">' . utf8_decode($row["pais"]) . '<span class="badge badge-warning">' . $row["pendientes"] . '</span></div></div></div>';
             } else {
-                echo '<div class="divTarjetaInstitucionBody">' . $row["pais"] . '</div></div></div>';
+                echo '<div class="divTarjetaInstitucionBody">' . utf8_decode($row["pais"]) . '</div></div></div>';
             }            
         }
 

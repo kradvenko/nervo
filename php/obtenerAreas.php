@@ -31,7 +31,7 @@
             echo "<tr>";
             echo "  <td><a target='_blank'>" . $row["area"] . "</a></td>";
             echo "  <td>" . $row["notas"] . "</td>";
-            echo "  <td><button type='button' class='btn btn-success' onclick='elegirArea(" . $row["idinstitucionarea"] . ", \"" . $row["area"] . "\", " . json_encode($row["notas"]) . ")'>Elegir</button>";
+            echo "  <td><button type='button' class='btn btn-success' onclick='elegirArea(" . $row["idinstitucionarea"] . ", \"" . utf8_decode($row["area"]) . "\", " . json_encode($row["notas"]) . ")'>Elegir</button>";
             echo "</tr>";
         }
 

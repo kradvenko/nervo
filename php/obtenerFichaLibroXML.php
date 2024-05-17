@@ -33,10 +33,10 @@
             echo "<idinstitucion>" . $row['idinstitucion'] . "</idinstitucion>\n";
             echo "<numeroregistrointerno>" . $row['numeroregistrointerno'] . "</numeroregistrointerno>\n";
             echo "<numeroinventario>" . $row['numeroinventario'] . "</numeroinventario>\n";
-            echo "<titulo>" . $row['titulo'] . "</titulo>\n";
-            echo "<subtitulo>" . $row['subtitulo'] . "</subtitulo>\n";
-            echo "<imprenta>" . $row['imprenta'] . "</imprenta>\n";
-            echo "<prologo>" . $row['prologo'] . "</prologo>\n";
+            echo "<titulo>" . utf8_decode($row['titulo']) . "</titulo>\n";
+            echo "<subtitulo>" . utf8_decode($row['subtitulo']) . "</subtitulo>\n";
+            echo "<imprenta>" . utf8_decode($row['imprenta']) . "</imprenta>\n";
+            echo "<prologo>" . utf8_decode($row['prologo']) . "</prologo>\n";
             echo "<compiladores>" . $row['compiladores'] . "</compiladores>\n";
             echo "<editorial>" . $row['editorial'] . "</editorial>\n";
             echo "<lugaredicion>" . $row['lugaredicion'] . "</lugaredicion>\n";

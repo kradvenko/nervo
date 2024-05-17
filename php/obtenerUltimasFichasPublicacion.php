@@ -14,7 +14,7 @@
 
         
         while ($row = $result->fetch_array()) {            
-            echo "<span class='ultimaFicha' onclick='elegirFichaPublicacion(" . $row["idfichapublicacion"] . ")'>" . $row["tituloseccion"] . "</span>";
+            echo "<span class='ultimaFicha' onclick='elegirFichaPublicacion(" . $row["idfichapublicacion"] . ")'>" . utf8_decode($row["tituloseccion"]) . "</span>";
         }
         
 

@@ -25,7 +25,7 @@
         echo "<select class='form-control' id='" . $idSelect . "'>";
 
         while ($row = $result->fetch_array()) {
-            echo "<option value='" . $row["idregion"] . "'>" . $row["region"] . "</option>";
+            echo "<option value='" . $row["idregion"] . "'>" . utf8_decode($row["region"]) . "</option>";
         }
         
         mysqli_close($con);

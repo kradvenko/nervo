@@ -39,7 +39,7 @@
             echo "<idfichapublicacion>" . $row['idfichapublicacion'] . "</idfichapublicacion>\n";
             echo "<idinstitucion>" . $row['idinstitucion'] . "</idinstitucion>\n";
             echo "<idpublicacion>" . $row['idpublicacion'] . "</idpublicacion>\n";
-            echo "<publicacion>" . $row['publicacion'] . "</publicacion>\n";
+            echo "<publicacion>" . utf8_decode($row['publicacion']) . "</publicacion>\n";
             echo "<numeroregistrointerno>" . $row['numeroregistrointerno'] . "</numeroregistrointerno>\n";
             echo "<numeroinventario>" . $row['numeroinventario'] . "</numeroinventario>\n";
             echo "<numeroedicion>" . $row['numeroedicion'] . "</numeroedicion>\n";
@@ -47,10 +47,10 @@
             echo "<numerototalpaginas>" . $row['numerototalpaginas'] . "</numerototalpaginas>\n";
             echo "<fechapublicacion>" . $row['fechapublicacion'] . "</fechapublicacion>\n";
             echo "<idalbum>" . $row['idalbum'] . "</idalbum>\n";
-            echo "<tituloseccion>" . $row['tituloseccion'] . "</tituloseccion>\n";
+            echo "<tituloseccion>" . utf8_decode($row['tituloseccion']) . "</tituloseccion>\n";
             echo "<numeropaginaencuentra>" . $row['numeropaginaencuentra'] . "</numeropaginaencuentra>\n";
             echo "<numerocolumnas>" . $row['numerocolumnas'] . "</numerocolumnas>\n";
-            echo "<hallazgo>" . $row['hallazgo'] . "</hallazgo>\n";
+            echo "<hallazgo>" . utf8_decode($row['hallazgo']) . "</hallazgo>\n";
             echo "<idperiodicidad>" . $row['idperiodicidad'] . "</idperiodicidad>\n";
             echo "<periodicidad>" . $row['periodicidad'] . "</periodicidad>\n";
             echo "<issn>" . $row['issn'] . "</issn>\n";

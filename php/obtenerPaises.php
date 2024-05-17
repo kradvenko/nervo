@@ -13,8 +13,8 @@
 
         while ($row = $result->fetch_array()) {
             echo "<tr>";
-            echo "  <td>" . $row["pais"] . "</td>";
-            echo "  <td><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#modalModificarPais' onclick='seleccionarPais(" . $row["idpais"] . ", \"". $row["pais"] . "\")'>Modificar</button>";
+            echo "  <td>" . utf8_decode($row["pais"]) . "</td>";
+            echo "  <td><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#modalModificarPais' onclick='seleccionarPais(" . $row["idpais"] . ", \"". utf8_decode($row["pais"]) . "\")'>Modificar</button>";
             echo "</tr>";
         }
 

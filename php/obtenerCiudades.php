@@ -18,10 +18,10 @@
 
         while ($row = $result->fetch_array()) {
             echo "<tr>";
-            echo "  <td>" . $row["pais"] . "</td>";
-            echo "  <td>" . $row["region"] . "</td>";
-            echo "  <td>" . $row["ciudad"] . "</td>";
-            echo "  <td><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#modalModificarCiudad' onclick='seleccionarCiudad(" . $row["idciudad"] . ", " . $row["idregion"] . ", " . $row["idpais"] . ", \"". $row["ciudad"] . "\")'>Modificar</button>";
+            echo "  <td>" . utf8_decode($row["pais"]) . "</td>";
+            echo "  <td>" . utf8_decode($row["region"]) . "</td>";
+            echo "  <td>" . utf8_decode($row["ciudad"]) . "</td>";
+            echo "  <td><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#modalModificarCiudad' onclick='seleccionarCiudad(" . $row["idciudad"] . ", " . $row["idregion"] . ", " . $row["idpais"] . ", \"". utf8_decode($row["ciudad"]) . "\")'>Modificar</button>";
             echo "</tr>";
         }
 

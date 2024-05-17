@@ -18,7 +18,7 @@
         $result = $con->query($sql);
 
         while ($row = $result->fetch_array()) {
-            $institucion = array("id" => $row["idinstitucion"] , "value" => $row["nombreInstitucion"]);
+            $institucion = array("id" => $row["idinstitucion"] , "value" => utf8_decode($row["nombreInstitucion"]));
             array_push($data, $institucion);
         }
         

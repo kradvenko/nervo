@@ -25,11 +25,11 @@
             echo "<idalbum>" . $row['idalbum'] . "</idalbum>\n";
             echo "<idinstitucion>" . $row['idinstitucion'] . "</idinstitucion>\n";
             echo "<institucion>" . $row['institucion'] . "</institucion>\n";
-            echo "<album>" . $row['album'] . "</album>\n";
-            echo "<descripcion>" . $row['descripcion'] . "</descripcion>\n";
+            echo "<album>" . utf8_decode($row['album']) . "</album>\n";
+            echo "<descripcion>" . utf8_decode($row['descripcion']) . "</descripcion>\n";
             echo "<numerofotografias>" . $row['numerofotografias'] . "</numerofotografias>\n";
             echo "<numeroalbum>" . $row['numeroalbum'] . "</numeroalbum>\n";
-            echo "<tipoficha>" . $row['tipoficha'] . "</tipoficha>\n";
+            echo "<tipoficha>" . utf8_decode($row['tipoficha']) . "</tipoficha>\n";
             echo "<de>" . $row['de'] . "</de>\n";
             echo "<a>" . $row['a'] . "</a>\n";
             echo "</cat>";

@@ -24,7 +24,7 @@
         while ($row = $result->fetch_array()) {
             echo "<cat>";
             echo "<idcategoria>" . $row['idcategoria'] . "</idcategoria>\n";
-            echo "<categoria>" . $row['categoria'] . "</categoria>\n";
+            echo "<categoria>" . utf8_decode($row['categoria']) . "</categoria>\n";
             echo "</cat>";
         }
 

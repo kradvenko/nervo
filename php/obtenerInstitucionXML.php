@@ -23,7 +23,7 @@
 	    echo "<resultado>\n";
 
         while ($row = $result->fetch_array()) {
-            echo "<nombreInstitucion>" . $row['nombreInstitucion'] . "</nombreInstitucion>\n";
+            echo "<nombreInstitucion>" . utf8_decode($row['nombreInstitucion']). "</nombreInstitucion>\n";
             echo "<sectorInstitucion>" . $row['sectorInstitucion'] . "</sectorInstitucion>\n";
             echo "<tipoInstitucion>" . $row['tipoInstitucion'] . "</tipoInstitucion>\n";
             echo "<sitioWeb>" . $row['sitioWeb'] . "</sitioWeb>\n";

@@ -20,7 +20,7 @@
         echo "<select class='form-control' id='" . $idSelect . "'>";
 
         while ($row = $result->fetch_array()) {
-            echo "<option value='" . $row["idciudad"] . "'>" . $row["ciudad"] . "</option>";            
+            echo "<option value='" . $row["idciudad"] . "'>" . utf8_decode($row["ciudad"]) . "</option>";            
         }
         
         mysqli_close($con);

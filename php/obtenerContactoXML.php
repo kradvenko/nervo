@@ -23,13 +23,13 @@
 
         while ($row = $result->fetch_array()) {
             echo "<idinstitucion>" . $row['idinstitucion'] . "</idinstitucion>\n";
-            echo "<nombreContacto>" . $row['nombreContacto'] . "</nombreContacto>\n";
-            echo "<area>" . $row['area'] . "</area>\n";
+            echo "<nombreContacto>" . utf8_decode($row['nombreContacto']) . "</nombreContacto>\n";
+            echo "<area>" . utf8_decode($row['area']) . "</area>\n";
             echo "<cargo>" . $row['cargo'] . "</cargo>\n";
             echo "<telefonos>" . $row['telefonos'] . "</telefonos>\n";
             echo "<extension>" . $row['extension'] . "</extension>\n";
             echo "<correoElectronico>" . $row['correoElectronico'] . "</correoElectronico>\n";
-            echo "<notas>" . $row['notas'] . "</notas>\n";            
+            echo "<notas>" . utf8_decode($row['notas']) . "</notas>\n";            
         }
 
         echo "</resultado>\n";
